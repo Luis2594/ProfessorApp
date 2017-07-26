@@ -1,6 +1,13 @@
 <?php
 include './reusable/Session.php';
 include_once '../resource/Constants.php';
+
+if (isset($_SESSION['type']) && (int) isset($_SESSION['type']) != Constants::USER_PROFESSOR) {
+    session_start(); //to ensure you are using same session
+    session_unset(); // remove all session variables
+    session_destroy(); //destroy the session
+    header("location: ../view/Login.php"); //to redirect back to "login.php" after logout
+}
 ?>
 <html>
     <head>
@@ -90,7 +97,6 @@ include_once '../resource/Constants.php';
                                     if (isset($_SESSION['id'])) {
                                         include '../business/PersonBusiness.php';
                                         include_once '../domain/Person.php';
-
                                         $personBusiness = new PersonBusiness();
                                         $person = $personBusiness->getPersonId((int) $_SESSION['id'])[0];
                                         ?>
@@ -209,16 +215,6 @@ include_once '../resource/Constants.php';
                             </ul>
                         </li>
 
-                        <!--ENROLLMENT-->
-                        <li class="treeview">
-                            <a>
-                                <i class="fa"></i> <span>Matrícula</span> <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="./ShowStudents.php?enrollment=enrollment"><i class="fa"></i>Matrícular</a></li>
-                            </ul>
-                        </li>
-
                         <!--NOTIFY-->
                         <li class="treeview">
                             <a>
@@ -227,17 +223,6 @@ include_once '../resource/Constants.php';
                             <ul class="treeview-menu">
                                 <li><a href="./ShowNotifications.php"><i class="fa"></i>Ver Notificaciones</a></li>
                                 <li><a href="./CreateNotification.php"><i class="fa"></i>Crear Notificaciones</a></li>
-                            </ul>
-                        </li>
-
-                        <!--ADMIN-->
-                        <li class="treeview">
-                            <a>
-                                <i class="fa"></i> <span>Administrador</span> <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="./ShowAdmins.php"><i class="fa"></i>Ver Administradores</a></li>
-                                <li><a href="./CreateAdmin.php"><i class="fa"></i>Crear Administrador</a></li>
                             </ul>
                         </li>
 
