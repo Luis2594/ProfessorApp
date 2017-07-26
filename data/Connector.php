@@ -1,10 +1,6 @@
 <?php
 
-/**
- * Description of Connector
- */
 class Connector {
-
     private $server;
     private $user;
     private $password;
@@ -14,22 +10,13 @@ class Connector {
     /**
      * Constructor of the connection manager
      */
-
-    /**
-     * Función constructora
-     */
-//    public function Connector() {
-//        $this->server = 'mysql.hostinger.es';
-//        $this->user = 'u738259693_root';
-//        $this->password = '12345678';
-//        $this->db = 'u738259693_sanke';
-//    }
     public function Connector() {
         $this->server = 'localhost';
         $this->user = 'root';
-        $this->password = '';
-        $this->db = '';
+        $this->password = '1234';
+        $this->db = 'institution';
     }
+    
 
     /**
      * Open connection to the data base
@@ -70,16 +57,30 @@ class Connector {
             return false;
         }
     }
+    
+     /**
+     * Execute a query to know the last id of a table
+     * @param type $query query to select data from db
+     * @return boolean indicates if the given values are registred on the db
+     */
+    public function getMaxIdTable($table) {
+        $query = "SELECT MAX(id" . $table . ") FROM `tb" . $table . "`";
+        $result = $this->exeQuery($query);
+        $array = mysqli_fetch_array($result);
+        $id = trim($array[0]) + 1;
+        return $id;
+    }
 
     /**
      * Show data in console
      * @param type $data data to show in console
      */
     public function debug_to_console($data) {
-        if (is_array($data))
+        if (is_array($data)) {
             $output = "<script>console.log( 'Debug Objects: " . implode(',', $data) . "' );</script>";
-        else
+        } else {
             $output = "<script>console.log( 'Debug Objects: " . $data . "' );</script>";
+        }
 
         echo $output;
     }

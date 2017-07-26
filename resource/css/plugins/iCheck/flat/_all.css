@@ -78,7 +78,7 @@
     }
     .icheckbox_flat-red.disabled {
         background-position: -44px 0;
-        cursor: default;
+        /*cursor: default;*/
     }
     .icheckbox_flat-red.checked.disabled {
         background-position: -66px 0;
@@ -190,7 +190,7 @@
     }
     .icheckbox_flat-blue.disabled {
         background-position: -44px 0;
-        cursor: default;
+        /*cursor: default;*/
     }
     .icheckbox_flat-blue.checked.disabled {
         background-position: -66px 0;
