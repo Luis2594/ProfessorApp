@@ -37,5 +37,9 @@ class NotificationBusiness {
     public function getNotification($id) {
         return $this->notificationData->getNotification($id);
     }
+    
+    public function getNotificationByProfessor($id){
+        return $this->notificationData->getNotificationByProfessor($id);
+    }
 
 }
