@@ -3,12 +3,12 @@
 include_once './CurriculumBusiness.php';
 
 $year = $_POST['year'];
-$name = $_POST['name'];
+$text = $_POST['name'];
 
-if (isset($year) && isset($name)) {
+if (isset($year) && isset($text)) {
 
     $curriculumBusiness = new CurriculumBusiness();
-    $curriculum = new Curriculum(NULL, $name, $year);
+    $curriculum = new Curriculum(NULL, $text, $year);
     $id = $curriculumBusiness->insert($curriculum);
     if ($id != 0) {
         header("location: ../view/InformationCurriculum.php?id=" . $id . "&action=1&msg=Maya_curricular_creada_correctamente");

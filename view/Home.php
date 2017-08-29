@@ -1,7 +1,8 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 include './reusable/Header.php';
 require '../resource/log/ErrorHandler.php';
-//ErrorHandler::Log(__METHOD__, "algo", $_SESSION["id"]);
 ?>
 
 

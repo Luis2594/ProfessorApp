@@ -11,7 +11,7 @@ if (isset($id) && is_int($id)) {
     <section class="content-header" style="text-align: left">
         <ol class="breadcrumb">
             <li><a href="Home.php"><i class="fa fa-arrow-circle-right"></i>Inicio</a></li>
-            <li><a href="#"><i class="fa fa-arrow-circle-right"></i>Actualizar Persona</a></li>
+            <li><a href="ShowStudentUpdate.php"><i class="fa fa-arrow-circle-right"></i>Actualizar Estudiante</a></li>
             <li><a href="#"><i class="fa fa-arrow-circle-right"></i>Actualizar Teléfonos</a></li>
         </ol>
     </section>
@@ -25,20 +25,17 @@ if (isset($id) && is_int($id)) {
                 <!-- general form elements -->
                 <div class="box box-primary">
                     <div class="box-header">
-
                         <?php
-                        include '../business/PersonBusiness.php';
+                        include '../business/StudentBusiness.php';
 
-                        $personBusiness = new PersonBusiness();
-
-                        $persons = $personBusiness->getPersonId($id);
-
-                        foreach ($persons as $person) {
+                        $studentBusiness = new StudentBusiness();
+                        $students = $studentBusiness->getStudentId($id);
+                        foreach ($students as $student) {
                             ?>
                             <h3 class="box-title">Teléfonos de <?php
-                                echo $person->getPersonFirstName()
-                                . " " . $person->getPersonFirstlastname()
-                                . " " . $person->getPersonSecondlastname();
+                                echo $student->getPersonFirstName()
+                                . " " . $student->getPersonFirstlastname()
+                                . " " . $student->getPersonSecondlastname();
                                 ?></h3>
                         <?php } ?>
 
@@ -106,7 +103,6 @@ if (isset($id) && is_int($id)) {
                         </div><!-- /.box-body -->
 
                     </form>
-
 
                     <div class="box-footer">
                         <button onclick="addPhonePerson();" class="btn btn-primary">Crear</button>
@@ -199,6 +195,7 @@ include './reusable/Footer.php';
 
     function deletePhone(id) {
         $("#tr" + id).remove();
+        idPhone--;
     }
 
     function deletePhonePerson(idPerson, idPhoneDelete) {

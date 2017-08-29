@@ -8,8 +8,7 @@ $id = (int) $_GET['id'];
 <section class="content-header" style="text-align: left">
     <ol class="breadcrumb">
         <li><a href="Home.php"><i class="fa fa-arrow-circle-right"></i> Inicio</a></li>
-        <li><a href="ShowProfessors.php"><i class="fa fa-arrow-circle-right"></i>Ver Profesores</a></li>
-        <li><a href="#"><i class="fa fa-arrow-circle-right"></i>Ver módulos del profesor</a></li>
+        <li><a href="#"><i class="fa fa-arrow-circle-right"></i>Ver módulos</a></li>
     </ol>
 </section>
 <br>
@@ -30,7 +29,7 @@ if (isset($id) && is_int($id)) {
 
                         $professorBusiness = new ProfessorBusiness();
 
-                        $professors = $professorBusiness->getProfessor($id);
+                        $professors = $professorBusiness->getProfessor($_SESSION['id']);
                         foreach ($professors as $professor) {
                             ?>
                             <h3 class="box-title">Módulos asignados a: <?php
@@ -53,7 +52,6 @@ if (isset($id) && is_int($id)) {
                                     <th>Período</th>
                                     <th>Año</th>
                                     <th>Atinencia/Especialidad</th>
-                                    <th>Eliminar</th>
                                 </tr>
                             </thead>
                             <tbody id="tbody">
@@ -69,7 +67,6 @@ if (isset($id) && is_int($id)) {
                                     <th>Período</th>
                                     <th>Año</th>
                                     <th>Atinencia/Especialidad</th>
-                                    <th>Eliminar</th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -102,7 +99,7 @@ include './reusable/Footer.php';
             }
         }
     })(jQuery);
-    var id = $.get("id");
+    var id = <?php echo $_SESSION['id']; ?>;
 
     $(function () {
         coursesToProfessor();
@@ -129,7 +126,6 @@ include './reusable/Footer.php';
                     htmlCourse += "<td>" + item.period + "</td>";
                     htmlCourse += "<td>" + item.professorcourseyear + "</td>";
                     htmlCourse += "<td>" + item.specialityname + "</td>";
-                    htmlCourse += '<td><a href="javascript:deleteCourseToProfessor(' + item.professorcourseid + ')">Eliminar</a></td>';
                 });
                 $("#tbody").html(htmlCourse);
             },
@@ -140,26 +136,6 @@ include './reusable/Footer.php';
         });
     }
 
-    function deleteCourseToProfessor(id) {
-        $.ajax({
-            type: 'POST',
-            url: "../business/DeleteCourseToProfessor.php",
-            data: {"id": id},
-            success: function (data)
-            {
-                if (data == true) {
-                    alertify.success("Módulo eliminado de la lista del profesor");
-                    coursesToProfessor();
-                } else {
-                    alertify.error("Upps! Ha ocurrido un error al eliminar el módulo!");
-                }
-            },
-            error: function ()
-            {
-                alertify.error("Error ...");
-            }
-        });
-    }
 
 </script>
 

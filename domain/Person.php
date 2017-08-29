@@ -13,6 +13,8 @@ class Person {
     private $personGender;
     private $personNacionality;
     private $personimage;
+    private $personUser;
+    private $personPass;
 
     function Person($personId, $personDni, $personFirstName, $personFirstlastname, $personSecondlastname, $personEmail, $personBirthday, $personAge, $personGender, $personNacionality, $personimage) {
         $this->personId = $personId;
@@ -126,6 +128,22 @@ class Person {
         return $this;
     }
 
+    public function getPersonUser() {
+        return $this->personUser;
+    }
 
+    public function getPersonPass() {
+        return $this->personPass;
+    }
+
+    public function setPersonUser($personUser) {
+        $this->personUser = $personUser;
+        return $this;
+    }
+
+    public function setPersonPass($personPass) {
+        $this->personPass = $personPass;
+        return $this;
+    }
 
 }

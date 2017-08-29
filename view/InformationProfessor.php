@@ -7,7 +7,6 @@ include './reusable/Header.php';
 <section class="content-header" style="text-align: left">
     <ol class="breadcrumb">
         <li><a href="Home.php"><i class="fa fa-arrow-circle-right"></i> Inicio</a></li>
-        <li><a href="ShowProfessors.php"><i class="fa fa-arrow-circle-right"></i>Ver Profesores</a></li>
         <li><a href="#"><i class="fa fa-arrow-circle-right"></i>Información del Profesor</a></li>
     </ol>
 </section>
@@ -118,13 +117,6 @@ include './reusable/Header.php';
                         </div><!-- /.box-body -->
 
                     </form>
-
-                    <div class="btn-group btn-group-justified">
-                        <a type="button" class="btn btn-success" href="javascript:createProfessor()">Crear</a>
-                        <a type="button" class="btn btn-primary" href="javascript:updateProfessor(<?php echo $professor->getPersonId() ?>)">Actualizar</a>
-                        <a type="button" class="btn btn-danger" href="javascript:deleteProfessor(<?php echo $professor->getPersonId() ?>)">Eliminar</a>
-                    </div>
-
                     <!--</div>-->
                     <?php
                     break;
@@ -166,28 +158,4 @@ include './reusable/Footer.php';
         msg = msg.replace(/_/g, " ");
         alertify.error(msg);
     }
-
-    function createProfessor() {
-        window.location = "CreateProfessor.php";
-    }
-
-    function updateProfessor(id) {
-        window.location = "UpdateProfessor.php?id=" + id;
-    }
-
-    function deleteProfessor(id) {
-        alertify.confirm('Eliminar profesor', '¿Desea eliminar a ' +
-                $("input[name=name]").val() + " " +
-                $("input[name=firstlastname]").val() + " " +
-                $("input[name=secondlastname]").val() +
-                " con cédula " + $("input[name=dni]").val() +
-                " de la lista de profesores?", function () {
-                    window.location = "../business/DeleteProfessorAction.php?id=" + id;
-                }
-        , function () {
-            alertify.error('Cancelado');
-        });
-    }
-
-
 </script>

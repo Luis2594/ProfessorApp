@@ -26,6 +26,10 @@ class PersonBusiness {
       return $this->personData->getAll();
     }
     
+    public function getAllFull() {
+      return $this->personData->getAllFull();
+    }
+    
     public function getPersonId($id) {
      return $this->personData->getPersonId($id);
     }

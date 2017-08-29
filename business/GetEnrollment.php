@@ -24,4 +24,8 @@ switch ($option) {
         $result = $enrollmentBusiness->getCoursesAllEnrollmentByStudent($id);
         break;
 }
+
+
+
+
 echo json_encode($result);

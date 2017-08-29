@@ -10,7 +10,7 @@ include_once './PhoneBusiness.php';
 //First the generic data for person model
 $id = $_POST['id'];
 $dni = $_POST['dni'];
-$name = $_POST['name'];
+$text = $_POST['name'];
 $firstlastname = $_POST['firstlastname'];
 $secondlastname = $_POST['secondlastname'];
 $email = $_POST['email'];
@@ -21,19 +21,19 @@ $nationality = $_POST['nationality'];
 $quantityPhones = (int) $_POST['phones'];
 
 if (isset($id) && isset($dni) &&
-        isset($name) &&
+        isset($text) &&
         isset($firstlastname) &&
         isset($secondlastname) &&
         isset($genderTemp)) {
 
-    $name = ucwords(strtolower($name));
+    $text = ucwords(strtolower($text));
     $firstlastname = ucwords(strtolower($firstlastname));
     $secondlastname = ucwords(strtolower($secondlastname));
     $personBusiness = new PersonBusiness();
 
 
     $person = new Person(
-            $id, $dni, $name, $firstlastname, $secondlastname, $email, date("Y-m-d"), NULL, $genderTemp, $nationality, "profile_default.png");
+            $id, $dni, $text, $firstlastname, $secondlastname, $email, date("Y-m-d"), NULL, $genderTemp, $nationality, "profile_default.png");
 
     $res = $personBusiness->update($person);
 

@@ -41,6 +41,18 @@ class UserData extends Connector {
             ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
         }
     }
+    
+    public function updatePassword($id, $passOld, $passNew) {
+        $query = 'call updatePassword(' . $id . ', "'.$passOld.'", "'.$passNew.'");';
+        
+        try {
+            $result = $this->exeQuery($query);
+            $array = mysqli_fetch_array($result);
+            return trim($array[0]);
+        } catch (Exception $ex) {
+            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+        }
+    }
 
     public function delete($id) {
         $query = 'call delete("' . $id . '");';
@@ -98,7 +110,7 @@ class UserData extends Connector {
     }
 
     public function login($user, $pass) {
-        $query = "call login('" . $user . "', '" . $pass . "')";
+        $query = "call loginProfessor('" . $user . "', '" . $pass . "')";
         try {
             $result = $this->exeQuery($query);
             if (mysqli_num_rows($result) > 0) {

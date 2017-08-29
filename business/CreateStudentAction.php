@@ -7,7 +7,7 @@ include './PhoneBusiness.php';
 include './GroupBusiness.php';
 
 $dni = $_POST['dni'];
-$name = $_POST['name'];
+$text = $_POST['name'];
 $firstlastname = $_POST['firstlastname'];
 $secondlastname = $_POST['secondlastname'];
 $birthdate = $_POST['birthdate'];
@@ -24,7 +24,7 @@ $secundaryGroup = $_POST['secundaryGroup'];
 $quantityPhones = (int) $_POST['phones'];
 
 if (isset($dni) &&
-        isset($name) &&
+        isset($text) &&
         isset($firstlastname) &&
         isset($secondlastname) &&
         isset($birthdate) &&
@@ -35,7 +35,7 @@ if (isset($dni) &&
         isset($managerStudent) &&
         isset($localitation)) {
 
-    $name = ucwords(strtolower($name));
+    $text = ucwords(strtolower($text));
     $firstlastname = ucwords(strtolower($firstlastname));
     $secondlastname = ucwords(strtolower($secondlastname));
     $managerStudent = ucwords(strtolower($managerStudent));
@@ -49,7 +49,7 @@ if (isset($dni) &&
     }
 
     //Creamos instancia de persona
-    $person = new Person(NULL, $dni, $name, $firstlastname, $secondlastname, "", date('Y-m-d', strtotime(str_replace('/', '-', $birthdate))), NULL, $gender, $nationality, "profile_default.png");
+    $person = new Person(NULL, $dni, $text, $firstlastname, $secondlastname, "", date('Y-m-d', strtotime(str_replace('/', '-', $birthdate))), NULL, $gender, $nationality, "profile_default.png");
 
     $id_last = $personBusiness->insert($person);
 

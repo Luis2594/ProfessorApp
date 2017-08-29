@@ -7,7 +7,7 @@ include './reusable/Header.php';
 <section class="content-header" style="text-align: left">
     <ol class="breadcrumb">
         <li><a href="Home.php"><i class="fa fa-arrow-circle-right"></i> Inicio</a></li>
-        <li><a href="ShowCourses.php"><i class="fa fa-arrow-circle-right"></i>Ver Módulos</a></li>
+        <li><a href="ShowCoursesProfessor.php"><i class="fa fa-arrow-circle-right"></i>Ver Módulos</a></li>
         <li><a href="#"><i class="fa fa-arrow-circle-right"></i>Información del Módulo</a></li>
     </ol>
 </section>
@@ -68,27 +68,29 @@ include './reusable/Header.php';
                                 <!--IF-->
                                 <?php
                                 if ($course->getCourseType() == 1) {
-                                ?>
+                                    ?>
                                     <input type="text" class="form-control" placeholder="Convencional" required="" readonly value="Convencional" />
-                                <?php
+                                    <?php
                                 }
-                                
+
                                 if ($course->getCourseType() == 2) {
-                                ?>
+                                    ?>
                                     <input type="text" class="form-control" placeholder="Emergente" required="" readonly value="Emergente" />
-                                <?php
+                                    <?php
                                 }
-                                
+
                                 if ($course->getCourseType() == 3) {
-                                ?>
+                                    ?>
                                     <input type="text" class="form-control" placeholder="Opcional" required="" readonly value="Opcional" />
                                 <?php }
-                                
                                 ?>
                             </div>
                             <!--PDF-->
                             <div class="form-group">
                                 <a href="../../pdf/<?php echo $course->getCoursePdf() ?>" target="_blank" >Plan de estudios</a>
+                            </div>
+                            <div class="box-footer">
+                                <a href="ShowCoursesProfessor.php" style="width: 100%" class="btn btn-primary">Módulos</a>
                             </div>
                         </div><!-- /.box-body -->
                     </form>
@@ -96,12 +98,6 @@ include './reusable/Header.php';
                     break;
                 } // end of FOR
                 ?>
-
-                <div class="btn-group btn-group-justified">
-                    <a type="button" class="btn btn-success" href="javascript:createCourse()">Crear</a>
-                    <a type="button" class="btn btn-primary" href="javascript:updateCourse(<?php echo $id ?>)">Actualizar</a>
-                    <a type="button" class="btn btn-danger" href="javascript:deleteCourse(<?php echo $id ?>)">Eliminar</a>
-                </div>
             </div><!-- /.box -->
         </div><!--/.col (left) -->
     </div>   <!-- /.row -->
@@ -110,50 +106,3 @@ include './reusable/Header.php';
 <?php
 include './reusable/Footer.php';
 ?>
-
-<script type="text/javascript">
-
-    (function ($) {
-        $.get = function (key) {
-            key = key.replace(/[\[]/, '\\[');
-            key = key.replace(/[\]]/, '\\]');
-            var pattern = "[\\?&]" + key + "=([^&#]*)";
-            var regex = new RegExp(pattern);
-            var url = unescape(window.location.href);
-            var results = regex.exec(url);
-            if (results === null) {
-                return null;
-            } else {
-                return results[1];
-            }
-        }
-    })(jQuery);
-    var action = $.get("action");
-    var msg = $.get("msg");
-    if (action === "1") {
-        msg = msg.replace(/_/g, " ");
-        alertify.success(msg);
-    }
-    if (action === "0") {
-        msg = msg.replace(/_/g, " ");
-        alertify.error(msg);
-    }
-
-    function createCourse() {
-        window.location = "CreateCourse.php?";
-    }
-
-    function updateCourse(id) {
-        window.location = "UpdateCourse.php?id=" + id;
-    }
-
-    function deleteCourse(id) {
-        alertify.confirm('Eliminar módulo', "¿Desea eliminar el módulo?", function () {
-            window.location = "../business/DeleteCourseAction.php?id=" + id;
-        }
-        , function () {
-            alertify.error('Cancelado');
-        });
-    }
-
-</script>

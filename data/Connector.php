@@ -14,10 +14,10 @@ class Connector {
         $this->server = 'localhost';
         $this->user = 'root';
         $this->password = '1234';
+//        $this->password = 'cindea2017@';
         $this->db = 'institution';
     }
-    
-
+ 
     /**
      * Open connection to the data base
      */

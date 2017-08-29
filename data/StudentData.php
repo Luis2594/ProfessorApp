@@ -68,8 +68,8 @@ class StudentData extends Connector {
         }
     }
 
-    public function getStudentId($id) {
-        $query = 'call getStudent("' . $id . '");';
+    public function getStudentsByCourse($id) {
+        $query = 'call getStudentByCourse(' . $id . ');';
         try {
             $allStudent = $this->exeQuery($query);
             $array = [];
@@ -77,7 +77,24 @@ class StudentData extends Connector {
                 while ($row = mysqli_fetch_array($allStudent)) {
 
                     $currentStudent = new StudentAll(
-                            $row['personid'], $row['persondni'], $row['personfirstname'], $row['personfirstlastname'], $row['personsecondlastname'], $row['personemail'], $row['personbirthdate'], $row['personage'], $row['persongender'], $row['personnationality'], $row['studentadecuacy'], $row['studentyearincome'], $row['studentyearout'], $row['studentlocation'], $row['studentgroup'], $row['studentmanager'], $row['userusername'], $row['useruserpass']);
+                            $row['personid'], 
+                            $row['persondni'], 
+                            $row['personfirstname'], 
+                            $row['personfirstlastname'], 
+                            $row['personsecondlastname'], 
+                            $row['personemail'], 
+                            $row['personbirthdate'], 
+                            $row['personage'], 
+                            $row['persongender'], 
+                            $row['personnationality'], 
+                            $row['studentadecuacy'], 
+                            $row['studentyearincome'], 
+                            $row['studentyearout'], 
+                            $row['studentlocation'], 
+                            $row['studentgroup'], 
+                            $row['studentmanager'], 
+                            $row['userusername'], 
+                            $row['useruserpass']);
 
                     array_push($array, $currentStudent);
                 }
@@ -87,9 +104,5 @@ class StudentData extends Connector {
             ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
         }
     }
-
-//    public function getLastId() {
-//        
-//    }
 
 }

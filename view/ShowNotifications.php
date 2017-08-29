@@ -19,25 +19,31 @@ include './reusable/Header.php';
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Notificaciones</h3>
+                    <a type="button" class="btn btn-primary pull-right" href="CreateNotification.php">Añadir Notificación</a>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>Contenido</th>
+                                <th>Módulo</th>
+                                <th>Fecha</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
+                            session_start();
                             include '../business/NotificationBusiness.php';
-                            $notificationBusiness = new NotificationBusiness();
+                            $business = new NotificationBusiness();
 
-                            $notifications = $notificationBusiness->getAllGeneralNotification();
+                            $notifications = $business->getNotificationByProfessor($_SESSION['id']);
 
                             foreach ($notifications as $not) {
                                 ?>
                                 <tr>
                                     <td><?php echo $not->getNotificationText(); ?></td>
+                                    <td><?php echo $not->getNotificationCourse(); ?></td>
+                                    <td><?php echo $not->getNotificationDate(); ?></td>
                             <div class="btn-group btn-group-justified">
                                 <td>
                                     <a type="button" class="btn btn-primary" href="javascript:updateNotification(<?php echo $not->getNotificationId() ?>)">Actualizar</a>                    
@@ -54,6 +60,8 @@ include './reusable/Header.php';
                         <tfoot>
                             <tr>
                                 <th>Contenido</th>
+                                <th>Módulo</th>
+                                <th>Fecha</th>
                             </tr>
                         </tfoot>
                     </table>
@@ -72,18 +80,45 @@ include './reusable/Footer.php';
     $(function () {
         $("#example1").dataTable();
     });
-    
+
     function updateNotification(id) {
         window.location = "UpdateNotification.php?id=" + id;
     }
 
     function deleteNotification(id) {
         alertify.confirm('Eliminar notificación', '¿Desea eliminar?', function () {
-                    window.location = "../business/DeleteNotificationAction.php?id=" + id;
-                }
+            window.location = "../business/DeleteNotificationAction.php?id=" + id;
+        }
         , function () {
             alertify.error('Cancelado');
         });
+    }
+
+    (function ($) {
+        $.get = function (key) {
+            key = key.replace(/[\[]/, '\\[');
+            key = key.replace(/[\]]/, '\\]');
+            var pattern = "[\\?&]" + key + "=([^&#]*)";
+            var regex = new RegExp(pattern);
+            var url = unescape(window.location.href);
+            var results = regex.exec(url);
+            if (results === null) {
+                return null;
+            } else {
+                return results[1];
+            }
+        }
+    })(jQuery);
+
+    var action = $.get("action");
+    var msg = $.get("msg");
+    if (action === "1") {
+        msg = msg.replace(/_/g, " ");
+        alertify.success(msg);
+    }
+    if (action === "0") {
+        msg = msg.replace(/_/g, " ");
+        alertify.error(msg);
     }
 </script>
 

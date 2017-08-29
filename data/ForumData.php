@@ -2,8 +2,6 @@
 
 require_once '../data/Connector.php';
 include '../domain/Forum.php';
-//require_once './resource/log/ErrorHandler.php';
-
 
 class ForumData extends Connector {
 
@@ -12,7 +10,7 @@ class ForumData extends Connector {
         $query = "call insertForum('" .
                 $forum->getName() . "'," .
                 $forum->getCourse() . "," .
-                $forum->getProfessor() . ")";
+                $forum->getProfessor() . ");"; 
         try {
             $result = $this->exeQuery($query);
             $array = mysqli_fetch_array($result);
@@ -25,9 +23,7 @@ class ForumData extends Connector {
     public function update($forum) {
         $query = "call updateForum(" .
                 $forum->getId() . ",'" .
-                $forum->getName() . "'," .
-                $forum->getCourse() . ",'" .
-                $forum->getProfessor() . "')";
+                $forum->getName() . "')";
         try {
             $result = $this->exeQuery($query);
             $array = mysqli_fetch_array($result);
@@ -37,8 +33,8 @@ class ForumData extends Connector {
         }
     }
 
-    public function deteleForum($id) {
-        $query = 'call deteleForum("' . $id . '");';
+    public function delete($id) {
+        $query = 'call deleteForum(' . $id . ');';
         try {
             if ($this->exeQuery($query)) {
                 return TRUE;
@@ -70,7 +66,7 @@ class ForumData extends Connector {
     }
 
     public function getForum($id) {
-        $query = 'call getForum("' . $id . '");';
+        $query = 'call getForumById("' . $id . '");';
         try {
             $allInstitutions = $this->exeQuery($query);
             $array = [];
@@ -94,11 +90,36 @@ class ForumData extends Connector {
             $allInstitutions = $this->exeQuery($query);
             $array = [];
             if (mysqli_num_rows($allInstitutions) > 0) {
+                include_once '../business/PersonBusiness.php';
+                $business = new PersonBusiness();
                 while ($row = mysqli_fetch_array($allInstitutions)) {
+                    
                     $person = $business->getPersonId($row['forumprofessor']);
                     $currentInstitution = new Forum(
-                            $row['forumid'], $row['forumname'], $row['forumcourse'],
-                            $person[0]->getPersonFirstName()." ".$person[0]->getPersonFirstlastname()
+                            $row['forumid'], $row['forumname'], $row['forumcourse'], $person[0]->getPersonFirstName() . " " . $person[0]->getPersonFirstlastname()
+                    );
+                    array_push($array, $currentInstitution);
+                }
+            }
+            return $array;
+        } catch (Exception $ex) {
+            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+        }
+    }
+
+    public function getForumByProfessor($id) {
+        $query = 'call getForumByProfessor("' . $id . '");';
+        try {
+            $allInstitutions = $this->exeQuery($query);
+            $array = [];
+            if (mysqli_num_rows($allInstitutions) > 0) {
+                include_once '../business/PersonBusiness.php';
+                $business = new PersonBusiness();
+                while ($row = mysqli_fetch_array($allInstitutions)) {
+                    include_once '../business/PersonBusiness.php';
+                    $person = $business->getPersonId($row['forumprofessor']);
+                    $currentInstitution = new Forum(
+                            $row['forumid'], $row['forumname'], $row['forumcourse'], $person[0]->getPersonFirstName() . " " . $person[0]->getPersonFirstlastname()
                     );
                     array_push($array, $currentInstitution);
                 }

@@ -7,7 +7,7 @@ require_once 'AdminBusiness.php';
 //Capture data from POST method
 //First the generic data for person model
 $dni = $_POST['dni'];
-$name = $_POST['name'];
+$text = $_POST['name'];
 $firstlastname = $_POST['firstlastname'];
 $secondlastname = $_POST['secondlastname'];
 $email = $_POST['email'];
@@ -17,17 +17,17 @@ $nationality = $_POST['nationality'];
 $quantityPhones = (int) $_POST['phones'];
 
 if (isset($dni) &&
-        isset($name) &&
+        isset($text) &&
         isset($firstlastname) &&
         isset($secondlastname) &&
         isset($genderTemp)) {
 
-    $name = ucwords(strtolower($name));
+    $text = ucwords(strtolower($text));
     $firstlastname = ucwords(strtolower($firstlastname));
     $secondlastname = ucwords(strtolower($secondlastname));
     $personBusiness = new PersonBusiness();
     $person = new Person(
-            NULL, $dni, $name, $firstlastname, $secondlastname, $email, 
+            NULL, $dni, $text, $firstlastname, $secondlastname, $email, 
             date("Y-m-d"), NULL, $genderTemp, $nationality, "profile_default.png");
     
     $id_last = $personBusiness->insert($person);

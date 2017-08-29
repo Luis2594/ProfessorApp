@@ -10,6 +10,6 @@ if (isset($user) && isset($pass)){
     if ($userBusiness->login($user, $pass)){
         header("location: ../view/Home.php?action=1&msg=Ingreso_correcto!");
     } else {
-        header("location: ../view/Login.php?action=0&msg=Credenciales_inválidas!");
+        header("location: ../view/Login.php?action=0&msg=Credenciales_incorrectas!");
     }
 }

@@ -30,6 +30,10 @@ class StudentBusiness {
      return $this->studentData->getStudentId($id);
     }
     
+    public function getStudentsByCourse($id) {
+     return $this->studentData->getStudentsByCourse($id);
+    }
+    
     public function getLastId() {
         return $this->studentData->getLastId();
     }

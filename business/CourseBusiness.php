@@ -30,6 +30,10 @@ class CourseBusiness {
         return $this->courseData->getAll();
     }
     
+    public function getAllJson() {
+        return $this->courseData->getAllJson();
+    }
+    
     public function getAllParsed() {
         return $this->courseData->getAllParsed();
     }
@@ -56,6 +60,10 @@ class CourseBusiness {
 
     public function confirmCode($code) {
         return $this->courseData->confirmCode($code);
+    }
+    
+    public function getCoursesByProfessor($id){
+        return $this->courseData->getCoursesByProfessor($id);
     }
 
 }

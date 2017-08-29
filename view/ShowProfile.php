@@ -102,7 +102,7 @@ include './reusable/Header.php';
                         <!--EMAIL-->
                         <div class="form-group">
                             <label for="exampleInputEmail1">Correo</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" name="exampleInputEmail1" value="<?php echo $person->getPersonEmail() ?>" >
+                            <input type="email" class="form-control" id="exampleInputEmail1" name="exampleInputEmail1" disabled value="<?php echo $person->getPersonEmail() ?>" >
                         </div>
                         <!--GENDER-->
                         <div class="form-group">
@@ -143,7 +143,7 @@ include './reusable/Header.php';
                                                     <div class="input-group-addon">
                                                         <i class="fa fa-phone"></i>
                                                     </div>
-                                                    <input id="phone" name="phone" type="text" class="form-control" placeholder="Télefono" required="" value="<?php echo $phone->getPhonePhone() ?>" readonly />
+                                                    <input id="phone" name="phone" style="width: 100%" type="text" class="form-control" placeholder="Télefono" required="" value="<?php echo $phone->getPhonePhone() ?>" readonly />
                                                 </div>
                                             </div>
                                             <?php
@@ -155,7 +155,9 @@ include './reusable/Header.php';
                         </table>
                     </div><!-- /.box-body -->
                 </form>
-                <a type="button" class="btn btn-primary" href="javascript:updateAdmin(<?php echo $person->getPersonId() ?>)">Actualizar</a>
+                <div class="box-footer">
+                    <a type="button" class="btn btn-primary" style="width: 100%" href="javascript:update(<?php echo $person->getPersonId() ?>)">Actualizar</a>
+                </div>
             </div><!-- /.box -->
         </div><!--/.col (left) -->
     </div>   <!-- /.row -->
@@ -167,11 +169,38 @@ include './reusable/Footer.php';
 
 <!-- page script -->
 <script type="text/javascript">
+    
+    (function ($) {
+        $.get = function (key) {
+            key = key.replace(/[\[]/, '\\[');
+            key = key.replace(/[\]]/, '\\]');
+            var pattern = "[\\?&]" + key + "=([^&#]*)";
+            var regex = new RegExp(pattern);
+            var url = unescape(window.location.href);
+            var results = regex.exec(url);
+            if (results === null) {
+                return null;
+            } else {
+                return results[1];
+            }
+        }
+    })(jQuery);
+    var action = $.get("action");
+    var msg = $.get("msg");
+    if (action === "1") {
+        msg = msg.replace(/_/g, " ");
+        alertify.success(msg);
+    }
+    if (action === "0") {
+        msg = msg.replace(/_/g, " ");
+        alertify.error(msg);
+    }
+    
     $(function () {
         $("#example1").dataTable();
     });
 
-    function updateAdmin(id) {
-        window.location = "UpdateAdmin.php?id=" + id;
+    function update(id) {
+        window.location = "UpdateProfessorProfile.php?id=" + id;
     }
 </script>

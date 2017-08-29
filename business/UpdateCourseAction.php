@@ -4,7 +4,7 @@ include_once './CourseBusiness.php';
 
 $id = $_GET['id'];
 $code = (int) $_POST['code'];
-$name = $_POST['name'];
+$text = $_POST['name'];
 $credits = (int) $_POST['credits'];
 $lessons = (int) $_POST['lessons'];
 $speciality = (int) $_POST['speciality'];
@@ -12,15 +12,15 @@ $type = (int) $_POST['typeCourse'];
 
 if (isset($id) &&
         isset($code) &&
-        isset($name) &&
+        isset($text) &&
         isset($credits) &&
         isset($lessons) &&
         isset($speciality) &&
         isset($type)
 ) {
-    $coursesBusiness = new CourseBusiness();
+    $forumBusiness = new CourseBusiness();
     
-    $courseTemp = $coursesBusiness->getCourseIdUpdate($id);
+    $courseTemp = $forumBusiness->getCourseIdUpdate($id);
     
     $pdf = $_POST['schedule'];
     if (!empty($_FILES) && $_FILES["schedule"]["name"]) {
@@ -44,9 +44,9 @@ if (isset($id) &&
         }
     }
 
-    $course = new Course($id, $code, $name, $credits, $lessons, $pdf, $speciality, $type);
+    $course = new Course($id, $code, $text, $credits, $lessons, $pdf, $speciality, $type);
 
-    if ($coursesBusiness->update($course)) {
+    if ($forumBusiness->update($course)) {
         header("location: ../view/InformationCourse.php?id=".$id."&action=1&msg=Registro_actualizado_correctamente");
     } else {
         header("location: ../view/InformationCourse.php?id=".$id."&action=0&msg=Error_al_actualizar_registro");

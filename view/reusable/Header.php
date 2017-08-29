@@ -1,12 +1,11 @@
 <?php
 include './reusable/Session.php';
 include_once '../resource/Constants.php';
-
 ?>
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Administración</title>
+        <title>Profesores</title>
         <link rel="icon" type="image/png" href="./../resource/images/cindeaTurrialba.ico" />
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <!-- Bootstrap 3.3.2 -->
@@ -80,7 +79,7 @@ include_once '../resource/Constants.php';
                 <nav class="navbar navbar-static-top" role="navigation">
                     <!-- Sidebar toggle button-->
                     <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-                        <span class="sr-only">Toggle navigation</span>
+                        <span class="sr-only">Ocultar Navegación</span>
                     </a>
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
@@ -91,6 +90,7 @@ include_once '../resource/Constants.php';
                                     if (isset($_SESSION['id'])) {
                                         include '../business/PersonBusiness.php';
                                         include_once '../domain/Person.php';
+
                                         $personBusiness = new PersonBusiness();
                                         $person = $personBusiness->getPersonId((int) $_SESSION['id'])[0];
                                         ?>
@@ -126,10 +126,14 @@ include_once '../resource/Constants.php';
                                                 echo $person->getPersonFirstName();
                                                 switch ((int) $_SESSION['type']) {
                                                     case Constants::USER_PROFESSOR:
-                                                        echo '<small>Profesor</small>';
+                                                        if ($person->getPersonGender() == 1){//TODO set Man and Woman inside constants
+                                                            echo '<small>Profesor</small>';
+                                                        } else {
+                                                            echo '<small>Profesora</small>';
+                                                        }                                                        
                                                         break;
                                                     default:
-                                                        session_start(); //to ensure you are using same session
+                                                        //session_start(); //to ensure you are using same session
                                                         session_unset(); // remove all session variables
                                                         session_destroy(); //destroy the session
                                                         header("location: ./Login.php");
@@ -183,7 +187,7 @@ include_once '../resource/Constants.php';
                             <p>
                                 <?php
                                 if (isset($_SESSION['id'])) {
-                                    echo "<br/>" . $person->getPersonFirstName() . " " . $person->getPersonFirstlastname();
+                                    echo "<br/>".$person->getPersonFirstName() . " " . $person->getPersonFirstlastname();
                                 } else {
                                     ?>
                                     Usuario
@@ -210,7 +214,7 @@ include_once '../resource/Constants.php';
                         </li>
 
                         <!--NOTIFY-->
-                        <li class="treeview">
+                       <li class="treeview">
                             <a>
                                 <i class="fa"></i> <span>Notificaciones</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
@@ -220,70 +224,24 @@ include_once '../resource/Constants.php';
                             </ul>
                         </li>
 
-                        <!--TEACHER-->
-                        <li class="treeview">
-                            <a>
-                                <i class="fa"></i> <span>Profesores</span> <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="./ShowProfessors.php"><i class="fa"></i>Ver Profesores</a></li>
-                                <li><a href="./CreateProfessor.php"><i class="fa"></i>Crear Profesor</a></li>
-                                <li><a href="./ShowProfessors.php?assign=assign"><i class="fa"></i>Asignar módulos</a></li>
-                                <li><a href="./ShowProfessorUpdate.php"><i class="fa"></i>Actualizar Profesor</a></li>
-                                <li><a href="./ShowProfessorDelete.php"><i class="fa"></i>Eliminar Profesor</a></li>
-                            </ul>
-                        </li>
-
-                        <!--STUDENTS-->
-                        <li class="treeview">
-                            <a>
-                                <i class="fa"></i> <span>Estudiante</span> <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="./ShowStudents.php"><i class="fa"></i>Ver Estudiantes</a></li>
-                                <li><a href="./CreateStudent.php"><i class="fa"></i>Crear Estudiante</a></li>
-                                <li><a href="./ShowStudentUpdate.php"><i class="fa"></i>Actualizar Estudiante</a></li>
-                                <li><a href="./ShowStudentDelete.php"><i class="fa"></i>Eliminar Estudiante</a></li>
-                            </ul>
-                        </li>
-
-                        <!--SPECIALITIES-->
-                        <li class="treeview">
-                            <a>
-                                <i class="fa"></i> <span>Atinencia</span> <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="./ShowSpecialities.php"><i class="fa"></i>Ver Atinencia</a></li>
-                                <li><a href="./CreateSpeciality.php"><i class="fa"></i>Crear Atinencia</a></li>
-                                <li><a href="./ShowSpecialityUpdate.php"><i class="fa"></i>Actualizar Atinencia</a></li>
-                                <li><a href="./ShowSpecialityDelete.php"><i class="fa"></i>Eliminar Atinencia</a></li>
-                            </ul>
-                        </li>
-
                         <!--COURSES-->
                         <li class="treeview">
                             <a>
                                 <i class="fa"></i> <span>Módulos</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="./ShowCourses.php"><i class="fa"></i>Ver Módulos</a></li>
-                                <li><a href="./CreateCourse.php"><i class="fa"></i>Crear Módulo</a></li>
-                                <li><a href="./ShowCourseUpdate.php"><i class="fa"></i>Actualizar Módulo</a></li>
-                                <li><a href="./ShowCourseDelete.php"><i class="fa"></i>Eliminar Módulo</a></li>
+                                <li><a href="./ShowCoursesProfessor.php"><i class="fa"></i>Ver Módulos</a></li>
                             </ul>
                         </li>
-
-                        <!--CURRICULUM-->
+                        
+                        <!--COURSES-->
                         <li class="treeview">
                             <a>
-                                <i class="fa"></i> <span>Malla curricular</span> <i class="fa fa-angle-left pull-right"></i>
+                                <i class="fa"></i> <span>Foros</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li><a href="./ShowCurriculum.php"><i class="fa"></i>Ver Malla Curricular</a></li>
-                                <li><a href="./CreateCurriculum.php"><i class="fa"></i>Crear Malla Curricular</a></li>
-                                <li><a href="./ShowCurriculum.php?assign=assign"><i class="fa"></i>Asignar Módulos a Malla</a></li>
-                                <li><a href="./ShowCurriculumUpdate.php"><i class="fa"></i>Actualizar Malla Curricular</a></li>
-                                <li><a href="./ShowCurriculumDelete.php"><i class="fa"></i>Eliminar Malla Curricular</a></li>
+                                <li><a href="./ShowForums.php"><i class="fa"></i>Ver Foros</a></li>
+                                <li><a href="./CreateForum.php"><i class="fa"></i>Crear Foro</a></li>
                             </ul>
                         </li>
 
@@ -293,20 +251,7 @@ include_once '../resource/Constants.php';
                                 <i class="fa"></i> <span>Horarios</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li class="active"><a href=""><i class="fa"></i>Ver Horarios</a></li>
-                                <li class="active"><a href="./CreateSchedule.php"><i class="fa"></i>Crear Horarios</a></li>
-                                <li><a href=""><i class="fa"></i>Actualizar Horario</a></li>
-                                <li><a href=""><i class="fa"></i>Eliminar Horario</a></li>
-                            </ul>
-                        </li>
-
-                        <!--INFO-->
-                        <li class="treeview">
-                            <a>
-                                <i class="fa"></i> <span>Información CINDEA</span> <i class="fa fa-angle-left pull-right"></i>
-                            </a>
-                            <ul class="treeview-menu">
-                                <li><a href="./InformationInstitution.php"><i class="fa"></i>Ver Información</a></li>
+                                <li class="active"><a href="./ShowSchedule.php"><i class="fa"></i>Ver Horario</a></li>
                             </ul>
                         </li>
 

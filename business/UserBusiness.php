@@ -22,6 +22,10 @@ class UserBusiness {
        return $this->userData->update($user);
     }
     
+    public function updatePassword($id, $passOld, $passNew) {
+       return $this->userData->updatePassword($id, $passOld, $passNew);
+    }
+    
     public function delete($id) {
       return $this->userData->delete($id);
     }

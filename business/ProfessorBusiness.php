@@ -25,6 +25,10 @@ class ProfessorBusiness {
     public function getAll() {
       return $this->professorData->getAll();
     }
+   
+    public function getAllSchedule() {
+      return $this->professorData->getAllSchedule();
+    }
     
     public function getProfessor($id) {
      return $this->professorData->getProfessor($id);

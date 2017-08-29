@@ -2,12 +2,12 @@
 
 include_once '../business/SpecialityBusiness.php';
 
-$name = $_POST['name'];
+$text = $_POST['name'];
 
-if(isset($name) && $name != ""){
-    $name = ucwords(strtolower($name));
+if(isset($text) && $text != ""){
+    $text = ucwords(strtolower($text));
     $specialityBusiness = new SpecialityBusiness();
-    $speciality = new Speciality(NULL, $name);
+    $speciality = new Speciality(NULL, $text);
     $id_last = $specialityBusiness->insert($speciality);
     
     if($id_last != 0){

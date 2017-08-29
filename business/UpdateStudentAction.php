@@ -7,7 +7,7 @@ include_once './UserBusiness.php';
 
 $id = $_POST['id'];
 $dni = $_POST['dni'];
-$name = $_POST['name'];
+$text = $_POST['name'];
 $firstlastname = $_POST['firstlastname'];
 $secondlastname = $_POST['secondlastname'];
 $birthdate = $_POST['birthdate'];
@@ -23,7 +23,7 @@ $adecuacyTemp = $_POST['adecuacy'];
 
 if (isset($id) &&
         isset($dni) &&
-        isset($name) &&
+        isset($text) &&
         isset($firstlastname) &&
         isset($secondlastname) &&
         isset($birthdate) &&
@@ -34,7 +34,7 @@ if (isset($id) &&
         isset($managerStudent) &&
         isset($localitation)) {
 
-    $name = ucwords(strtolower($name));
+    $text = ucwords(strtolower($text));
     $firstlastname = ucwords(strtolower($firstlastname));
     $secondlastname = ucwords(strtolower($secondlastname));
     $managerStudent = ucwords(strtolower($managerStudent));
@@ -50,7 +50,7 @@ if (isset($id) &&
     //Esto es por si ocupo algo de la persona
     //$personTemp = $personBusiness->getPersonId($id);
     //Creamos instancia de persona
-    $person = new Person($id, $dni, $name, $firstlastname, $secondlastname, "email", date('Y-m-d', strtotime(str_replace('/', '-', $birthdate))), NULL, $gender, $nationality, "profile_default.png");
+    $person = new Person($id, $dni, $text, $firstlastname, $secondlastname, "email", date('Y-m-d', strtotime(str_replace('/', '-', $birthdate))), NULL, $gender, $nationality, "profile_default.png");
 
     $res = $personBusiness->update($person);
 

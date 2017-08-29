@@ -58,6 +58,33 @@ class ProfessorData extends Connector {
             ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
         }
     }
+    
+    public function getAllSchedule() {
+        $query = "call getAllProfessor()";
+        try {
+            $allProfessors = $this->exeQuery($query);
+            $array = [];
+            if (mysqli_num_rows($allProfessors) > 0) {
+                while ($row = mysqli_fetch_array($allProfessors)) {
+                    $array[] = array(
+//                        "professorid" => $row['professorid'],
+                        "personid" => $row['personid'],
+//                        "persondni" => $row['persondni'],
+                        "personfirstname" => $row['personfirstname'],
+                        "personfirstlastname" => $row['personfirstlastname'],
+                        "personsecondlastname" => $row['personsecondlastname']);
+//                        "personemail" => $row['personemail'],
+//                        "persongender" => $row['persongender'],
+//                        "personnationality" => $row['personnationality'],
+//                        "userusername" => $row['userusername'],
+//                        "useruserpass" => $row['useruserpass']);
+                }
+            }
+            return $array;
+        } catch (Exception $ex) {
+            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+        }
+    }
 
     public function getProfessor($id) {
         $query = 'call getProfessor("' . $id . '");';

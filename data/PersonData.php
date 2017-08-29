@@ -68,7 +68,36 @@ class PersonData extends Connector {
             $array = [];
             if (mysqli_num_rows($allPersons) > 0) {
                 while ($row = mysqli_fetch_array($allPersons)) {
-                    $currentPerson = new Person($row['personid'], $row['persondni'], $row['personfirstname'], $row['personfirstlastname'], $row['personsecondlastname'], $row['personemail'], $row['personbirthday'], $row['personage'], $row['persongender'], $row['personnationality'], $row['personimage']);
+                    $currentPerson = new Person($row['personid'], $row['persondni'], 
+                            $row['personfirstname'], $row['personfirstlastname'], 
+                            $row['personsecondlastname'], $row['personemail'],
+                            $row['personbirthday'], $row['personage'], 
+                            $row['persongender'], $row['personnationality'], $row['personimage']);
+                    array_push($array, $currentPerson);
+                }
+            }
+            return $array;
+        } catch (Exception $ex) {
+            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+        }
+    }
+    
+    public function getAllFull() {
+        $query = "SELECT * "
+                . "FROM (person INNER JOIN professor ON person.personid = professor.professorperson) "
+                . "INNER JOIN personuser ON person.personid = personuser.userperson;";
+        try {
+            $allPersons = $this->exeQuery($query);
+            $array = [];
+            if (mysqli_num_rows($allPersons) > 0) {
+                while ($row = mysqli_fetch_array($allPersons)) {
+                    $currentPerson = new Person($row['personid'], $row['persondni'], 
+                            $row['personfirstname'], $row['personfirstlastname'], 
+                            $row['personsecondlastname'], $row['personemail'],
+                            $row['personbirthday'], $row['personage'], 
+                            $row['persongender'], $row['personnationality'], $row['personimage']);
+                    $currentPerson->setPersonUser($row['userusername']);
+                    $currentPerson->setPersonPass($row['useruserpass']);
                     array_push($array, $currentPerson);
                 }
             }
@@ -85,10 +114,11 @@ class PersonData extends Connector {
             $array = [];
             if (mysqli_num_rows($allPerson) > 0) {
                 while ($row = mysqli_fetch_array($allPerson)) {
-                    $currentPerson = new Person($row['personid'], $row['persondni'], $row['personfirstname'], $row['personfirstlastname'], $row['personsecondlastname'], $row['personemail'], $row['personbirthday'], $row['personage'], $row['persongender'], $row['personnationality'], $row['personimage']);
+                    $currentPerson = new Person($row['personid'], $row['persondni'], $row['personfirstname'], $row['personfirstlastname'], $row['personsecondlastname'], $row['personemail'], $row['personbirthdate'], $row['personage'], $row['persongender'], $row['personnationality'], $row['personimage']);
                     array_push($array, $currentPerson);
                 }
             }
+            
             return $array;
         } catch (Exception $ex) {
             ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);

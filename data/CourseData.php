@@ -2,6 +2,7 @@
 
 require_once '../data/Connector.php';
 include '../domain/Course.php';
+
 //require_once './resource/log/ErrorHandler.php';
 
 
@@ -71,11 +72,8 @@ class CourseData extends Connector {
             if (mysqli_num_rows($allCourses) > 0) {
                 while ($row = mysqli_fetch_array($allCourses)) {
                     $currentCourse = new Course(
-                            $row['courseid'], $row['coursecode'], 
-                            $row['coursename'], $row['coursecredits'], 
-                            $row['courselesson'], $row['coursepdf'], 
-                            $row['coursespeciality'], $row['coursetype']);
-                    
+                            $row['courseid'], $row['coursecode'], $row['coursename'], $row['coursecredits'], $row['courselesson'], $row['coursepdf'], $row['coursespeciality'], $row['coursetype']);
+
                     $currentCourse->setSpecialityname($row['specialityname']);
                     array_push($array, $currentCourse);
                 }
@@ -85,7 +83,32 @@ class CourseData extends Connector {
             ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
         }
     }
-    
+
+    public function getAllJson() {
+        $query = "call getAllCourse()";
+        try {
+            $allCourses = $this->exeQuery($query);
+            $array = [];
+            if (mysqli_num_rows($allCourses) > 0) {
+                while ($row = mysqli_fetch_array($allCourses)) {
+
+                    $array[] = array("courseid" => $row['courseid'],
+                        "coursecode" => $row['coursecode'],
+                        "coursename" => $row['coursename'],
+                        "coursecredits" => $row['coursecredits'],
+                        "courselesson" => $row['courselesson'],
+                        "coursepdf" => $row['coursepdf'],
+                        "coursespeciality" => $row['coursespeciality'],
+                        "coursetype" => $row['coursetype']);
+
+                }
+            }
+            return $array;
+        } catch (Exception $ex) {
+            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+        }
+    }
+
     public function getAllParsed() {
         $query = "call getAllCourse()";
         try {
@@ -94,11 +117,8 @@ class CourseData extends Connector {
             if (mysqli_num_rows($allCourses) > 0) {
                 while ($row = mysqli_fetch_array($allCourses)) {
                     $currentCourse = new Course(
-                            $row['courseid'], $row['coursecode'], 
-                            $row['coursename'], $row['coursecredits'], 
-                            $row['courselesson'], $row['coursepdf'], 
-                            $row['specialityname'], $row['coursetype']);
-                    
+                            $row['courseid'], $row['coursecode'], $row['coursename'], $row['coursecredits'], $row['courselesson'], $row['coursepdf'], $row['specialityname'], $row['coursetype']);
+
                     array_push($array, $currentCourse);
                 }
             }
@@ -128,7 +148,7 @@ class CourseData extends Connector {
     }
 
     public function getCourseToAssignProfessor($id) {
-        $query = 'call getProfessorCourseByPersontId("' . $id . '");';
+        $query = 'call getProfessorCourseByPersonId("' . $id . '");';
         try {
             $allCourses = $this->exeQuery($query);
             $array = [];
@@ -222,6 +242,27 @@ class CourseData extends Connector {
             $array = mysqli_fetch_array($result);
             $res = trim($array[0]);
             return $res;
+        } catch (Exception $ex) {
+            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+        }
+    }
+    
+    //professor app
+    public function getCoursesByProfessor($id) {
+        $query = "call getCoursesByProfessor('" . $id . "')";
+        try {
+            $allCourses = $this->exeQuery($query);
+            $array = [];
+            if (mysqli_num_rows($allCourses) > 0) {
+                while ($row = mysqli_fetch_array($allCourses)) {
+                    $currentCourse = new Course(
+                            $row['courseid'], $row['coursecode'], $row['groupnumber'] . " - " . $row['coursename'], $row['coursecredits'], $row['courselesson'], $row['coursepdf'], $row['coursespeciality'], $row['coursetype']);
+
+                    $currentCourse->setSpecialityname($row['specialityname']);
+                    array_push($array, $currentCourse);
+                }
+            }
+            return $array;
         } catch (Exception $ex) {
             ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
         }
