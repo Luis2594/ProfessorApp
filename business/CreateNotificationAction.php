@@ -13,7 +13,7 @@ if (isset($text) && $text != "" && isset($course)) {
         if ($business->insertNotificationFromProfessor($new) != 0) {
             header("location: ../view/ShowNotifications.php?action=1&msg=Registro_creado_correctamente");
         } else {
-            header("location: ../view/CreateNotification.php?action=0&msg=Registro_fallido");
+            header("location: ../view/CreateNotification.php?action=0&msg=Registro_fallido,_es_necesario_que_al_menos_este_un_estudiante_matriculado_en_este_modulo");
         }
     } else {
         header("location: ../view/CreateNotification.php?action=0&msg=No_tiene_cursos_registrados.");

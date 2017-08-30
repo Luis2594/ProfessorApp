@@ -28,10 +28,9 @@ class NotificationData extends Connector {
                 $query = "call insertNotificationFromProfessor(" .
                         $notification->getNotificactionProfessor() . "," .
                         $notification->getNotificationCourse() . "," .
-                        $current->getPersonId() . "," .
-                        $notification->getNotificationText() .
-                        ");";
-                
+                        $current->getPersonId() . ",'" .
+                        $notification->getNotificationText()."');";
+              
                 $this->exeQuery($query);
                 $inserted = true;
             }
@@ -92,6 +91,7 @@ class NotificationData extends Connector {
     
     public function getNotificationByProfessor($id) {
         $query = 'call getNotificationByProfessor('.$id.');';
+        
         try {
             $allNotifications = $this->exeQuery($query);
             $array = [];
