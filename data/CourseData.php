@@ -169,6 +169,13 @@ class CourseData extends Connector {
                         "professorcourseyear" => $row['professorcourseyear']);
                 }
             }
+            
+            foreach ($array as $key => $row) {
+                $aux[$key] = $row['coursecode'];
+            }
+            
+            array_multisort($aux, SORT_ASC, $array);
+            
             return $array;
         } catch (Exception $ex) {
             ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
