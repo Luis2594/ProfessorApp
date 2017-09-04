@@ -18,6 +18,10 @@ class ScheduleBusiness {
         return $this->scheduleData->getScheduleByProfessor($id);
     }
     
+    public function getScheduleByStudent($id) {
+        return $this->scheduleData->getScheduleByStudent($id);
+    }
+    
     public function deleteScheduleByGroup($group) {
         return $this->scheduleData->deleteScheduleByGroup($group);
     }

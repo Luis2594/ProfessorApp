@@ -38,6 +38,27 @@ class ScheduleData extends Connector {
             ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
         }
     }
+    
+    public function getScheduleByStudent($id) {
+        $query = "call getScheduleByStudent(" . $id . ")";
+        
+        try {
+            $allSchedule = $this->exeQuery($query);
+            $array = [];
+            if (mysqli_num_rows($allSchedule) > 0) {
+                while ($row = mysqli_fetch_array($allSchedule)) {
+
+                    $array[] = array("groupscheduleid" => $row['groupscheduleid'],
+                        "coursecode" => $row['coursecode'],
+                        "groupschedulehour" => $row['groupschedulehour'],
+                        "groupscheduleday" => $row['groupscheduleday']);
+                }
+            }
+            return $array;
+        } catch (Exception $ex) {
+            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+        }
+    }
 
     public function deleteScheduleByGroup($group) {
         $query = 'call deleteScheduleByGroup(' . $group . ');';
