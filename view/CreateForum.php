@@ -26,7 +26,7 @@ include './reusable/Header.php';
                     <form role="form" id="formCreateForum" action="../business/CreateForumAction.php" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
                             <label>Módulo</label>
-                            <select style="width: 100%" name="course" id="course">
+                            <select style="width: 100%" name="course" id="course" onchange="addGroup(this);">
                                 <?php
                                 include_once '../business/CourseBusiness.php';
                                 $business = new CourseBusiness();
@@ -42,6 +42,7 @@ include './reusable/Header.php';
                                 ?>
                             </select>
                         </div>
+                        <input type="text" hidden="true" id="groupID"/>
                         <div class="form-group">
                             <label>Nombre</label>
                             <input id="forumName" name="forumName" type="text" class="form-control" placeholder="Nombre de Foro"/>
@@ -72,7 +73,7 @@ include './reusable/Footer.php';
     if ($('#course').val() === "-1") {
         $('#send').attr("disabled", true);
     }
-    
+
     (function ($) {
         $.get = function (key) {
             key = key.replace(/[\[]/, '\\[');
@@ -98,5 +99,9 @@ include './reusable/Footer.php';
     if (action === "0") {
         msg = msg.replace(/_/g, " ");
         alertify.error(msg);
+    }
+
+    function addGroup(sel) {
+        document.getElementById("groupID").value = sel.options[sel.selectedIndex].text.substring(0, 3);
     }
 </script>

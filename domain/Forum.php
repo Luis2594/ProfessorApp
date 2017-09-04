@@ -4,9 +4,10 @@ class Forum {
     private $id;
     private $name;
     private $course;
+    private $group;
     private $professor;
     
-    public function Forum($id, $name, $course, $professor) {
+    public function Forum($id, $name, $course, $group, $professor) {
         $this->id = $id;
         $this->name = $name;
         $this->course = $course;
@@ -23,6 +24,10 @@ class Forum {
 
     public function getCourse() {
         return $this->course;
+    }
+    
+    public function getGroup() {
+        return $this->group;
     }
 
     public function getProfessor() {
@@ -41,6 +46,11 @@ class Forum {
 
     public function setCourse($course) {
         $this->course = $course;
+        return $this;
+    }
+    
+    public function setGroup($group) {
+        $this->group = $group;
         return $this;
     }
 
