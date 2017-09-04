@@ -10,6 +10,7 @@ class ForumData extends Connector {
         $query = "call insertForum('" .
                 $forum->getName() . "'," .
                 $forum->getCourse() . "," .
+                $forum->getGroup() . "," .
                 $forum->getProfessor() . ");"; 
         try {
             $result = $this->exeQuery($query);
