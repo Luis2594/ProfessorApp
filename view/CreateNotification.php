@@ -7,7 +7,7 @@ include './reusable/Header.php';
 <section class="content-header" style="text-align: left">
     <ol class="breadcrumb">
         <li><a href="Home.php"><i class="fa fa-arrow-circle-right"></i> Inicio</a></li>
-        <li><a href="CreateNotification.php.php"><i class="fa fa-arrow-circle-right"></i>Enviar Notificación</a></li>
+        <li><a href="CreateNotification.php"><i class="fa fa-arrow-circle-right"></i>Crear Notificación</a></li>
     </ol>
 </section>
 <br>
