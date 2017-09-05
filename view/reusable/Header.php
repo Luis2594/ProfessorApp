@@ -59,7 +59,7 @@ include_once '../resource/Constants.php';
                 <!-- Logo -->
                 <a href="./Home.php" class="logo">
                     <b>
-                        <label>App Profesores</label>
+                        <label>Profesores</label>
                     </b>
                 </a>
                 <!-- Header Navbar: style can be found in header.less -->
