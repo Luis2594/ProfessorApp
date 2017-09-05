@@ -26,7 +26,7 @@ class NotificationData extends Connector {
             $inserted = false;
             foreach ($students as $current) {
                 $query = "call insertNotificationFromProfessor(" .
-                        $notification->getNotificactionProfessor() . "," .
+                        $notification->getNotificationProfessor() . "," .
                         $notification->getNotificationCourse() . "," .
                         $current->getPersonId() . ",'" .
                         $notification->getNotificationText()."');";
@@ -53,9 +53,36 @@ class NotificationData extends Connector {
             ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
         }
     }
+    
+    public function updateProfessorNotification($text, $professor, $old) {
+        echo '<script language="javascript"> alert(12)</script>';
+        $query = "call updateProfessorNotification(" . $professor . ",'" . $text ."','". $old."')";
+        try {
+            echo '<script language="javascript"> alert(13)</script>';
+            $result = $this->exeQuery($query);
+            echo '<script language="javascript"> alert(14)</script>';
+            $array = mysqli_fetch_array($result);
+            return trim($array[0]);
+        } catch (Exception $ex) {
+            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+        }
+    }
 
     public function deteleNotification($id) {
         $query = 'call deteleNotification("' . $id . '");';
+        try {
+            if ($this->exeQuery($query)) {
+                return TRUE;
+            } else {
+                return FALSE;
+            }
+        } catch (Exception $ex) {
+            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+        }
+    }
+    
+    public function deteleNotificationProfesor($text, $professor, $course) {
+        $query = 'call deteleNotificationProfessor("' . $text . ','.$professor.','.$course.'");';
         try {
             if ($this->exeQuery($query)) {
                 return TRUE;
@@ -106,7 +133,7 @@ class NotificationData extends Connector {
                     $currentNotification = new Notification(
                             $row['notificationid'], $row['notificationtext'], $row['notificationprofessor'], 
                             $courseBusiness->getCourseId($row['notificationcourse'])[0]->getCourseName(), $row['notificationstudent'], $row['notificationforum'], 
-                            $row['notificationread'], $row['notificationdate']);
+                            $row['notificationread'], $row['notDate']);
                     array_push($array, $currentNotification);
                 }
             }
@@ -139,21 +166,18 @@ class NotificationData extends Connector {
     }
 
     public function getNotification($id) {
-        $query = 'call getNotification("' . $id . '");';
+        $query = 'call getNotification(' . $id . ');';
         try {
             $allNotifications = $this->exeQuery($query);
             $array = [];
             if (mysqli_num_rows($allNotifications) > 0) {
                 while ($row = mysqli_fetch_array($allNotifications)) {
-                    //Notification($notificationId, $notificationText, 
-                    //$notificactionProfessor, $notificationCourse, 
-                    //$notificationStudent, $notificationForum, 
-                    //$notificationRead, $notificationDate) 
                     $currentNotification = new Notification(
-                            $row['notificationid'], $row['notificationtext'], NULL, NULL, NULL, NULL, NULL, NULL);
+                            $row['notificationid'], $row['notificationtext'], $row['notificationprofessor'], NULL, NULL, NULL, NULL, NULL);
                     array_push($array, $currentNotification);
                 }
             }
+            
             return $array;
         } catch (Exception $ex) {
             ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);

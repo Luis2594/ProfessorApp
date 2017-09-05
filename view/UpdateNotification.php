@@ -23,37 +23,32 @@ include './reusable/Header.php';
                 <div class="box-header">
                     <h3 class="box-title">Actualizar Notificación</h3>
                 </div><!-- /.box-header -->
-
-                <?php
-                include '../business/NotificationBusiness.php';
-
-                $business = new NotificationBusiness();
-                $notifications = $business->getNotification($_GET['id']);
-                foreach ($notifications as $newComment) {
-                    ?>
-                    <!-- form start -->
-                    <form role="form" id="formNotification" action="../business/UpdateNotificationAction.php" method="POST" enctype="multipart/form-data">
-                        <input type="hidden" name="id" id="id" value="<?php echo $newComment->getNotificationId() ?>"/>
-                        <div class="form-group">
-                            <textarea id="text" name="text" class="form-control" rows="3" placeholder="Notificación"><?php echo $newComment->getNotificationText() ?></textarea>
-                        </div>
-                    </form>
-
-                    <div class="pull-left">
-                        <button onclick="valueInputs();" class="btn btn-primary">Actualizar</button>
-                    </div>
-                    <div class="pull-right">
-                        <button onclick="backPage();" class="btn btn-primary">Atrás</button>
-                    </div>
-
+                <div class="box-footer">
                     <?php
-                    break;
-                }//fin del for
-                ?>
-            </div><!-- /.box -->
-        </div><!--/.col (left) -->
-    </div>   <!-- /.row -->
-</section><!-- /.content -->
+                    include '../business/NotificationBusiness.php';
+
+                    $business = new NotificationBusiness();
+                    $notifications = $business->getNotification($_GET['id']);
+                    foreach ($notifications as $newComment) {
+                        ?>
+                        <!-- form start -->
+                        <form role="form" id="formNotification" action="../business/UpdateNotificationAction.php" method="POST" enctype="multipart/form-data">
+                            <input type="hidden" name="id" id="id" value="<?php echo $newComment->getNotificationId() ?>"/>
+                            <div class="form-group">
+                                <textarea id="text" name="text" class="form-control" rows="3" required="true"><?php echo $newComment->getNotificationText() ?></textarea>
+                            </div>
+                        </form>
+                        <button onclick="valueInputs();" style="width: 49%" class="btn btn-primary">Actualizar</button>
+                        <button onclick="backPage();" style="width: 49%" class="btn btn-primary">Atrás</button>
+                        <?php
+                        break;
+                    }//fin del for
+                    ?>
+                </div>
+            </div>
+        </div>
+    </div>  
+</section>
 
 <?php
 include './reusable/Footer.php';
@@ -94,7 +89,7 @@ include './reusable/Footer.php';
             alertify.error("Verifique el contenido de la notificación");
             return false;
         }
-
+        
         $("#formNotification").submit();
     }
 

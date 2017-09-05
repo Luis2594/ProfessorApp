@@ -4,7 +4,7 @@ class Notification {
 
     private $notificationId;
     private $notificationText;
-    private $notificactionProfessor;
+    private $notificationProfessor;
     private $notificationCourse;
     private $notificationStudent;
     private $notificationForum;
@@ -14,7 +14,7 @@ class Notification {
     public function Notification($notificationId, $notificationText, $notificactionProfessor, $notificationCourse, $notificationStudent, $notificationForum, $notificationRead, $notificationDate) {
         $this->notificationId = $notificationId;
         $this->notificationText = $notificationText;
-        $this->notificactionProfessor = $notificactionProfessor;
+        $this->notificationProfessor = $notificactionProfessor;
         $this->notificationCourse = $notificationCourse;
         $this->notificationStudent = $notificationStudent;
         $this->notificationForum = $notificationForum;
@@ -30,8 +30,8 @@ class Notification {
         return $this->notificationText;
     }
 
-    public function getNotificactionProfessor() {
-        return $this->notificactionProfessor;
+    public function getNotificationProfessor() {
+        return $this->notificationProfessor;
     }
 
     public function getNotificationCourse() {
@@ -65,7 +65,7 @@ class Notification {
     }
 
     public function setNotificactionProfessor($notificactionProfessor) {
-        $this->notificactionProfessor = $notificactionProfessor;
+        $this->notificationProfessor = $notificactionProfessor;
         return $this;
     }
 

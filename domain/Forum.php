@@ -11,6 +11,7 @@ class Forum {
         $this->id = $id;
         $this->name = $name;
         $this->course = $course;
+        $this->group = $group;
         $this->professor = $professor;
     }
     

@@ -1,39 +1,38 @@
 <?php
 
-
 class Group {
 
     private $groupid;
     private $groupnumber;
     private $priority;
     
-    function Group($groupid, $groupnumber, $priority) {
+    public function Group($groupid, $groupnumber, $priority) {
         $this->groupid = $groupid;
         $this->groupnumber = $groupnumber;
         $this->priority = $priority;
     }
 
-    function getGroupid() {
+    public function getGroupid() {
         return $this->groupid;
     }
 
-    function getGroupnumber() {
+    public function getGroupnumber() {
         return $this->groupnumber;
     }
 
-    function getPriority() {
+    public function getPriority() {
         return $this->priority;
     }
 
-    function setGroupid($groupid) {
+    public function setGroupid($groupid) {
         $this->groupid = $groupid;
     }
 
-    function setGroupnumber($groupnumber) {
+    public function setGroupnumber($groupnumber) {
         $this->groupnumber = $groupnumber;
     }
 
-    function setPriority($priority) {
+    public function setPriority($priority) {
         $this->priority = $priority;
     }
 

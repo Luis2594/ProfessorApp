@@ -42,7 +42,7 @@ include './reusable/Header.php';
                                 ?>
                             </select>
                         </div>
-                        <input type="text" hidden="true" id="groupID"/>
+                        <input type="text" hidden="true" id="group" name="group"/>
                         <div class="form-group">
                             <label>Nombre</label>
                             <input id="forumName" name="forumName" type="text" class="form-control" placeholder="Nombre de Foro"/>
@@ -102,6 +102,6 @@ include './reusable/Footer.php';
     }
 
     function addGroup(sel) {
-        document.getElementById("groupID").value = sel.options[sel.selectedIndex].text.substring(0, 3);
+        document.getElementById("group").value = sel.options[sel.selectedIndex].text.substring(0, 3);
     }
 </script>

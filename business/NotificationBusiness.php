@@ -21,9 +21,17 @@ class NotificationBusiness {
     public function updateGeneralNotification($notification) {
         return $this->notificationData->updateGeneralNotification($notification);
     }
+    
+    public function updateProfessorNotification($text, $professor, $old) {
+        return $this->notificationData->updateProfessorNotification($text, $professor, $old);
+    }
 
     public function deteleNotification($id) {
         return $this->notificationData->deteleNotification($id);
+    }
+    
+    public function deteleNotificationProfesor($text, $professor, $course) {
+        return $this->notificationData->deteleNotificationProfessor($text, $professor, $course);
     }
 
     public function getAllGeneralNotification() {
