@@ -3,7 +3,7 @@
     <div class="pull-right hidden-xs">
         <b>Version</b> 1.0
     </div>
-    <strong><a href="https://www.facebook.com/profile.php?id=100010678920391" class="btn btn-social-icon btn-facebook"><i class="fa fa-facebook"></i></a>       Facebook Cindea Turrialba </strong>
+    <strong><a href="https://www.facebook.com/profile.php?id=100010678920391" class="btn btn-social-icon btn-facebook"><i class="fa fa-facebook"></i></a>       Nuestro Facebook </strong>
     <br>
     <strong>Copyright &copy; 2017 <a href="DevelopersCool.php" target="_blank">Desarrolladores</a>.</strong> Todos los derechos reservados. 
 </footer>
