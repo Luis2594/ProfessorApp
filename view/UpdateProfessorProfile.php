@@ -3,7 +3,6 @@ include './reusable/Session.php';
 include './reusable/Header.php';
 ?>
 
-<!-- Content Header (Page header) -->
 <section class="content-header" style="text-align: left">
     <ol class="breadcrumb">
         <li><a href="Home.php"><i class="fa fa-arrow-circle-right"></i> Inicio</a></li>
@@ -12,65 +11,59 @@ include './reusable/Header.php';
 </section>
 <br>
 
-<!-- Main content -->
 <section class="content">
     <div class="row">
-        <!-- left column -->
         <div class="col-md-6">
-            <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header">
-                    <h3 class="box-title">Información Profefesor</h3>
-                </div><!-- /.box-header -->
+                    <h3 class="box-title">Información Profesor</h3>
+                </div>
+                <div class="box-footer">
+                    <?php
+                    include './business/PersonBusiness.php';
+                    include_once '../domain/Person.php';
 
-                <?php
-                include './business/PersonBusiness.php';
-                include_once '../domain/Person.php';
+                    $personBusiness = new PersonBusiness();
+                    $id = (int) $_GET['id'];
+                    $currentPerson = $personBusiness->getPersonId($id)[0];
 
-                $AdminBusiness = new PersonBusiness();
-
-                $id = (int) $_GET['id'];
-
-                $admin = $AdminBusiness->getPersonId($id)[0];
-
-                if ($admin == NULL) {
-                    header("location: ./Login.php");
-                }
-                ?>
-                <!-- form start -->
-                <form role="form" id="formUpdateProfesorProfile" action="../business/UpdateProfessorProfileAction.php" method="POST" enctype="multipart/form-data">
-                    <div class="box-body">
+                    if ($currentPerson == NULL) {
+                        header("location: ./Login.php");
+                    }
+                    ?>
+                    <form role="form" id="formUpdateProfesorProfile" action="../business/UpdateProfessorProfileAction.php" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" id="dniTemp" value="<?php echo $currentPerson->getPersonDni() ?>">
+                        <input type="hidden" id="id" name="id" value="<?php echo $id ?>">
                         <!--DNI-->
                         <div class="form-group">
                             <label>Cédula</label>
-                            <input id="dni" name="dni" type="number" class="form-control" placeholder="Cédula" required="" value="<?php echo $admin->getPersonDni() ?>"  />
+                            <input id="dni" name="dni" type="number" class="form-control" placeholder="Cédula" required="" value="<?php echo $currentPerson->getPersonDni() ?>"  />
                         </div>
                         <!--NAME-->
                         <div class="form-group">
                             <label>Nombre</label>
-                            <input id="name" name="name" type="text" class="form-control" placeholder="Nombre" required="" value="<?php echo $admin->getPersonFirstName() ?>"  />
+                            <input id="name" name="name" type="text" class="form-control" placeholder="Nombre" required="" value="<?php echo $currentPerson->getPersonFirstName() ?>"  />
                         </div>
                         <!--FIRSTLASTNAME-->
                         <div class="form-group">
                             <label>Primer Apellido</label>
-                            <input id="firstlastname" name="firstlastname" type="text" class="form-control" placeholder="Primer apellido" required="" value="<?php echo $admin->getPersonFirstlastname() ?>"  />
+                            <input id="firstlastname" name="firstlastname" type="text" class="form-control" placeholder="Primer apellido" required="" value="<?php echo $currentPerson->getPersonFirstlastname() ?>"  />
                         </div>
                         <!--SECONDLASTNAME-->
                         <div class="form-group">
                             <label>Segundo Apellido</label>
-                            <input id="secondlastname" name="secondlastname" type="text" class="form-control" placeholder="Segundo apellido" required="" value="<?php echo $admin->getPersonSecondlastname() ?>"  />
+                            <input id="secondlastname" name="secondlastname" type="text" class="form-control" placeholder="Segundo apellido" required="" value="<?php echo $currentPerson->getPersonSecondlastname() ?>"  />
                         </div>
                         <!--EMAIL-->
                         <div class="form-group">
                             <label for="exampleInputEmail1">Correo Electrónico</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="Correo Electrónico" value="<?php echo $admin->getPersonEmail() ?>">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Correo Electrónico" value="<?php echo $currentPerson->getPersonEmail() ?>">
                         </div>
-
                         <!--GENDER-->
                         <div class="form-group">
                             <label>Género</label>
                             <?php
-                            if ($admin->getPersonGender() == 1) {
+                            if ($currentPerson->getPersonGender() == 1) {
                                 ?>
                                 <div class="radio">
                                     <label>
@@ -106,24 +99,16 @@ include './reusable/Header.php';
                         <!--NATIONALITY-->
                         <div class="form-group">
                             <label>Nacionalidad</label>
-                            <input id="nationality" name="nationality" type="text" class="form-control" placeholder="Nacionalidad" required="" value="<?php echo $admin->getPersonNacionality() ?>" />
+                            <input id="nationality" name="nationality" type="text" class="form-control" placeholder="Nacionalidad" required="" value="<?php echo $currentPerson->getPersonNacionality() ?>" />
                         </div>
-
-                        <input id="dniTemp" value="<?php echo $admin->getPersonDni() ?>">
-                        <input id="id" name="id" value="<?php echo $id ?>">
-                    </div><!-- /.box-body -->
-                </form>
-
-                <div class="pull-left">
-                    <button onclick="valueInputs();" class="btn btn-primary">Actualizar</button>
+                    </form>
+                    <button onclick="valueInputs();" style="width: 49%" class="btn btn-primary">Actualizar</button>
+                    <button onclick="backPage();" style="width: 49%" class="btn btn-primary">Atrás</button>
                 </div>
-                <div class="pull-right">
-                    <button onclick="backPage();" class="btn btn-primary">Atrás</button>
-                </div>
-            </div><!-- /.box -->
-        </div><!--/.col (left) -->
-    </div>   <!-- /.row -->
-</section><!-- /.content -->
+            </div>
+        </div>
+    </div> 
+</section>
 
 <?php
 include './reusable/Footer.php';

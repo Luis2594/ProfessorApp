@@ -19,7 +19,7 @@ include './reusable/Header.php';
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Notificaciones</h3>
-                    <a type="button" class="btn btn-primary pull-right" href="CreateNotification.php">Añadir Notificación</a>
+                    <a type="button" class="btn btn-primary pull-right" href="CreateNotification.php">Enviar Notificación</a>
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     <table id="example1" class="table table-bordered table-striped">

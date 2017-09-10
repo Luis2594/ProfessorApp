@@ -5,7 +5,7 @@
     </div>
     <strong><a href="https://www.facebook.com/profile.php?id=100010678920391" class="btn btn-social-icon btn-facebook"><i class="fa fa-facebook"></i></a>       Facebook Cindea Turrialba </strong>
     <br>
-    <strong>Copyright &copy; 2017 <a href="Developers.php" target="_blank">Desarrolladores</a>.</strong> Todos los derechos reservados. 
+    <strong>Copyright &copy; 2017 <a href="DevelopersCool.php" target="_blank">Desarrolladores</a>.</strong> Todos los derechos reservados. 
 </footer>
 </div><!-- ./wrapper -->
 

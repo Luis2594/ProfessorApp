@@ -1,12 +1,47 @@
 <?php
-
 include './reusable/Header.php';
 ?>
+<style type="text/css">
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .background-wrap {
+        position: fixed;
+        z-index: -1000;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+    }
+
+    #video-bg-elem {
+        position: absolute;
+        top: 0;
+        left: 0;
+        min-height: 100%;
+        min-width: 100%;
+    }
+
+
+</style>
+
+<div class="background-wrap">
+    <video id="video-bg-elem" preload="auto" autoplay="true" loop="loop" muted="muted"> 
+        <source src="bg.mp4" type="video/mp4">
+        <source src="bg.webm" type="video/webm">
+        Sorry That The Amazing video Is Not Supported Please Contact us and tell us which operating system or which browser you use Sorry!
+    </video>          
+</div>
 
 <div class="row center-block text-center">
     <h1>Equipo de Desarrollo</h1>
 </div>
 <br/>
+
 <div class="row">
     <div class="col-md-4 text-center center-block">
         <h2>
@@ -49,6 +84,8 @@ include './reusable/Header.php';
         <br/><br/>
         <p>
             Desarrollador.
+            <br/>
+
         </p>
         <br/>
         <a href="https://www.fb.com/kevinesquivel21" class="fa fa-facebook" style="width: 30px;height: 30px;"></a>
@@ -106,5 +143,6 @@ include './reusable/Header.php';
     </div>
 </div>
 <?php
+
 include './reusable/Footer.php';
 ?>

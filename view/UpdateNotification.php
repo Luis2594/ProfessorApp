@@ -3,7 +3,6 @@ include './reusable/Session.php';
 include './reusable/Header.php';
 ?>
 
-<!-- Content Header (Page header) -->
 <section class="content-header" style="text-align: left">
     <ol class="breadcrumb">
         <li><a href="Home.php"><i class="fa fa-arrow-circle-right"></i>Inicio</a></li>
@@ -13,16 +12,13 @@ include './reusable/Header.php';
 </section>
 <br>
 
-<!-- Main content -->
 <section class="content">
     <div class="row">
-        <!-- left column -->
         <div class="col-md-6">
-            <!-- general form elements -->
             <div class="box box-primary">
                 <div class="box-header">
                     <h3 class="box-title">Actualizar Notificación</h3>
-                </div><!-- /.box-header -->
+                </div>
                 <div class="box-footer">
                     <?php
                     include '../business/NotificationBusiness.php';
@@ -31,7 +27,6 @@ include './reusable/Header.php';
                     $notifications = $business->getNotification($_GET['id']);
                     foreach ($notifications as $newComment) {
                         ?>
-                        <!-- form start -->
                         <form role="form" id="formNotification" action="../business/UpdateNotificationAction.php" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="id" id="id" value="<?php echo $newComment->getNotificationId() ?>"/>
                             <div class="form-group">
@@ -42,7 +37,7 @@ include './reusable/Header.php';
                         <button onclick="backPage();" style="width: 49%" class="btn btn-primary">Atrás</button>
                         <?php
                         break;
-                    }//fin del for
+                    }
                     ?>
                 </div>
             </div>

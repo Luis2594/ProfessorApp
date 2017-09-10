@@ -32,11 +32,15 @@ if (isset($id) && is_int($id)) {
                         $professors = $professorBusiness->getProfessor($_SESSION['id']);
                         foreach ($professors as $professor) {
                             ?>
-                            <h3 class="box-title">Módulos asignados a: <?php
-                                echo $professor->getPersonFirstName()
-                                . " " . $professor->getPersonFirstlastname()
-                                . " " . $professor->getPersonSecondlastname();
-                                ?> </h3>
+                            <h3 class="box-title">Módulos asignados a: 
+                                <b>
+                                    <?php
+                                    echo $professor->getPersonFirstName()
+                                    . " " . $professor->getPersonFirstlastname()
+                                    . " " . $professor->getPersonSecondlastname();
+                                    ?> 
+                                </b>
+                            </h3>
                         <?php } ?>
                     </div>
                     <div class="box-body">
@@ -49,9 +53,9 @@ if (isset($id) && is_int($id)) {
                                     <th>Lecciones</th>
                                     <th>Tipo</th>
                                     <th>Grupo</th>
-                                    <th>Período</th>
+                                    <th>Periodo</th>
                                     <th>Año</th>
-                                    <th>Atinencia/Especialidad</th>
+                                    <th>Atinencia<br/>Especialidad</th>
                                 </tr>
                             </thead>
                             <tbody id="tbody">
@@ -64,9 +68,9 @@ if (isset($id) && is_int($id)) {
                                     <th>Lecciones</th>
                                     <th>Tipo</th>
                                     <th>Grupo</th>
-                                    <th>Período</th>
+                                    <th>Periodo</th>
                                     <th>Año</th>
-                                    <th>Atinencia/Especialidad</th>
+                                    <th>Atinencia<br/>Especialidad</th>
                                 </tr>
                             </tfoot>
                         </table>
