@@ -104,5 +104,41 @@ class StudentData extends Connector {
             ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
         }
     }
+    
+    public function getStudentByProfessor($id) {
+        $query = 'call getStudentByProfessor("' . $id . '");';
+        try {
+            $allStudent = $this->exeQuery($query);
+            $array = [];
+            if (mysqli_num_rows($allStudent) > 0) {
+                while ($row = mysqli_fetch_array($allStudent)) {
 
+                    $currentStudent = new StudentAll(
+                            $row['personid'], 
+                            $row['persondni'], 
+                            $row['personfirstname'], 
+                            $row['personfirstlastname'], 
+                            $row['personsecondlastname'], 
+                            $row['personemail'], 
+                            $row['personbirthdate'], 
+                            $row['personage'], 
+                            $row['persongender'], 
+                            $row['personnationality'], 
+                            $row['studentadecuacy'], 
+                            $row['studentyearincome'], 
+                            $row['studentyearout'], 
+                            $row['studentlocation'], 
+                            $row['studentgroup'], 
+                            $row['studentmanager'], 
+                            $row['userusername'], 
+                            $row['useruserpass']);
+
+                    array_push($array, $currentStudent);
+                }
+            }
+            return $array;
+        } catch (Exception $ex) {
+            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+        }
+    }
 }
