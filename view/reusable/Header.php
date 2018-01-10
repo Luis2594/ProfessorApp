@@ -186,7 +186,7 @@ include_once '../resource/Constants.php';
                     <ul class="sidebar-menu">
                         <li class="header">MENÚ</li>
 
-                        <!--ENROLLMENT-->
+                        <!--PROFILE-->
                         <li class="treeview">
                             <a>
                                 <i class="fa"></i> <span>Perfil</span> <i class="fa fa-angle-left pull-right"></i>
@@ -218,7 +218,7 @@ include_once '../resource/Constants.php';
                             </ul>
                         </li>
 
-                        <!--COURSES-->
+                        <!--FORUMS-->
                         <li class="treeview">
                             <a>
                                 <i class="fa"></i> <span>Foros</span> <i class="fa fa-angle-left pull-right"></i>
@@ -236,6 +236,15 @@ include_once '../resource/Constants.php';
                             </a>
                             <ul class="treeview-menu">
                                 <li class="active"><a href="./ShowSchedule.php"><i class="fa"></i>Ver Horario</a></li>
+                            </ul>
+                        </li>
+                        <!--STUDENTS-->
+                        <li class="treeview">
+                            <a>
+                                <i class="fa"></i> <span>Estudiantes</span> <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li class="active"><a href="./ShowRelatedStudents.php"><i class="fa"></i>Estudianes</a></li>
                             </ul>
                         </li>
 
