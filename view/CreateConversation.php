@@ -82,7 +82,8 @@ include './reusable/Footer.php';
         }
     })(jQuery);
     
-    var action = $.get("action");
+    var action = $.get("action");    
+
     var msg = $.get("msg");
     if (action === "1") {
         msg = msg.replace(/_/g, " ");

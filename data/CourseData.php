@@ -175,7 +175,6 @@ class CourseData extends Connector {
             }
             
             array_multisort($aux, SORT_ASC, $array);
-            
             return $array;
         } catch (Exception $ex) {
             ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
@@ -267,6 +266,24 @@ class CourseData extends Connector {
 
                     $currentCourse->setSpecialityname($row['specialityname']);
                     array_push($array, $currentCourse);
+                }
+            }
+            return $array;
+        } catch (Exception $ex) {
+            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+        }
+    }
+    
+    public function getStudentsListByCourseAndProfessor($course, $professor){
+        $query = "call getStudentsListByCourseAndProfessor(" . $course . ", ".$professor.")";
+        try {
+            $data = $this->exeQuery($query);
+            $array = [];
+            if (mysqli_num_rows($data) > 0) {
+                include '../domain/Student.php';
+                while ($row = mysqli_fetch_array($data)) {
+                    $current = array($row['fullName'], $row['persondni'], $row['phoneNumber']);
+                    array_push($array, $current);
                 }
             }
             return $array;

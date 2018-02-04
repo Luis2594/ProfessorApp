@@ -244,10 +244,9 @@ include_once '../resource/Constants.php';
                                 <i class="fa"></i> <span>Estudiantes</span> <i class="fa fa-angle-left pull-right"></i>
                             </a>
                             <ul class="treeview-menu">
-                                <li class="active"><a href="./ShowRelatedStudents.php"><i class="fa"></i>Estudianes</a></li>
+                                <li class="active"><a href="./ShowCoursesLists.php"><i class="fa"></i>Ver Estudiantes</a></li>
                             </ul>
                         </li>
-
                     </ul>
                 </section>
                 <!-- /.sidebar -->
