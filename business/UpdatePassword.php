@@ -1,6 +1,6 @@
 <?php
 
-include './UserBusiness.php';
+include_once './UserBusiness.php';
 
 session_start();
 $id = $_SESSION['id'];

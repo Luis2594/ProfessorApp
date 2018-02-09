@@ -1,6 +1,6 @@
 <?php
 
-include './GroupBusiness.php';
+include_once '../business/GroupBusiness.php';
 
 $idPerson = (int) $_GET['id'];
 

@@ -1,6 +1,6 @@
 <?php
-include './reusable/Session.php';
-include './reusable/Header.php';
+include_once './reusable/Session.php';
+include_once './reusable/Header.php';
 ?>
 
 <!-- Content Header (Page header) -->
@@ -24,14 +24,14 @@ include './reusable/Header.php';
                 </div><!-- /.box-header -->
 
                 <?php
-                include '../business/ProfessorBusiness.php';
+                include_once '../business/ProfessorBusiness.php';
                 $id = (int) $_GET['id'];
                 $professorBusiness = new ProfessorBusiness();
                 
                 //getProfessor works with the person ID
                 //returns an array of ProfessorAll
                 $professors = $professorBusiness->getProfessor($id);
-                include '../business/PhoneBusiness.php';
+                include_once '../business/PhoneBusiness.php';
                 $phoneBusiness = new PhoneBusiness();
                 foreach ($professors as $professor) {
 
@@ -128,7 +128,7 @@ include './reusable/Header.php';
 </section><!-- /.content -->
 
 <?php
-include './reusable/Footer.php';
+include_once './reusable/Footer.php';
 ?>
 
 <script type="text/javascript">

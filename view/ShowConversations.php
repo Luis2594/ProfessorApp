@@ -2,8 +2,8 @@
 //ini_set('display_errors', 1);
 //ini_set('display_startup_errors', 1);
 //error_reporting(E_ALL);
-include './reusable/Session.php';
-include './reusable/Header.php';
+include_once './reusable/Session.php';
+include_once './reusable/Header.php';
 $id = $_GET['id'];
 ?>
 
@@ -76,7 +76,7 @@ $id = $_GET['id'];
 </section><!-- /.content -->
 
 <?php
-include './reusable/Footer.php';
+include_once './reusable/Footer.php';
 ?>
 
 <!-- page script -->

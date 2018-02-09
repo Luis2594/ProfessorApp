@@ -1,5 +1,5 @@
 <?php
-include './reusable/Header.php';
+include_once './reusable/Header.php';
 ?>
 <style type="text/css">
 
@@ -144,5 +144,5 @@ include './reusable/Header.php';
 </div>
 <?php
 
-include './reusable/Footer.php';
+include_once './reusable/Footer.php';
 ?>

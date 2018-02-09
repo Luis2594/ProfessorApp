@@ -1,6 +1,6 @@
 <?php
 
-include './EnrollmentBusiness.php';
+include_once '../business/EnrollmentBusiness.php';
 
 $id = (int) $_POST['id'];
 $modules = $_POST['modules'];

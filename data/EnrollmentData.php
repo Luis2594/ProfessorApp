@@ -1,7 +1,7 @@
 <?php
 
 require_once '../data/Connector.php';
-include '../domain/Enrollment.php';
+include_once '../domain/Enrollment.php';
 include_once '../resource/log/ErrorHandler.php';
 
 class EnrollmentData extends Connector {

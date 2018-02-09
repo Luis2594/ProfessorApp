@@ -1,6 +1,6 @@
 <?php
 
-include_once './ConversationBusiness.php';
+include_once '../business/ConversationBusiness.php';
 
 if(isset($_GET['id']) && isset($_GET['forum'])){
     $ConversationBusiness = new ConversationBusiness();

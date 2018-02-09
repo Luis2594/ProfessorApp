@@ -1,6 +1,6 @@
 <?php
-include './reusable/Session.php';
-include './reusable/Header.php';
+include_once './reusable/Session.php';
+include_once './reusable/Header.php';
 ?>
 
 <!-- Content Header (Page header) -->
@@ -33,7 +33,7 @@ include './reusable/Header.php';
                         <tbody>
                             <?php
                             session_start();
-                            include '../business/NotificationBusiness.php';
+                            include_once '../business/NotificationBusiness.php';
                             $business = new NotificationBusiness();
 
                             $notifications = $business->getNotificationByProfessor($_SESSION['id']);
@@ -72,7 +72,7 @@ include './reusable/Header.php';
 </section><!-- /.content -->
 
 <?php
-include './reusable/Footer.php';
+include_once './reusable/Footer.php';
 ?>
 
 <!-- page script -->

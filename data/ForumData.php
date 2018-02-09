@@ -1,7 +1,7 @@
 <?php
 
 require_once '../data/Connector.php';
-include '../domain/Forum.php';
+include_once '../domain/Forum.php';
 include_once '../resource/log/ErrorHandler.php';
 
 class ForumData extends Connector {

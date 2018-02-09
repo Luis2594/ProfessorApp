@@ -1,7 +1,7 @@
 <?php
 
 require_once '../data/Connector.php';
-include '../domain/Notification.php';
+include_once '../domain/Notification.php';
 include_once '../resource/log/ErrorHandler.php';
 
 class NotificationData extends Connector {

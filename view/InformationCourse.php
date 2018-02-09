@@ -1,6 +1,6 @@
 <?php
-include './reusable/Session.php';
-include './reusable/Header.php';
+include_once './reusable/Session.php';
+include_once './reusable/Header.php';
 ?>
 
 <!-- Content Header (Page header) -->
@@ -25,7 +25,7 @@ include './reusable/Header.php';
                 </div><!-- /.box-header -->
 
                 <?php
-                include '../business/CourseBusiness.php';
+                include_once '../business/CourseBusiness.php';
 
                 $courseBusiness = new CourseBusiness();
                 $id = (int) $_GET['id'];
@@ -104,5 +104,5 @@ include './reusable/Header.php';
 </section><!-- /.content -->
 
 <?php
-include './reusable/Footer.php';
+include_once './reusable/Footer.php';
 ?>

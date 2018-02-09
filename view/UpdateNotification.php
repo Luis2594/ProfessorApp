@@ -1,6 +1,6 @@
 <?php
-include './reusable/Session.php';
-include './reusable/Header.php';
+include_once './reusable/Session.php';
+include_once './reusable/Header.php';
 ?>
 
 <section class="content-header" style="text-align: left">
@@ -21,7 +21,7 @@ include './reusable/Header.php';
                 </div>
                 <div class="box-footer">
                     <?php
-                    include '../business/NotificationBusiness.php';
+                    include_once '../business/NotificationBusiness.php';
 
                     $business = new NotificationBusiness();
                     $notifications = $business->getNotification($_GET['id']);
@@ -46,7 +46,7 @@ include './reusable/Header.php';
 </section>
 
 <?php
-include './reusable/Footer.php';
+include_once './reusable/Footer.php';
 ?>
 
 <script type="text/javascript">

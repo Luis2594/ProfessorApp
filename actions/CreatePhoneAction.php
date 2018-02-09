@@ -1,6 +1,6 @@
 <?php
 
-include_once './PhoneBusiness.php';
+include_once '../business/PhoneBusiness.php';
 
 $id = (int) $_GET['id'];
 $phones = (int) $_POST['phones'];

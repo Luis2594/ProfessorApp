@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
-include './reusable/Header.php';
+include_once './reusable/Header.php';
 require '../resource/log/ErrorHandler.php';
 ?>
 
@@ -11,7 +11,7 @@ require '../resource/log/ErrorHandler.php';
 </div>
 
 <?php
-include './reusable/Footer.php';
+include_once './reusable/Footer.php';
 ?>
 
 <script>

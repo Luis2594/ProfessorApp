@@ -1,6 +1,6 @@
 <?php
 
-include './CurriculumBusiness.php';
+include_once './CurriculumBusiness.php';
 
 $id = $_POST['id'];
 $curriculumBusiness = new CurriculumBusiness();

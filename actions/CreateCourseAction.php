@@ -1,6 +1,6 @@
 <?php
 
-include_once './CourseBusiness.php';
+include_once '../business/CourseBusiness.php';
 
 $code = (int) $_POST['code'];
 $name = $_POST['name'];

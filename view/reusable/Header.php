@@ -1,5 +1,5 @@
 <?php
-include './reusable/Session.php';
+include_once './reusable/Session.php';
 include_once '../resource/Constants.php';
 ?>
 <html>
@@ -72,7 +72,7 @@ include_once '../resource/Constants.php';
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <?php
                                     if (isset($_SESSION['id'])) {
-                                        include '../business/PersonBusiness.php';
+                                        include_once '../business/PersonBusiness.php';
                                         include_once '../domain/Person.php';
 
                                         $personBusiness = new PersonBusiness();

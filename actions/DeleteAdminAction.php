@@ -1,7 +1,7 @@
 <?php
 
-include_once './PersonBusiness.php';
-include_once './AdminBusiness.php';
+include_once '../business/PersonBusiness.php';
+include_once '../business/AdminBusiness.php';
 
 $id = $_GET['id'];
 

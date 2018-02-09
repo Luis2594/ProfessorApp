@@ -1,7 +1,7 @@
 <?php
 
 require_once '../data/Connector.php';
-include '../domain/Comment.php';
+include_once '../domain/Comment.php';
 include_once '../business/PersonBusiness.php';
 include_once '../resource/log/ErrorHandler.php';
 

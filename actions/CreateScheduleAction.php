@@ -1,6 +1,6 @@
 <?php
 
-include './ScheduleBusiness.php';
+include_once '../business/ScheduleBusiness.php';
 
 $group = (int) $_POST['group'];
 $professor = (int) $_POST['professor'];

@@ -1,6 +1,6 @@
 <?php
 
-include_once './NotificationBusiness.php';
+include_once '../business/NotificationBusiness.php';
 
 $id = $_GET['id'];
 

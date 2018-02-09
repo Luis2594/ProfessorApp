@@ -1,6 +1,6 @@
 <?php
-include './reusable/Session.php';
-include './reusable/Header.php';
+include_once './reusable/Session.php';
+include_once './reusable/Header.php';
 ?>
 
 <style>
@@ -132,7 +132,7 @@ include './reusable/Header.php';
                                     <div class="form-group">
                                         <label>Teléfono</label>
                                         <?php
-                                        include '../business/PhoneBusiness.php';
+                                        include_once '../business/PhoneBusiness.php';
                                         $phoneBusiness = new PhoneBusiness();
                                         $phones = $phoneBusiness->getAllPhone((int) $_SESSION['id']);
                                         foreach ($phones as $phone) {
@@ -164,7 +164,7 @@ include './reusable/Header.php';
 </section><!-- /.content -->
 
 <?php
-include './reusable/Footer.php';
+include_once './reusable/Footer.php';
 ?>
 
 <!-- page script -->

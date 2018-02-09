@@ -1,6 +1,6 @@
 <?php
 
-include_once './ForumBusiness.php';
+include_once '../business/ForumBusiness.php';
 
 if(isset($_GET['id'])){
     $business = new ForumBusiness();

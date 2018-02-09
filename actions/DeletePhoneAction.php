@@ -1,6 +1,6 @@
 <?php
 
-include_once './PhoneBusiness.php';
+include_once '../business/PhoneBusiness.php';
 
 $idPerson = (int) $_GET['idPerson'];
 $idPhone = (int) $_GET['idPhone'];

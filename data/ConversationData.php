@@ -1,7 +1,7 @@
 <?php
 
 require_once '../data/Connector.php';
-include '../domain/Conversation.php';
+include_once '../domain/Conversation.php';
 include_once '../resource/log/ErrorHandler.php';
 
 class ConversationData extends Connector {

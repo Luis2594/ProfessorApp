@@ -1,7 +1,7 @@
 <?php
 
 require_once '../data/Connector.php';
-include '../domain/Course.php';
+include_once '../domain/Course.php';
 include_once '../resource/log/ErrorHandler.php';
 
 class CourseData extends Connector {
@@ -277,7 +277,7 @@ class CourseData extends Connector {
             $data = $this->exeQuery($query);
             $array = [];
             if (mysqli_num_rows($data) > 0) {
-                include '../domain/Student.php';
+                include_once '../domain/Student.php';
                 while ($row = mysqli_fetch_array($data)) {
                     $current = array($row['fullName'], $row['persondni'], $row['phoneNumber']);
                     array_push($array, $current);
@@ -299,7 +299,7 @@ class CourseData extends Connector {
             //add excel headers
             array_push($array, array("Nombre", "Cédula", "Teléfono"));
             if (mysqli_num_rows($data) > 0) {
-                include '../domain/Student.php';
+                include_once '../domain/Student.php';
                 while ($row = mysqli_fetch_array($data)) {
                     array_push($array, array($row['fullName'], $row['persondni'], $row['phoneNumber']));
                 }

@@ -1,6 +1,6 @@
 <?php
 
-include './EnrollmentBusiness.php';
+include_once './EnrollmentBusiness.php';
 
 $id = (int) $_POST['id'];
 

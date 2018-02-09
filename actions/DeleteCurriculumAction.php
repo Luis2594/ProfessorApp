@@ -1,6 +1,6 @@
 <?php
 
-include_once './CurriculumBusiness.php';
+include_once '../business/CurriculumBusiness.php';
 
 $id = $_GET['id'];
 

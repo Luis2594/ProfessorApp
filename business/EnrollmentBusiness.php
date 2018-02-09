@@ -1,6 +1,6 @@
 <?php
 
-include '../data/EnrollmentData.php';
+include_once '../data/EnrollmentData.php';
 
 class EnrollmentBusiness {
     private $enrollmentData;

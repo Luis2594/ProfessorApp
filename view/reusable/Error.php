@@ -1,5 +1,5 @@
 <?php
-include './reusable/Header.php';
+include_once './reusable/Header.php';
 if (isset($_GET['md5'])){
     $md5 = $_GET['md5'];
 } else {
@@ -12,5 +12,5 @@ if (isset($_GET['md5'])){
 </div>
 
 <?php
-include './reusable/Footer.php';
+include_once './reusable/Footer.php';
 ?>

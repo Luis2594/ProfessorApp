@@ -1,6 +1,6 @@
 <?php
 
-include_once './SpecialityBusiness.php';
+include_once '../business/SpecialityBusiness.php';
 
 $id = (int) $_GET['id'];
 
