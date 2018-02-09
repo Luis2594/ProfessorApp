@@ -59,7 +59,7 @@ include './reusable/Header.php';
         <div class="col-md-6">
             <div class="box-footer">
                 <label>Nuevo Comentario</label>
-                <form role="form" id="formCreateComment" action="../business/CreateCommentAction.php" method="POST" enctype="multipart/form-data">
+                <form role="form" id="formCreateComment" action="../actions/CreateCommentAction.php" method="POST" enctype="multipart/form-data">
                     <input hidden="true" value="<?php echo $id; ?>" name="conversation"/>
                     <input hidden="true" value="<?php echo $_SESSION['id']; ?>" name="person"/>
                     <input hidden="true" value="<?php echo $forumId; ?>" name="forum"/>

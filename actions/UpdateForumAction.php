@@ -3,11 +3,11 @@
 include_once '../business/ForumBusiness.php';
 
 $id = $_POST['id'];
-$text = $_POST['name'];
+$name = $_POST['name'];
 
-if(isset($id) && isset($text) && $text != ""){
+if(isset($id) && isset($name) && $name != ""){
     $forumBusiness = new ForumBusiness();
-    $forum = new Forum($id, $text,NULL, NULL, NULL, NULL, NULL, NULL );
+    $forum = new Forum($id, $name,NULL, NULL, NULL, NULL, NULL, NULL );
     
     if($forumBusiness->update($forum) != 1){
         header("location: ../view/ShowForums.php?action=1&msg=Registro_actualizado_correctamente");

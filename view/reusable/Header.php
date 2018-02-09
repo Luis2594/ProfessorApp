@@ -136,7 +136,7 @@ include_once '../resource/Constants.php';
                                             <a href="./ShowProfile.php" class="btn btn-default btn-flat">Perfil</a>
                                         </div>
                                         <div class="pull-right">
-                                            <form role="form" id="form" action="../business/LogoutAction.php" method="POST" enctype="multipart/form-data">
+                                            <form role="form" id="form" action="../actions/LogoutAction.php" method="POST" enctype="multipart/form-data">
                                                 <input type="submit" class="btn btn-default btn-flat" value="Cerrar Sessión" />
                                             </form>
                                         </div>

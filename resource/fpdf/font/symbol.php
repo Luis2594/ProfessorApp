@@ -1,6 +1,6 @@
 <?php
 $type = 'Core';
-$text = 'Symbol';
+$professor = 'Symbol';
 $up = -100;
 $ut = 50;
 $cw = array(

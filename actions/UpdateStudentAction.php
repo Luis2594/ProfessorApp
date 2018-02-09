@@ -6,8 +6,8 @@ include_once './StudentBusiness.php';
 include_once './UserBusiness.php';
 
 $id = $_POST['id'];
-$dni = $_POST['dni'];
-$text = $_POST['name'];
+$course = $_POST['dni'];
+$name = $_POST['name'];
 $firstlastname = $_POST['firstlastname'];
 $secondlastname = $_POST['secondlastname'];
 $birthdate = $_POST['birthdate'];
@@ -22,8 +22,8 @@ $adecuacyTemp = $_POST['adecuacy'];
 
 
 if (isset($id) &&
-        isset($dni) &&
-        isset($text) &&
+        isset($course) &&
+        isset($name) &&
         isset($firstlastname) &&
         isset($secondlastname) &&
         isset($birthdate) &&
@@ -34,7 +34,7 @@ if (isset($id) &&
         isset($managerStudent) &&
         isset($localitation)) {
 
-    $text = ucwords(strtolower($text));
+    $name = ucwords(strtolower($name));
     $firstlastname = ucwords(strtolower($firstlastname));
     $secondlastname = ucwords(strtolower($secondlastname));
     $managerStudent = ucwords(strtolower($managerStudent));
@@ -50,7 +50,7 @@ if (isset($id) &&
     //Esto es por si ocupo algo de la persona
     //$personTemp = $personBusiness->getPersonId($id);
     //Creamos instancia de persona
-    $person = new Person($id, $dni, $text, $firstlastname, $secondlastname, "email", date('Y-m-d', strtotime(str_replace('/', '-', $birthdate))), NULL, $gender, $nationality, "profile_default.png");
+    $person = new Person($id, $course, $name, $firstlastname, $secondlastname, "email", date('Y-m-d', strtotime(str_replace('/', '-', $birthdate))), NULL, $gender, $nationality, "profile_default.png");
 
     $res = $personBusiness->update($person);
 
@@ -82,9 +82,9 @@ if (isset($id) &&
             
             $userTemp = $userBusiness->getUserId($id);
             
-            $pass = strtoupper(substr($firstlastname, 0, 2)) . strtoupper(substr($secondlastname, 0, 2)) . substr($dni, -3);
+            $pass = strtoupper(substr($firstlastname, 0, 2)) . strtoupper(substr($secondlastname, 0, 2)) . substr($course, -3);
             
-            $user = new User($userTemp->getUserId(), $dni, $pass, NULL, NULL);
+            $user = new User($userTemp->getUserId(), $course, $pass, NULL, NULL);
             
             if ($userBusiness->update($user)) {
                 header("location: ../view/InformationStudent.php?id=" . $id . "&action=1&msg=Estudiante_actualizado_correctamente");

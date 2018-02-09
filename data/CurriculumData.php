@@ -4,7 +4,7 @@ require_once '../data/Connector.php';
 include_once '../domain/Curriculum.php';
 include_once '../domain/CurriculumCourse.php';
 include_once '../domain/Course.php';
-//require_once './resource/log/ErrorHandler.php';
+include_once '../resource/log/ErrorHandler.php';
 
 class CurriculumData extends Connector {
 
@@ -17,7 +17,7 @@ class CurriculumData extends Connector {
             $id = trim($array[0]);
             return $id;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -27,7 +27,7 @@ class CurriculumData extends Connector {
         try {
             return $this->exeQuery($query);
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -38,7 +38,7 @@ class CurriculumData extends Connector {
         try {
             return $this->exeQuery($query);
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -49,7 +49,7 @@ class CurriculumData extends Connector {
         try {
             return $this->exeQuery($query);
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -62,7 +62,7 @@ class CurriculumData extends Connector {
                 return FALSE;
             }
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -80,7 +80,7 @@ class CurriculumData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -97,7 +97,7 @@ class CurriculumData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -116,7 +116,7 @@ class CurriculumData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -134,7 +134,7 @@ class CurriculumData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -152,7 +152,7 @@ class CurriculumData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -176,7 +176,7 @@ class CurriculumData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -194,7 +194,7 @@ class CurriculumData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -207,11 +207,11 @@ class CurriculumData extends Connector {
                 return FALSE;
             }
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
-    public function getAllCurriculumCourseParsed(){
+    public function getAllCurriculumCourseParsed() {
         $query = "call getAllCurriculumCourseParsed()";
         try {
             $allCurriculum = $this->exeQuery($query);
@@ -219,17 +219,14 @@ class CurriculumData extends Connector {
             if (mysqli_num_rows($allCurriculum) > 0) {
                 while ($row = mysqli_fetch_array($allCurriculum)) {
                     $current = new CurriculumCourse(
-                            $row['curriculumcourseid'],
-                            $row['curriculumcoursecurriculum'],
-                            $row['curriculumcoursecourse'],
-                            $row['period']);
+                            $row['curriculumcourseid'], $row['curriculumcoursecurriculum'], $row['curriculumcoursecourse'], $row['period']);
                     array_push($array, $current);
                 }
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
-    
+
 }

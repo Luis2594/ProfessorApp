@@ -42,7 +42,7 @@ if (isset($id) && is_int($id)) {
                     </div><!-- /.box-header -->
 
                     <!-- form start -->
-                    <form role="form" id="f"  method="POST" action="../business/CreatePhoneAction.php?id=<?php echo $id; ?>">
+                    <form role="form" id="f"  method="POST" action="../actions/CreatePhoneAction.php?id=<?php echo $id; ?>">
                         <div class="box-body">
 
                             <?php
@@ -199,7 +199,7 @@ include './reusable/Footer.php';
     }
 
     function deletePhonePerson(idPerson, idPhoneDelete) {
-        window.location = "../business/DeletePhoneAction.php?idPerson=" + idPerson + "&idPhone=" + idPhoneDelete;
+        window.location = "../actions/DeletePhoneAction.php?idPerson=" + idPerson + "&idPhone=" + idPhoneDelete;
     }
 
 </script>

@@ -118,7 +118,7 @@ include './reusable/Footer.php';
 
     function deleteConversation(id, forum) {
         alertify.confirm('Eliminar Conversación', '¿Desea eliminar?', function () {
-            window.location = "../business/DeleteConversationAction.php?id=" + id + "&forum=" + forum;
+            window.location = "../actions/DeleteConversationAction.php?id=" + id + "&forum=" + forum;
         }
         , function () {
             alertify.error('Cancelado');

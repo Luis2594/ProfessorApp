@@ -1,9 +1,15 @@
 <?php
-
+//CONFIGURATION
+//in order to enable the file write run the following command
+//sudo chown -Rf www-data:www-data /var/www/html/*
 class ErrorHandler {
-
-    public static function Log($method, $data, $userId) {
-        
+    /**
+     * Version 1.1 07/02/2018
+     * @param type $method
+     * @param type $data
+     * @param type $userId
+     */
+    public static function Log($method, $data, $userId = 0) {
         ob_start(); //turn on output buffering
         var_dump($data, (string) $data); //dump data
         $result = ob_get_clean(); //capture dumped data
@@ -15,12 +21,11 @@ class ErrorHandler {
         }
         
         $file = 'error.log';//file name
-        
         date_default_timezone_set('America/Costa_Rica');//set time zone
         $date = date('m/d/Y h:i:s a', time());//capture timestamp
 
         //generate output
-        $output .= (" - Method: " . $method . ". Data: " . $result . ". Date: " . $date . ". User ID: " . $userId) . "\n";
+        $output = ("\r\nMethod: " . $method . ".\r\nData: " . print_r($result) . ".\r\nDate: " . $date . ".\r\nUser ID: " . $userId) . "\r\n\r\n\r\n";
         
         //hash 
         $md5 = md5($output);

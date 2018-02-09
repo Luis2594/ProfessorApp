@@ -3,7 +3,7 @@
 require_once '../data/Connector.php';
 include '../domain/Student.php';
 include '../domain/StudentAll.php';
-//require_once './resource/log/ErrorHandler.php';
+include_once '../resource/log/ErrorHandler.php';
 
 class StudentData extends Connector {
 
@@ -20,7 +20,7 @@ class StudentData extends Connector {
             $id = trim($array[0]);
             return $id;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -33,7 +33,7 @@ class StudentData extends Connector {
         try {
             return $this->exeQuery($query);
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -46,7 +46,7 @@ class StudentData extends Connector {
                 return FALSE;
             }
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -64,7 +64,7 @@ class StudentData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -77,34 +77,17 @@ class StudentData extends Connector {
                 while ($row = mysqli_fetch_array($allStudent)) {
 
                     $currentStudent = new StudentAll(
-                            $row['personid'], 
-                            $row['persondni'], 
-                            $row['personfirstname'], 
-                            $row['personfirstlastname'], 
-                            $row['personsecondlastname'], 
-                            $row['personemail'], 
-                            $row['personbirthdate'], 
-                            $row['personage'], 
-                            $row['persongender'], 
-                            $row['personnationality'], 
-                            $row['studentadecuacy'], 
-                            $row['studentyearincome'], 
-                            $row['studentyearout'], 
-                            $row['studentlocation'], 
-                            $row['studentgroup'], 
-                            $row['studentmanager'], 
-                            $row['userusername'], 
-                            $row['useruserpass']);
+                            $row['personid'], $row['persondni'], $row['personfirstname'], $row['personfirstlastname'], $row['personsecondlastname'], $row['personemail'], $row['personbirthdate'], $row['personage'], $row['persongender'], $row['personnationality'], $row['studentadecuacy'], $row['studentyearincome'], $row['studentyearout'], $row['studentlocation'], $row['studentgroup'], $row['studentmanager'], $row['userusername'], $row['useruserpass']);
 
                     array_push($array, $currentStudent);
                 }
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
-    
+
     public function getStudentByProfessor($id) {
         $query = 'call getStudentByProfessor("' . $id . '");';
         try {
@@ -114,31 +97,15 @@ class StudentData extends Connector {
                 while ($row = mysqli_fetch_array($allStudent)) {
 
                     $currentStudent = new StudentAll(
-                            $row['personid'], 
-                            $row['persondni'], 
-                            $row['personfirstname'], 
-                            $row['personfirstlastname'], 
-                            $row['personsecondlastname'], 
-                            $row['personemail'], 
-                            $row['personbirthdate'], 
-                            $row['personage'], 
-                            $row['persongender'], 
-                            $row['personnationality'], 
-                            $row['studentadecuacy'], 
-                            $row['studentyearincome'], 
-                            $row['studentyearout'], 
-                            $row['studentlocation'], 
-                            $row['studentgroup'], 
-                            $row['studentmanager'], 
-                            $row['userusername'], 
-                            $row['useruserpass']);
+                            $row['personid'], $row['persondni'], $row['personfirstname'], $row['personfirstlastname'], $row['personsecondlastname'], $row['personemail'], $row['personbirthdate'], $row['personage'], $row['persongender'], $row['personnationality'], $row['studentadecuacy'], $row['studentyearincome'], $row['studentyearout'], $row['studentlocation'], $row['studentgroup'], $row['studentmanager'], $row['userusername'], $row['useruserpass']);
 
                     array_push($array, $currentStudent);
                 }
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
+
 }

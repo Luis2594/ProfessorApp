@@ -2,6 +2,7 @@
 
 require_once '../data/Connector.php';
 include '../domain/Schedule.php';
+include_once '../resource/log/ErrorHandler.php';
 
 class ScheduleData extends Connector {
 
@@ -14,13 +15,13 @@ class ScheduleData extends Connector {
         try {
             return $this->exeQuery($query);
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
     public function getScheduleByProfessor($id) {
         $query = "call getScheduleByProfessor(" . $id . ")";
-        
+
         try {
             $allSchedule = $this->exeQuery($query);
             $array = [];
@@ -35,13 +36,13 @@ class ScheduleData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
-    
+
     public function getScheduleByStudent($id) {
         $query = "call getScheduleByStudent(" . $id . ")";
-        
+
         try {
             $allSchedule = $this->exeQuery($query);
             $array = [];
@@ -56,7 +57,7 @@ class ScheduleData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -69,10 +70,10 @@ class ScheduleData extends Connector {
                 return FALSE;
             }
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
-    
+
     public function deleteSchedule($id) {
         $query = 'call deleteSchedule(' . $id . ');';
         try {
@@ -82,7 +83,7 @@ class ScheduleData extends Connector {
                 return FALSE;
             }
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 

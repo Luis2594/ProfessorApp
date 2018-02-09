@@ -2,6 +2,7 @@
 
 require_once '../data/Connector.php';
 include '../domain/Forum.php';
+include_once '../resource/log/ErrorHandler.php';
 
 class ForumData extends Connector {
 
@@ -11,13 +12,13 @@ class ForumData extends Connector {
                 $forum->getName() . "'," .
                 $forum->getCourse() . "," .
                 $forum->getGroup() . "," .
-                $forum->getProfessor() . ");"; 
+                $forum->getProfessor() . ");";
         try {
             $result = $this->exeQuery($query);
             $array = mysqli_fetch_array($result);
             return trim($array[0]);
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -30,7 +31,7 @@ class ForumData extends Connector {
             $array = mysqli_fetch_array($result);
             return trim($array[0]);
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -43,7 +44,7 @@ class ForumData extends Connector {
                 return FALSE;
             }
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -62,7 +63,7 @@ class ForumData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -81,7 +82,7 @@ class ForumData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -94,7 +95,7 @@ class ForumData extends Connector {
                 include_once '../business/PersonBusiness.php';
                 $business = new PersonBusiness();
                 while ($row = mysqli_fetch_array($allInstitutions)) {
-                    
+
                     $person = $business->getPersonId($row['forumprofessor']);
                     $currentInstitution = new Forum(
                             $row['forumid'], $row['forumname'], $row['forumcourse'], $person[0]->getPersonFirstName() . " " . $person[0]->getPersonFirstlastname()
@@ -104,7 +105,7 @@ class ForumData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -127,7 +128,7 @@ class ForumData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 

@@ -1,6 +1,6 @@
 <?php
 $type = 'Core';
-$text = 'Helvetica-Oblique';
+$professor = 'Helvetica-Oblique';
 $up = -100;
 $ut = 50;
 $cw = array(

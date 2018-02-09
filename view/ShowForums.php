@@ -118,7 +118,7 @@ include './reusable/Footer.php';
 
     function deleteForum(id) {
         alertify.confirm('Eliminar Foro', '¿Desea eliminar?', function () {
-            window.location = "../business/DeleteForumAction.php?id=" + id;
+            window.location = "../actions/DeleteForumAction.php?id=" + id;
         }
         , function () {
             alertify.error('Cancelado');

@@ -38,10 +38,11 @@ if (isset($courseID) && is_int($courseID)) {
                                     echo $item->getCourseName();
                                     ?>
                                 </b>
-                                
+
                             </h3>
-                        <a type="button" class="btn btn-primary pull-right" href="../tools/export_data/ExportStudentsList.php?course=<?php echo $courseID;?>&professor=<?php echo $_SESSION['id'];?>">Exportar</a>
-                        <?php break; } ?>
+                            <a type="button" class="btn btn-primary pull-right" href="../actions/ExportStudentsListByCourseAndProfessorAction.php?course=<?php echo $courseID; ?>&professor=<?php echo $_SESSION['id']; ?>">Exportar</a>
+                            <?php break;
+                        } ?>
                     </div>
                     <div class="box-body">
                         <table id="studentsList" class="table table-bordered table-striped">
@@ -53,14 +54,14 @@ if (isset($courseID) && is_int($courseID)) {
                                 </tr>
                             </thead>
                             <tbody id="tbody">
-                                <?php 
+                                <?php
                                 $students = $business->getStudentsListByCourseAndProfessor($courseID, $_SESSION['id']);
-                                foreach ($students as $person){
+                                foreach ($students as $person) {
                                     ?>
                                     <tr>
-                                    <td><?php echo $person[0]; ?></td>
-                                    <td><?php echo $person[1]; ?></td>
-                                    <td><?php echo $person[2]; ?></td>
+                                        <td><?php echo $person[0]; ?></td>
+                                        <td><?php echo $person[1]; ?></td>
+                                        <td><?php echo $person[2]; ?></td>
                                     </tr>    
                                     <?php
                                 }
@@ -88,6 +89,10 @@ include './reusable/Footer.php';
 
 <!-- page script -->
 <script type="text/javascript">
+    $(function () {
+        $("#studentsList").dataTable();
+    });
+
     (function ($) {
         $.get = function (key) {
             key = key.replace(/[\[]/, '\\[');
@@ -103,9 +108,16 @@ include './reusable/Footer.php';
             }
         }
     })(jQuery);
-    
-    $(function () {
-        $("#studentsList").dataTable();
-    });
+
+    var action = $.get("action");
+    var msg = $.get("msg");
+    if (action === "1") {
+        msg = msg.replace(/_/g, " ");
+        alertify.success(msg);
+    }
+    if (action === "0") {
+        msg = msg.replace(/_/g, " ");
+        alertify.error(msg);
+    }
 </script>
 

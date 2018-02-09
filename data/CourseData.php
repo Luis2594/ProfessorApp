@@ -2,9 +2,7 @@
 
 require_once '../data/Connector.php';
 include '../domain/Course.php';
-
-//require_once './resource/log/ErrorHandler.php';
-
+include_once '../resource/log/ErrorHandler.php';
 
 class CourseData extends Connector {
 
@@ -22,7 +20,7 @@ class CourseData extends Connector {
             $id = trim($array[0]);
             return $id;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -31,7 +29,7 @@ class CourseData extends Connector {
         try {
             return $this->exeQuery($query);
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -47,7 +45,7 @@ class CourseData extends Connector {
         try {
             return $this->exeQuery($query);
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -60,7 +58,7 @@ class CourseData extends Connector {
                 return FALSE;
             }
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -80,7 +78,7 @@ class CourseData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -100,12 +98,11 @@ class CourseData extends Connector {
                         "coursepdf" => $row['coursepdf'],
                         "coursespeciality" => $row['coursespeciality'],
                         "coursetype" => $row['coursetype']);
-
                 }
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -124,7 +121,7 @@ class CourseData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -143,7 +140,7 @@ class CourseData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -169,15 +166,15 @@ class CourseData extends Connector {
                         "professorcourseyear" => $row['professorcourseyear']);
                 }
             }
-            
+
             foreach ($array as $key => $row) {
                 $aux[$key] = $row['coursecode'];
             }
-            
+
             array_multisort($aux, SORT_ASC, $array);
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -204,7 +201,7 @@ class CourseData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -222,7 +219,7 @@ class CourseData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -237,7 +234,7 @@ class CourseData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -249,10 +246,10 @@ class CourseData extends Connector {
             $res = trim($array[0]);
             return $res;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
-    
+
     //professor app
     public function getCoursesByProfessor($id) {
         $query = "call getCoursesByProfessor('" . $id . "')";
@@ -270,12 +267,12 @@ class CourseData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
-    
-    public function getStudentsListByCourseAndProfessor($course, $professor){
-        $query = "call getStudentsListByCourseAndProfessor(" . $course . ", ".$professor.")";
+
+    public function getStudentsListByCourseAndProfessor($course, $professor) {
+        $query = "call getStudentsListByCourseAndProfessor(" . $course . ", " . $professor . ")";
         try {
             $data = $this->exeQuery($query);
             $array = [];
@@ -288,7 +285,40 @@ class CourseData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+        }
+    }
+
+    public function exportStudentsListByCourseAndProfessor($course, $professor) {
+        ini_set('display_errors', '1');
+        $query = "call getStudentsListByCourseAndProfessor(" . $course . ", " . $professor . ")";
+        try {
+            //capture data by running the query
+            $data = $this->exeQuery($query);
+            $array = []; //exported data will be saved in here
+            //add excel headers
+            array_push($array, array("Nombre", "Cédula", "Teléfono"));
+            if (mysqli_num_rows($data) > 0) {
+                include '../domain/Student.php';
+                while ($row = mysqli_fetch_array($data)) {
+                    array_push($array, array($row['fullName'], $row['persondni'], $row['phoneNumber']));
+                }
+            }
+            throw new Exception("The field is undefined.");
+            //include required tools
+            include_once '../tools/ExportData.php';
+            include_once '../tools/GUID.php';
+            //new instances of data management lib
+            $excel = new ExportDataExcel('browser'); //browser-file-string
+            $excel->filename = GUID() . ".xlsx"; //configure name
+            //creation of the file!
+            $excel->initialize();
+            foreach ($array as $row) {
+                $excel->addRow($row);
+            }
+            $excel->finalize(); //be happy!!
+        } catch (Exception $ex) {
+            ErrorHandler::Log(__METHOD__, $query); //, 0);//$_SESSION["id"]);
         }
     }
 

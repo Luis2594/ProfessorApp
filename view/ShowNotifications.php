@@ -87,7 +87,7 @@ include './reusable/Footer.php';
 
     function deleteNotification(id) {
         alertify.confirm('Eliminar notificación', '¿Desea eliminar?', function () {
-            window.location = "../business/DeleteNotificationAction.php?id=" + id;
+            window.location = "../actions/DeleteNotificationAction.php?id=" + id;
         }
         , function () {
             alertify.error('Cancelado');

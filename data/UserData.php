@@ -3,7 +3,7 @@
 require_once '../data/Connector.php';
 require_once '../domain/User.php';
 require_once '../business/PersonBusiness.php';
-////require_once './resource/log/ErrorHandler.php';
+include_once '../resource/log/ErrorHandler.php';
 
 class UserData extends Connector {
 
@@ -17,7 +17,7 @@ class UserData extends Connector {
 
             return mysqli_num_rows($res);
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -27,7 +27,7 @@ class UserData extends Connector {
         try {
             return $this->exeQuery($query);
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -38,19 +38,19 @@ class UserData extends Connector {
         try {
             return $this->exeQuery($query);
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
-    
+
     public function updatePassword($id, $passOld, $passNew) {
-        $query = 'call updatePassword(' . $id . ', "'.$passOld.'", "'.$passNew.'");';
-        
+        $query = 'call updatePassword(' . $id . ', "' . $passOld . '", "' . $passNew . '");';
+
         try {
             $result = $this->exeQuery($query);
             $array = mysqli_fetch_array($result);
             return trim($array[0]);
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -63,7 +63,7 @@ class UserData extends Connector {
                 return FALSE;
             }
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -81,7 +81,7 @@ class UserData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 
@@ -97,7 +97,7 @@ class UserData extends Connector {
             }
             return $currentUser;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
         }
     }
 

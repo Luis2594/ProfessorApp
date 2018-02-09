@@ -23,7 +23,7 @@ include './reusable/Header.php';
                     <h3 class="box-title">Enviar Notificación</h3>
                 </div><!-- /.box-header -->
                 <div class="box-footer">
-                    <form role="form" id="formNotification" action="../business/CreateNotificationAction.php" method="POST" enctype="multipart/form-data">
+                    <form role="form" id="formNotification" action="../actions/CreateNotificationAction.php" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
                             <label>Módulo</label>
                             <select style="width: 100%" name="curso" id="curso">

@@ -1,6 +1,6 @@
 <?php
 $type = 'Core';
-$text = 'ZapfDingbats';
+$professor = 'ZapfDingbats';
 $up = -100;
 $ut = 50;
 $cw = array(

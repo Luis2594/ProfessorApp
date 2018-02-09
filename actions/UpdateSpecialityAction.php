@@ -3,11 +3,11 @@
 include_once './SpecialityBusiness.php';
 
 $id = (int) $_GET['id'];
-$text = $_POST['name'];
+$name = $_POST['name'];
 
-if (isset($id) && is_int($id) && isset($text) && $text != "") {
+if (isset($id) && is_int($id) && isset($name) && $name != "") {
     $specialityBusiness = new SpecialityBusiness();
-    $speciality = new Speciality($id, $text);
+    $speciality = new Speciality($id, $name);
     if ($specialityBusiness->update($speciality)) {
         header("location: ../view/InformationSpeciality.php?id=" . $id . "&action=1&msg=Registro_actualizado_correctamente");
     } else {

@@ -27,7 +27,7 @@ include './reusable/Header.php';
                     $notifications = $business->getNotification($_GET['id']);
                     foreach ($notifications as $newComment) {
                         ?>
-                        <form role="form" id="formNotification" action="../business/UpdateNotificationAction.php" method="POST" enctype="multipart/form-data">
+                        <form role="form" id="formNotification" action="../actions/UpdateNotificationAction.php" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="id" id="id" value="<?php echo $newComment->getNotificationId() ?>"/>
                             <div class="form-group">
                                 <textarea id="text" name="text" class="form-control" rows="3" required="true"><?php echo $newComment->getNotificationText() ?></textarea>

@@ -2,12 +2,12 @@
 
 include_once '../business/ConversationBusiness.php';
 
-$text = $_POST['name'];
+$professor = $_POST['name'];
 $forum = $_POST['forum'];
 
-if (isset($text) && $text != "" && isset($forum)) {
+if (isset($professor) && $professor != "" && isset($forum)) {
     $business = new ConversationBusiness();
-    $conv = new Conversation(NULL, $forum, $text);
+    $conv = new Conversation(NULL, $forum, $professor);
 
     if ($business->insert($conv) != 0) {
         header("location: ../view/ShowConversations.php?action=1&msg=Registro_creado_correctamente&id=" . $forum);

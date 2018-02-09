@@ -33,7 +33,7 @@ include './reusable/Header.php';
                     foreach ($conversations as $current) {
                         ?>
                         <!-- form start -->
-                        <form role="form" id="formUpdateForum" action="../business/UpdateConversationAction.php" method="POST" enctype="multipart/form-data">
+                        <form role="form" id="formUpdateForum" action="../actions/UpdateConversationAction.php" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="id" id="id" value="<?php echo $current->getForumConversationId() ?>"/>
                             <div class="form-group">
                                 <label>Nombre</label>

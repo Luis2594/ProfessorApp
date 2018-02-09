@@ -31,7 +31,7 @@ include './reusable/Header.php';
                         header("location: ./Login.php");
                     }
                     ?>
-                    <form role="form" id="formUpdateProfesorProfile" action="../business/UpdateProfessorProfileAction.php" method="POST" enctype="multipart/form-data">
+                    <form role="form" id="formUpdateProfesorProfile" action="../actions/UpdateProfessorProfileAction.php" method="POST" enctype="multipart/form-data">
                         <input type="hidden" id="dniTemp" value="<?php echo $currentPerson->getPersonDni() ?>">
                         <input type="hidden" id="id" name="id" value="<?php echo $id ?>">
                         <!--DNI-->

@@ -1,6 +1,7 @@
 <?php
 
 class Connector {
+
     private $server;
     private $user;
     private $password;
@@ -17,7 +18,7 @@ class Connector {
 //        $this->password = 'cindea2017@';
         $this->db = 'institution';
     }
- 
+
     /**
      * Open connection to the data base
      */
@@ -57,8 +58,8 @@ class Connector {
             return false;
         }
     }
-    
-     /**
+
+    /**
      * Execute a query to know the last id of a table
      * @param type $query query to select data from db
      * @return boolean indicates if the given values are registred on the db

@@ -50,7 +50,7 @@ if ($institution == NULL) {
             </div><!-- /.login-logo -->
             <div class="login-box-body">
                 <p class="login-box-msg">Iniciar Sesión</p>
-                <form id="formLogin" name="formLogin" role="form" action="../business/LoginAction.php" method="post" >
+                <form id="formLogin" name="formLogin" role="form" action="../actions/LoginAction.php" method="post" >
                     <div class="form-group has-feedback">
                         <input id="user" name="user" type="text" class="form-control" placeholder="Usuario" required="true"/>
                         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>

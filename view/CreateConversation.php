@@ -25,7 +25,7 @@ include './reusable/Header.php';
                     <h3 class="box-title">Crear Conversación</h3>
                 </div><!-- /.box-header -->
                 <div class="box-footer">
-                    <form role="form" id="formCreateConversation" action="../business/CreateConversationAction.php" method="POST" enctype="multipart/form-data">
+                    <form role="form" id="formCreateConversation" action="../actions/CreateConversationAction.php" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
                             
                             <?php

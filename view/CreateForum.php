@@ -24,7 +24,7 @@ include './reusable/Header.php';
                     <h3 class="box-title">Crear Foro</h3>
                 </div><!-- /.box-header -->
                 <div class="box-footer">
-                    <form role="form" id="formCreateForum" action="../business/CreateForumAction.php" method="POST" enctype="multipart/form-data">
+                    <form role="form" id="formCreateForum" action="../actions/CreateForumAction.php" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
                             <label>Módulo</label>
                             <select style="width: 100%" name="course" id="course" onchange="addGroup(this);">
