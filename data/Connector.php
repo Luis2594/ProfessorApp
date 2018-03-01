@@ -1,5 +1,8 @@
 <?php
 
+include_once '../resource/Constants.php';
+include_once '../tools/GUID.php';
+
 class Connector {
 
     private $server;
@@ -35,12 +38,14 @@ class Connector {
 
     /**
      * Executes a given query
+     * V 1.1 - clean executed to the query in order to avoid sql injection
      * @param type $query query to execute
      * @return type the related result of the given query
      */
     public function exeQuery($query) {
         $this->connect();
-        $result = mysqli_query($this->conn, $query);
+        //$result = mysqli_query($this->conn, $this->clean($query));
+        $result = mysqli_query($this->conn, ($query));
         $this->closeConn();
         return $result;
     }
@@ -48,7 +53,7 @@ class Connector {
     /**
      * Execute a query to know if a given record is saved into the db
      * @param type $query query to select data from db
-     * @return boolean indicates if the given values are registred on the db
+     * @return boolean indicates if the given values are registered on the db
      */
     public function isRegistred($query) {
         $result = $this->exeQuery($query);
@@ -62,7 +67,7 @@ class Connector {
     /**
      * Execute a query to know the last id of a table
      * @param type $query query to select data from db
-     * @return boolean indicates if the given values are registred on the db
+     * @return boolean indicates if the given values are registered on the db
      */
     public function getMaxIdTable($table) {
         $query = "SELECT MAX(id" . $table . ") FROM `tb" . $table . "`";
@@ -91,6 +96,33 @@ class Connector {
      */
     function clean($string) {
         return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
+    }
+    
+    /**
+     * Version 2.0 (13/02/2018)
+     * @param type $method
+     * @param type $data
+     * @param type $userId
+     */
+    function Log($method, $data) {
+        
+        //start connection to logDB
+        $this->conn = mysqli_connect($this->server, $this->user, $this->password, 'logDB'); //default port 3306  
+
+        date_default_timezone_set('America/Costa_Rica'); //set time zone
+        
+        $guid = GUID();
+        
+        $query = "call systemLog('" . $method . "','" . $this->clean($data) . "','" .
+                 $guid . "','" . Constants::APP_PROFESSOR . "')";
+        
+        mysqli_query($this->conn, ($query));
+        
+        mysqli_close($this->conn);
+
+        //debug_to_console($query);
+        
+        header("location: ../../view/reusable/Error.php?md5=" . $guid);
     }
 
 }

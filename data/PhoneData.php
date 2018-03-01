@@ -2,7 +2,6 @@
 
 require_once '../data/Connector.php';
 include_once '../domain/Phone.php';
-include_once '../resource/log/ErrorHandler.php';
 
 class PhoneData extends Connector {
 
@@ -12,7 +11,7 @@ class PhoneData extends Connector {
         try {
             return $this->exeQuery($query);
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -23,7 +22,7 @@ class PhoneData extends Connector {
         try {
             return $this->exeQuery($query);
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -36,7 +35,7 @@ class PhoneData extends Connector {
                 return FALSE;
             }
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -54,7 +53,7 @@ class PhoneData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 

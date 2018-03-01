@@ -7,8 +7,8 @@ include_once './reusable/Header.php';
 <section class="content-header" style="text-align: left">
     <ol class="breadcrumb">
         <li><a href="Home.php"><i class="fa fa-arrow-circle-right"></i> Inicio</a></li>
-        <li><a href="ShowProfile.php"><i class="fa fa-arrow-circle-right"></i>Perfil</a></li>
-        <li><a href="#"><i class="fa fa-arrow-circle-right"></i>Actualizar Contraseña</a></li>
+        <li><a href="ShowProfile.php"><i class="fa fa-arrow-circle-right"></i> Perfil</a></li>
+        <li><a href="#"><i class="fa fa-arrow-circle-right"></i> Actualizar Contraseña</a></li>
     </ol>
 </section>
 <br>
@@ -28,17 +28,17 @@ include_once './reusable/Header.php';
                     <div class="box-body">
                         <!--NAME-->
                         <div class="form-group">
-                            <label>Contraseña actual</label>
+                            <label>Contraseña Actual</label>
                             <input id="pass" name="pass" type="password" class="form-control" placeholder="Contraseña actual" required=""/>
                         </div>
                         <!--NAME-->
                         <div class="form-group">
-                            <label>Nueva contraseña</label>
+                            <label>Nueva Contraseña</label>
                             <input id="passUpdate" name="passUpdate" type="password" class="form-control" placeholder="Nueva contraseña" required=""/>
                         </div>
                         <!--NAME-->
                         <div class="form-group">
-                            <label>Confirmar contraseña</label>
+                            <label>Confirmar Contraseña</label>
                             <input id="passConfirm" name="passConfirm" type="password" class="form-control" placeholder="Confirmar contraseña" required=""/>
                         </div>
                     </div><!-- /.box-body -->

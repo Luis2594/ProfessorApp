@@ -2,7 +2,6 @@
 
 require_once '../data/Connector.php';
 include_once '../domain/StudentCourse.php';
-include_once '../resource/log/ErrorHandler.php';
 
 class StudentCourseData extends Connector {
 
@@ -13,7 +12,7 @@ class StudentCourseData extends Connector {
         try {
             return $this->exeQuery($query);
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -25,7 +24,7 @@ class StudentCourseData extends Connector {
         try {
             return $this->exeQuery($query);
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -38,7 +37,7 @@ class StudentCourseData extends Connector {
                 return FALSE;
             }
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 

@@ -2,7 +2,6 @@
 
 require_once '../data/Connector.php';
 include_once '../domain/Course.php';
-include_once '../resource/log/ErrorHandler.php';
 
 class CourseData extends Connector {
 
@@ -20,7 +19,7 @@ class CourseData extends Connector {
             $id = trim($array[0]);
             return $id;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -29,7 +28,7 @@ class CourseData extends Connector {
         try {
             return $this->exeQuery($query);
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -45,7 +44,7 @@ class CourseData extends Connector {
         try {
             return $this->exeQuery($query);
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -58,7 +57,7 @@ class CourseData extends Connector {
                 return FALSE;
             }
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -78,7 +77,7 @@ class CourseData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -102,7 +101,7 @@ class CourseData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -121,7 +120,7 @@ class CourseData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -140,7 +139,7 @@ class CourseData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -174,7 +173,7 @@ class CourseData extends Connector {
             array_multisort($aux, SORT_ASC, $array);
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -201,7 +200,7 @@ class CourseData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -219,7 +218,7 @@ class CourseData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -234,7 +233,7 @@ class CourseData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -246,7 +245,7 @@ class CourseData extends Connector {
             $res = trim($array[0]);
             return $res;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -267,7 +266,7 @@ class CourseData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -285,7 +284,7 @@ class CourseData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -304,7 +303,6 @@ class CourseData extends Connector {
                     array_push($array, array($row['fullName'], $row['persondni'], $row['phoneNumber']));
                 }
             }
-            throw new Exception("The field is undefined.");
             //include required tools
             include_once '../tools/ExportData.php';
             include_once '../tools/GUID.php';
@@ -318,7 +316,7 @@ class CourseData extends Connector {
             }
             $excel->finalize(); //be happy!!
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, 0);//$_SESSION["id"]);
+            $this->Log(__METHOD__, $query); //, 0);//$_SESSION["id"]);
         }
     }
 

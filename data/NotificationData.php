@@ -2,7 +2,6 @@
 
 require_once '../data/Connector.php';
 include_once '../domain/Notification.php';
-include_once '../resource/log/ErrorHandler.php';
 
 class NotificationData extends Connector {
 
@@ -13,7 +12,7 @@ class NotificationData extends Connector {
             $array = mysqli_fetch_array($result);
             return trim($array[0]);
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -37,7 +36,7 @@ class NotificationData extends Connector {
             return ($inserted) ? 1 : 0;
         } catch (Exception $ex) {
             return 0;
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -49,7 +48,7 @@ class NotificationData extends Connector {
             $array = mysqli_fetch_array($result);
             return trim($array[0]);
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -63,7 +62,7 @@ class NotificationData extends Connector {
             $array = mysqli_fetch_array($result);
             return trim($array[0]);
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -76,7 +75,7 @@ class NotificationData extends Connector {
                 return FALSE;
             }
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -89,7 +88,7 @@ class NotificationData extends Connector {
                 return FALSE;
             }
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -111,7 +110,7 @@ class NotificationData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -136,7 +135,7 @@ class NotificationData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -158,7 +157,7 @@ class NotificationData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -177,7 +176,7 @@ class NotificationData extends Connector {
 
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 

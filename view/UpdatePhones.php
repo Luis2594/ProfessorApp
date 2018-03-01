@@ -10,9 +10,9 @@ if (isset($id) && is_int($id)) {
     <!-- Content Header (Page header) -->
     <section class="content-header" style="text-align: left">
         <ol class="breadcrumb">
-            <li><a href="Home.php"><i class="fa fa-arrow-circle-right"></i>Inicio</a></li>
-            <li><a href="ShowStudentUpdate.php"><i class="fa fa-arrow-circle-right"></i>Actualizar Estudiante</a></li>
-            <li><a href="#"><i class="fa fa-arrow-circle-right"></i>Actualizar Teléfonos</a></li>
+            <li><a href="Home.php"><i class="fa fa-arrow-circle-right"></i> Inicio</a></li>
+            <li><a href="ShowStudentUpdate.php"><i class="fa fa-arrow-circle-right"></i> Actualizar Estudiante</a></li>
+            <li><a href="#"><i class="fa fa-arrow-circle-right"></i> Actualizar Teléfonos</a></li>
         </ol>
     </section>
     <br>

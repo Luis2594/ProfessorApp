@@ -3,7 +3,6 @@
 require_once '../data/Connector.php';
 include_once '../domain/Student.php';
 include_once '../domain/StudentAll.php';
-include_once '../resource/log/ErrorHandler.php';
 
 class StudentData extends Connector {
 
@@ -20,7 +19,7 @@ class StudentData extends Connector {
             $id = trim($array[0]);
             return $id;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -33,7 +32,7 @@ class StudentData extends Connector {
         try {
             return $this->exeQuery($query);
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -46,7 +45,7 @@ class StudentData extends Connector {
                 return FALSE;
             }
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -64,7 +63,7 @@ class StudentData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -84,7 +83,7 @@ class StudentData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -104,7 +103,7 @@ class StudentData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 

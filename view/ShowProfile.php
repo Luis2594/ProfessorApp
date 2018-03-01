@@ -1,6 +1,6 @@
 <?php
-include_once './reusable/Session.php';
-include_once './reusable/Header.php';
+include './reusable/Session.php';
+include './reusable/Header.php';
 ?>
 
 <style>
@@ -132,7 +132,7 @@ include_once './reusable/Header.php';
                                     <div class="form-group">
                                         <label>Teléfono</label>
                                         <?php
-                                        include_once '../business/PhoneBusiness.php';
+                                        include '../business/PhoneBusiness.php';
                                         $phoneBusiness = new PhoneBusiness();
                                         $phones = $phoneBusiness->getAllPhone((int) $_SESSION['id']);
                                         foreach ($phones as $phone) {
@@ -164,12 +164,12 @@ include_once './reusable/Header.php';
 </section><!-- /.content -->
 
 <?php
-include_once './reusable/Footer.php';
+include './reusable/Footer.php';
 ?>
 
 <!-- page script -->
 <script type="text/javascript">
-    
+
     (function ($) {
         $.get = function (key) {
             key = key.replace(/[\[]/, '\\[');
@@ -195,7 +195,7 @@ include_once './reusable/Footer.php';
         msg = msg.replace(/_/g, " ");
         alertify.error(msg);
     }
-    
+
     $(function () {
         $("#example1").dataTable();
     });

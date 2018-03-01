@@ -1,8 +1,7 @@
 <?php
 
-require_once '../data/Connector.php';
+include_once '../data/Connector.php';
 include_once '../domain/Institution.php';
-include_once '../resource/log/ErrorHandler.php';
 
 class InstitutionData extends Connector {
 
@@ -20,7 +19,7 @@ class InstitutionData extends Connector {
             $array = mysqli_fetch_array($result);
             return trim($array[0]);
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -38,7 +37,7 @@ class InstitutionData extends Connector {
             $array = mysqli_fetch_array($result);
             return trim($array[0]);
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -55,9 +54,10 @@ class InstitutionData extends Connector {
                     array_push($array, $currentInstitution);
                 }
             }
+            
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -75,7 +75,7 @@ class InstitutionData extends Connector {
             }
             return NULL;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 

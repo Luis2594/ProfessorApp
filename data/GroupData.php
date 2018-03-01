@@ -2,7 +2,6 @@
 
 require_once '../data/Connector.php';
 include_once '../domain/Group.php';
-include_once '../resource/log/ErrorHandler.php';
 
 class GroupData extends Connector {
 
@@ -17,7 +16,7 @@ class GroupData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -30,7 +29,7 @@ class GroupData extends Connector {
                 return (new Group($row['groupid'], $row['groupnumber'], 0));
             }
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 

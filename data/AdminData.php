@@ -2,7 +2,6 @@
 
 require_once '../data/Connector.php';
 require_once '../domain/Person.php';
-include_once '../resource/log/ErrorHandler.php';
 
 class AdminData extends Connector {
 
@@ -16,7 +15,7 @@ class AdminData extends Connector {
 
             return $id;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -29,7 +28,7 @@ class AdminData extends Connector {
             $res = trim($array[0]);
             return $res;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -47,7 +46,7 @@ class AdminData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 

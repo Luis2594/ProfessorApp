@@ -8,7 +8,7 @@ $id = (int) $_GET['id'];
 <section class="content-header" style="text-align: left">
     <ol class="breadcrumb">
         <li><a href="Home.php"><i class="fa fa-arrow-circle-right"></i> Inicio</a></li>
-        <li><a href="#"><i class="fa fa-arrow-circle-right"></i>Ver módulos</a></li>
+        <li><a href="#"><i class="fa fa-arrow-circle-right"></i> Ver módulos</a></li>
     </ol>
 </section>
 <br>

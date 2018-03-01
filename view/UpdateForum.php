@@ -8,7 +8,7 @@ include_once './reusable/Header.php';
     <ol class="breadcrumb">
         <li><a href="Home.php"><i class="fa fa-arrow-circle-right"></i> Inicio</a></li>
         <li><a href="ShowForums.php"><i class="fa fa-arrow-circle-right"></i> Foros</a></li>
-        <li><a href="#"><i class="fa fa-arrow-circle-right"></i>Actualizar Foro</a></li>
+        <li><a href="#"><i class="fa fa-arrow-circle-right"></i> Actualizar Foro</a></li>
     </ol>
 </section>
 <br>

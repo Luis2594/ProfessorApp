@@ -13,4 +13,4 @@ if (isset($_GET['md5'])){
 
 <?php
 include_once './reusable/Footer.php';
-?>
+

@@ -5,6 +5,7 @@ if (isset($_SESSION['id'])) {
 }
 
 include_once '../business/InstitutionBusiness.php';
+
 $institutionBusiness = new InstitutionBusiness();
 $institution = $institutionBusiness->getInstitutionObject();
 if ($institution == NULL) {

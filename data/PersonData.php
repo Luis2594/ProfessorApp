@@ -2,7 +2,6 @@
 
 require_once '../data/Connector.php';
 require_once '../domain/Person.php';
-include_once '../resource/log/ErrorHandler.php';
 
 class PersonData extends Connector {
 
@@ -22,7 +21,7 @@ class PersonData extends Connector {
             $id = trim($array[0]);
             return $id;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -43,7 +42,7 @@ class PersonData extends Connector {
             $res = trim($array[0]);
             return $res;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -56,7 +55,7 @@ class PersonData extends Connector {
                 return FALSE;
             }
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -73,7 +72,7 @@ class PersonData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -94,7 +93,7 @@ class PersonData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -112,7 +111,7 @@ class PersonData extends Connector {
 
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -124,7 +123,7 @@ class PersonData extends Connector {
             $res = trim($array[0]);
             return $res;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 

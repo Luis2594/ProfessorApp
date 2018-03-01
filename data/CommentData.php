@@ -3,7 +3,6 @@
 require_once '../data/Connector.php';
 include_once '../domain/Comment.php';
 include_once '../business/PersonBusiness.php';
-include_once '../resource/log/ErrorHandler.php';
 
 class CommentData extends Connector {
 
@@ -17,7 +16,7 @@ class CommentData extends Connector {
             $array = mysqli_fetch_array($result);
             return trim($array[0]);
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -30,7 +29,7 @@ class CommentData extends Connector {
             $array = mysqli_fetch_array($result);
             return trim($array[0]);
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -43,7 +42,7 @@ class CommentData extends Connector {
                 return FALSE;
             }
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -62,7 +61,7 @@ class CommentData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -81,7 +80,7 @@ class CommentData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -102,7 +101,7 @@ class CommentData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -123,7 +122,7 @@ class CommentData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 

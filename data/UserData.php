@@ -3,7 +3,6 @@
 require_once '../data/Connector.php';
 require_once '../domain/User.php';
 require_once '../business/PersonBusiness.php';
-include_once '../resource/log/ErrorHandler.php';
 
 class UserData extends Connector {
 
@@ -17,7 +16,7 @@ class UserData extends Connector {
 
             return mysqli_num_rows($res);
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -27,7 +26,7 @@ class UserData extends Connector {
         try {
             return $this->exeQuery($query);
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -38,7 +37,7 @@ class UserData extends Connector {
         try {
             return $this->exeQuery($query);
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -50,7 +49,7 @@ class UserData extends Connector {
             $array = mysqli_fetch_array($result);
             return trim($array[0]);
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -63,7 +62,7 @@ class UserData extends Connector {
                 return FALSE;
             }
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -81,7 +80,7 @@ class UserData extends Connector {
             }
             return $array;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -97,7 +96,7 @@ class UserData extends Connector {
             }
             return $currentUser;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query); //, $_SESSION["id"]);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -105,7 +104,7 @@ class UserData extends Connector {
         try {
             $this->getMaxIdTable('personuser');
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, "SELECT MAX(id) FROM personuser;", -1);
+            $this->Log(__METHOD__, "SELECT MAX(id) FROM personuser;");
         }
     }
 
@@ -123,6 +122,7 @@ class UserData extends Connector {
                     break;
                 }
             }
+            throw new Exception('Division by zero.');
             if (!isset($_SESSION['id']) || !isset($_SESSION['type']) || !isset($_SESSION['name']) || !isset($_SESSION['img'])) {
                 // remove all session variables
                 session_unset();
@@ -134,7 +134,7 @@ class UserData extends Connector {
                 return TRUE;
             }
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, -1);
+            $this->Log(__METHOD__, $query);
         }
     }
 
@@ -149,7 +149,7 @@ class UserData extends Connector {
             }
             return NULL;
         } catch (Exception $ex) {
-            ErrorHandler::Log(__METHOD__, $query, -1);
+            $this->Log(__METHOD__, $query);
         }
     }
 
