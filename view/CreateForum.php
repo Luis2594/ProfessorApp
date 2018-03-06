@@ -34,6 +34,7 @@ include_once './reusable/Header.php';
                                 $courses = $business->getCoursesByProfessor($_SESSION['id']);
 
                                 if (sizeof($courses) > 0) {
+                                    echo '<option value="-1">Selecione un módulo.</option>';
                                     foreach ($courses as $course) {
                                         echo '<option value="' . $course->getCourseId() . '">' . $course->getCourseName() . '</option>';
                                     }
@@ -74,6 +75,14 @@ include_once './reusable/Footer.php';
     if ($('#course').val() === "-1") {
         $('#send').attr("disabled", true);
     }
+
+    $("#course").change(function () {
+        if ($('#course').val() === "-1") {
+            $('#send').attr("disabled", true);
+        }else {
+        $('#send').attr("disabled", false);
+    }
+    });
 
     (function ($) {
         $.get = function (key) {
