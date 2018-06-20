@@ -1,7 +1,8 @@
 <?php
 include_once './reusable/Session.php';
 include_once './reusable/Header.php';
-$id = (int) $_GET['id'];
+
+$id = (int) $_SESSION['id'];
 ?>
 
 <!-- Content Header (Page header) -->
@@ -102,7 +103,7 @@ include_once './reusable/Footer.php';
     $(function () {
         $("#coursesList").dataTable();
     });
-    
+
     $(function () {
         coursesToProfessor();
     });

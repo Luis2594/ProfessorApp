@@ -1,7 +1,10 @@
 <?php
 include_once './reusable/Session.php';
 include_once './reusable/Header.php';
-$id = (int) $_GET['id'];
+
+if (!isset($_GET['id'])) {
+    $id = (int) $_GET['id'];
+}
 ?>
 
 <!-- Content Header (Page header) -->
@@ -24,24 +27,24 @@ if (isset($id) && is_int($id)) {
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <?php
-                        include_once '../business/ProfessorBusiness.php';
+    <?php
+    include_once '../business/ProfessorBusiness.php';
 
-                        $professorBusiness = new ProfessorBusiness();
+    $professorBusiness = new ProfessorBusiness();
 
-                        $professors = $professorBusiness->getProfessor($_SESSION['id']);
-                        foreach ($professors as $professor) {
-                            ?>
+    $professors = $professorBusiness->getProfessor($_SESSION['id']);
+    foreach ($professors as $professor) {
+        ?>
                             <h3 class="box-title">Módulos asignados a: 
                                 <b>
-                                    <?php
-                                    echo $professor->getPersonFirstName()
-                                    . " " . $professor->getPersonFirstlastname()
-                                    . " " . $professor->getPersonSecondlastname();
-                                    ?> 
+        <?php
+        echo $professor->getPersonFirstName()
+        . " " . $professor->getPersonFirstlastname()
+        . " " . $professor->getPersonSecondlastname();
+        ?> 
                                 </b>
                             </h3>
-                        <?php } ?>
+    <?php } ?>
                     </div>
                     <div class="box-body">
                         <table id="example2" class="table table-bordered table-striped">

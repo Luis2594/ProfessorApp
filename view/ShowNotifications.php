@@ -32,7 +32,10 @@ include_once './reusable/Header.php';
                         </thead>
                         <tbody>
                             <?php
-                            session_start();
+                            if (!isset($_SESSION)) {
+                                session_start();
+                            }
+                            
                             include_once '../business/NotificationBusiness.php';
                             $business = new NotificationBusiness();
 
