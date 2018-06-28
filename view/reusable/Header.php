@@ -131,11 +131,11 @@ include_once '../resource/Constants.php';
                                         </p>
                                     </li>
                                     <!-- Menu Footer-->
-                                    <li class="user-footer">
-                                        <div class="pull-left">
+                                    <li class="user-footer col-md-12">
+                                        <div class="col-md-6">
                                             <a href="./ShowProfile.php" class="btn btn-default btn-flat">Perfil</a>
                                         </div>
-                                        <div class="pull-right">
+                                        <div class="col-md-6">
                                             <form role="form" id="form" action="../actions/LogoutAction.php" method="POST" enctype="multipart/form-data">
                                                 <input type="submit" class="btn btn-default btn-flat" value="Cerrar Sessión" />
                                             </form>
@@ -215,6 +215,7 @@ include_once '../resource/Constants.php';
                             </a>
                             <ul class="treeview-menu">
                                 <li><a href="./ShowCoursesProfessor.php"><i class="fa"></i>Ver Módulos</a></li>
+                                <li><a href="./ShowAssistance.php"><i class="fa"></i>Ver Asistencia</a></li>
                             </ul>
                         </li>
 
@@ -238,6 +239,7 @@ include_once '../resource/Constants.php';
                                 <li class="active"><a href="./ShowSchedule.php"><i class="fa"></i>Ver Horario</a></li>
                             </ul>
                         </li>
+                        
                         <!--STUDENTS-->
                         <li class="treeview">
                             <a>

@@ -2,7 +2,7 @@
 include_once './reusable/Session.php';
 include_once './reusable/Header.php';
 
-$id = (int) $_GET['id'];
+$id = (int) $_SESSION['id'];
 
 if (isset($id) && is_int($id)) {
     ?>
@@ -11,7 +11,7 @@ if (isset($id) && is_int($id)) {
     <section class="content-header" style="text-align: left">
         <ol class="breadcrumb">
             <li><a href="Home.php"><i class="fa fa-arrow-circle-right"></i> Inicio</a></li>
-            <li><a href="ShowStudentUpdate.php"><i class="fa fa-arrow-circle-right"></i> Actualizar Estudiante</a></li>
+            <li><a href="ShowProfile.php"><i class="fa fa-arrow-circle-right"></i> Perfil Profesor</a></li>
             <li><a href="#"><i class="fa fa-arrow-circle-right"></i> Actualizar Teléfonos</a></li>
         </ol>
     </section>
@@ -26,16 +26,22 @@ if (isset($id) && is_int($id)) {
                 <div class="box box-primary">
                     <div class="box-header">
                         <?php
-                        include_once '../business/StudentBusiness.php';
+                        include_once './business/PersonBusiness.php';
+                        include_once '../domain/Person.php';
 
-                        $studentBusiness = new StudentBusiness();
-                        $students = $studentBusiness->getStudentId($id);
-                        foreach ($students as $student) {
+                        $personBusiness = new PersonBusiness();
+                        $currentPerson = $personBusiness->getPersonId($id)[0];
+
+                        if ($currentPerson == NULL) {
+                            header("location: ./Login.php");
+                        }
+                        
+                        foreach ($currentPerson as $current) {
                             ?>
                             <h3 class="box-title">Teléfonos de <?php
-                                echo $student->getPersonFirstName()
-                                . " " . $student->getPersonFirstlastname()
-                                . " " . $student->getPersonSecondlastname();
+                                echo $current->getPersonFirstName()
+                                . " " . $current->getPersonFirstlastname()
+                                . " " . $current->getPersonSecondlastname();
                                 ?></h3>
                         <?php } ?>
 
@@ -44,7 +50,7 @@ if (isset($id) && is_int($id)) {
                     <!-- form start -->
                     <form role="form" id="f"  method="POST" action="../actions/CreatePhoneAction.php?id=<?php echo $id; ?>">
                         <div class="box-body">
-
+                            <h3>Teléfonos Registrados</h3>
                             <?php
                             include_once '../business/PhoneBusiness.php';
 
@@ -59,7 +65,6 @@ if (isset($id) && is_int($id)) {
                                         <td>
                                             <!--<input id="phone0" name="phone0" type="text">-->
                                             <div class="form-group">
-                                                <label>Teléfono</label>
                                                 <div class="input-group">
                                                     <div class="input-group-addon">
                                                         <i class="fa fa-phone"></i>
@@ -69,7 +74,7 @@ if (isset($id) && is_int($id)) {
                                             </div><!-- /.form group -->
                                         </td>
                                         <td>
-                                            <div class="btn-group-vertical"style="margin-top: 9px; margin-left: 15px;">
+                                            <div class="btn-group-vertical"style="margin-top: -15px; margin-left: 15px;">
                                                 <button  type="button" onclick="deletePhonePerson(<?php echo $id; ?>,<?php echo $phone->getPhoneId(); ?>);" class="btn btn-danger">Eliminar</button>
                                             </div>
                                         </td>
@@ -77,7 +82,7 @@ if (isset($id) && is_int($id)) {
                                 </table>
                             <?php } ?>
                             <!--ADD NEW PHONE-->
-                            <h3>Agregar nuevos teléfonos</h3>
+                            <h3>Agregar Teléfonos</h3>
 
                             <!--ADD PHONES-->
                             <table id="phone">
@@ -85,7 +90,6 @@ if (isset($id) && is_int($id)) {
                                     <td>
                                         <input id="phones" name="phones" type="text">
                                         <div class="form-group">
-                                            <label>Teléfono</label>
                                             <div class="input-group">
                                                 <div class="input-group-addon">
                                                     <i class="fa fa-phone"></i>
@@ -96,8 +100,8 @@ if (isset($id) && is_int($id)) {
                                     </td>
                                 </tr>
                             </table>
-                            <div class="btn-group-vertical">
-                                <button id="AddPhone" onclick="addPhone();" type="button" class="btn btn-success">Agregar teléfono</button>
+                            <div class="btn-group-vertical" style="width: 100%">
+                                
                             </div>
 
                         </div><!-- /.box-body -->
@@ -105,7 +109,9 @@ if (isset($id) && is_int($id)) {
                     </form>
 
                     <div class="box-footer">
-                        <button onclick="addPhonePerson();" class="btn btn-primary">Crear</button>
+                        <button style="width: 33%" id="AddPhone" onclick="addPhone();" type="button" class="btn btn-success">Nuevo</button>
+                        <button style="width: 32%" onclick="addPhonePerson();" class="btn btn-primary">Guardar</button>
+                        <button style="width: 33%" onclick="goBack();" class="btn btn-default">Volver</button>
                     </div>
                 </div><!-- /.box -->
             </div><!--/.col (left) -->
@@ -170,7 +176,6 @@ include_once './reusable/Footer.php';
         var startTr = '<tr id=' + '"tr' + idPhone + '">';
         var startTd1 = '<td>';
         var startDiv1 = '<div class=' + '"form-group"' + '>';
-        var label = '<label>Teléfono</label>';
         var startDiv2 = '<div class="' + 'input-group"' + '>';
         var startDiv3 = '<div class="' + 'input-group-addon"' + '>';
         var i = '<i class="' + 'fa fa-phone" ></i>';
@@ -180,13 +185,13 @@ include_once './reusable/Footer.php';
         var endDiv1 = '</div>';
         var endTd1 = '</td>';
         var startTd2 = '<td>';
-        var startDiv4 = "<div class=" + '"btn-group-vertical"' + 'style="margin-top: 9px; margin-left: 15px;">';
+        var startDiv4 = "<div class=" + '"btn-group-vertical"' + 'style="margin-top: -15px; margin-left: 15px;">';
         var button = '<button id="' + 'deletePhone' + idPhone + '" type=' + '"button"' + ' onclick=' + '"deletePhone(' + idPhone + ');" class=' + '"btn btn-danger">Eliminar</button>';
         var endDiv4 = '</div>';
         var endTd2 = '</td>';
         var endTr = '</tr>';
 
-        var scripHtml = startTr + startTd1 + startDiv1 + label + startDiv2 + startDiv3 + i + endDiv3 + input + endDiv2 + endDiv1 + endTd1 + startTd2 + startDiv4 + button + endDiv4 + endTd2 + endTr;
+        var scripHtml = startTr + startTd1 + startDiv1 + startDiv2 + startDiv3 + i + endDiv3 + input + endDiv2 + endDiv1 + endTd1 + startTd2 + startDiv4 + button + endDiv4 + endTd2 + endTr;
 
         $('#phone tr:last').after(scripHtml);
 
@@ -200,6 +205,10 @@ include_once './reusable/Footer.php';
 
     function deletePhonePerson(idPerson, idPhoneDelete) {
         window.location = "../actions/DeletePhoneAction.php?idPerson=" + idPerson + "&idPhone=" + idPhoneDelete;
+    }
+    
+    function goBack(){
+        window.location = "./ShowProfile.php";
     }
 
 </script>
