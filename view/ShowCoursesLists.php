@@ -51,7 +51,6 @@ if (isset($id) && is_int($id)) {
                                     <th>Nombre</th>
                                     <th>Grupo</th>
                                     <th>Periodo</th>
-                                    <th>Año</th>
                                     <th>Estudiantes</th>
                                 </tr>
                             </thead>
@@ -63,7 +62,6 @@ if (isset($id) && is_int($id)) {
                                     <th>Nombre</th>
                                     <th>Grupo</th>
                                     <th>Periodo</th>
-                                    <th>Año</th>
                                     <th>Estudiantes</th>
                                 </tr>
                             </tfoot>
@@ -74,7 +72,6 @@ if (isset($id) && is_int($id)) {
 
         </div><!-- /.row -->
     </section><!-- /.content -->
-
     <?php
 }
 include_once './reusable/Footer.php';
@@ -123,7 +120,6 @@ include_once './reusable/Footer.php';
                     htmlToInsert += '<td><a href="InformationCourse.php?id=' + item.courseid + '">' + item.coursename + '</a></td>';
                     htmlToInsert += "<td>" + item.groupnumber + "</td>";
                     htmlToInsert += "<td>" + item.period + "</td>";
-                    htmlToInsert += "<td>" + item.professorcourseyear + "</td>";
                     htmlToInsert += '<td><a href="ShowStudentsByCourse.php?course=' + item.courseid + '&group=' + item.groupid + '">Estudiantes</a></td>';
                     htmlToInsert += "</tr>";
                 });

@@ -45,7 +45,7 @@ if (is_int($courseID) && is_int($groupID)) {
                                 </b>
 
                             </h3>
-                            <a type="button" class="btn btn-primary pull-right" href="#">Exportar</a>
+                            <a type="button" class="btn btn-primary pull-right" href="#">Generar informe de asistencia</a>
                             <?php
                             break;
                         }
