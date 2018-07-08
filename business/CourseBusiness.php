@@ -66,8 +66,8 @@ class CourseBusiness {
         return $this->courseData->getCoursesByProfessor($id);
     }
     
-    public function getStudentsListByCourseAndProfessor($course, $professor){
-        return $this->courseData->getStudentsListByCourseAndProfessor($course, $professor);
+    public function getStudentsListByCourseAndProfessor($course, $group){
+        return $this->courseData->getStudentsListByCourseAndProfessor($course, $group);
     }    
     
     public function exportStudentsListByCourseAndProfessor($course, $professor){

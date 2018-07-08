@@ -1,7 +1,6 @@
 <?php
 include_once './reusable/Session.php';
 include_once './reusable/Header.php';
-
 $id = (int) $_SESSION['id'];
 ?>
 
@@ -125,7 +124,7 @@ include_once './reusable/Footer.php';
                     htmlToInsert += "<td>" + item.groupnumber + "</td>";
                     htmlToInsert += "<td>" + item.period + "</td>";
                     htmlToInsert += "<td>" + item.professorcourseyear + "</td>";
-                    htmlToInsert += '<td><a href="ShowStudentsByCourse.php?course=' + item.courseid + '">Estudiantes</a></td>';
+                    htmlToInsert += '<td><a href="ShowStudentsByCourse.php?course=' + item.courseid + '&group=' + item.groupid + '">Estudiantes</a></td>';
                     htmlToInsert += "</tr>";
                 });
                 $("#tbody").html(htmlToInsert);
@@ -139,4 +138,3 @@ include_once './reusable/Footer.php';
 
 
 </script>
-

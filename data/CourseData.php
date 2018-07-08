@@ -160,6 +160,7 @@ class CourseData extends Connector {
                         "coursepdf" => $row['coursepdf'],
                         "specialityname" => $row['specialityname'],
                         "coursetype" => $row['coursetype'],
+                        "groupid" => $row['groupid'],
                         "groupnumber" => $row['groupnumber'],
                         "period" => $row['period'],
                         "professorcourseyear" => $row['professorcourseyear']);
@@ -270,8 +271,8 @@ class CourseData extends Connector {
         }
     }
 
-    public function getStudentsListByCourseAndProfessor($course, $professor) {
-        $query = "call getStudentsListByCourseAndProfessor(" . $course . ", " . $professor . ")";
+    public function getStudentsListByCourseAndProfessor($course, $group) {
+        $query = "call getStudentsListByCourseAndProfessor(" . $course . ", " . $group . ")";
         try {
             $data = $this->exeQuery($query);
             $array = [];

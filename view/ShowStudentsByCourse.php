@@ -1,7 +1,12 @@
 <?php
 include_once './reusable/Session.php';
 include_once './reusable/Header.php';
-$courseID = (int) $_GET['course'];
+
+if (isset($_GET['course']))
+    $courseID = (int) $_GET['course'];
+
+if (isset($_GET['group']))
+    $groupID = (int) $_GET['group'];
 ?>
 
 <!-- Content Header (Page header) -->
@@ -14,7 +19,7 @@ $courseID = (int) $_GET['course'];
 <br>
 
 <?php
-if (isset($courseID) && is_int($courseID)) {
+if (is_int($courseID) && is_int($groupID)) {
     ?>
     <!-- Main content -->
     <section class="content">
@@ -40,9 +45,11 @@ if (isset($courseID) && is_int($courseID)) {
                                 </b>
 
                             </h3>
-                            <a type="button" class="btn btn-primary pull-right" href="../actions/ExportStudentsListByCourseAndProfessorAction.php?course=<?php echo $courseID; ?>&professor=<?php echo $_SESSION['id']; ?>">Exportar</a>
-                            <?php break;
-                        } ?>
+                            <a type="button" class="btn btn-primary pull-right" href="#">Exportar</a>
+                            <?php
+                            break;
+                        }
+                        ?>
                     </div>
                     <div class="box-body">
                         <table id="studentsList" class="table table-bordered table-striped">
@@ -51,17 +58,32 @@ if (isset($courseID) && is_int($courseID)) {
                                     <th>Nombre</th>
                                     <th>Cédula</th>
                                     <th>Teléfono</th>
+                                    <th>Presente</th>
+                                    <th>Ausente</th>
+                                    <th>Justificación</th>
                                 </tr>
                             </thead>
                             <tbody id="tbody">
                                 <?php
-                                $students = $business->getStudentsListByCourseAndProfessor($courseID, $_SESSION['id']);
+                                $students = $business->getStudentsListByCourseAndProfessor($courseID, $groupID);
                                 foreach ($students as $person) {
                                     ?>
                                     <tr>
                                         <td><?php echo $person[0]; ?></td>
                                         <td><?php echo $person[1]; ?></td>
                                         <td><?php echo $person[2]; ?></td>
+                                        <td>
+                                            <input value="person" type="checkbox" name="check" style="width: 20px; height: 20px; text-align: center" />
+                                        </td>
+                                        <td>
+                                            <input value="person" type="checkbox" name="check" style="width: 20px; height: 20px; text-align: center" />
+                                        </td>
+                                        <td>
+                                            <textarea>
+                                                
+                                            </textarea>
+                                        </td>
+
                                     </tr>    
                                     <?php
                                 }
@@ -72,6 +94,9 @@ if (isset($courseID) && is_int($courseID)) {
                                     <th>Nombre</th>
                                     <th>Cédula</th>
                                     <th>Teléfono</th>
+                                    <th>Presente</th>
+                                    <th>Ausente</th>
+                                    <th>Justificación</th>
                                 </tr>
                             </tfoot>
                         </table>
