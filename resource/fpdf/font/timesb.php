@@ -1,6 +1,6 @@
 <?php
 $type = 'Core';
-$professor = 'Times-Bold';
+$name = 'Times-Bold';
 $up = -100;
 $ut = 50;
 $cw = array(

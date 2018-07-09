@@ -45,63 +45,65 @@ if (is_int($courseID) && is_int($groupID)) {
                                 </b>
 
                             </h3>
-                            <a type="button" class="btn btn-primary pull-right" href="#">Generar informe de asistencia</a>
+                            <a type="button" class="btn btn-primary pull-right" onclick="genarateAbsence();">
+                                Generar informe de asistencia</a>
                             <?php
                             break;
                         }
                         ?>
                     </div>
-                    <div class="box-body">
-                        <table id="studentsList" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Nombre</th>
-                                    <th>Cédula</th>
-                                    <th>Teléfono</th>
-                                    <th>Presente</th>
-                                    <th>Ausente</th>
-                                    <th>Justificación</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tbody">
-                                <?php
-                                $students = $business->getStudentsListByCourseAndProfessor($courseID, $groupID);
-                                foreach ($students as $person) {
-                                    ?>
+                    <div class="table-responsive">
+                        <div class="box-body">
+                            <table id="studentsList" class="table table-bordered table-striped">
+                                <thead>
                                     <tr>
-                                        <td><?php echo $person[0]; ?></td>
-                                        <td><?php echo $person[1]; ?></td>
-                                        <td><?php echo $person[2]; ?></td>
-                                        <td>
-                                            <input value="person" type="checkbox" name="check" style="width: 20px; height: 20px; text-align: center" />
-                                        </td>
-                                        <td>
-                                            <input value="person" type="checkbox" name="check" style="width: 20px; height: 20px; text-align: center" />
-                                        </td>
-                                        <td>
-                                            <textarea>
-                                                
-                                            </textarea>
-                                        </td>
-
-                                    </tr>    
+                                        <th>Nombre</th>
+                                        <th>Cédula</th>
+                                        <th>Teléfono</th>
+                                        <th>Presente</th>
+                                        <th>Ausente</th>
+                                        <th>Justificación</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbody">
                                     <?php
-                                }
-                                ?>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>Nombre</th>
-                                    <th>Cédula</th>
-                                    <th>Teléfono</th>
-                                    <th>Presente</th>
-                                    <th>Ausente</th>
-                                    <th>Justificación</th>
-                                </tr>
-                            </tfoot>
-                        </table>
+                                    $students = $business->getStudentsListByCourseAndProfessor($courseID, $groupID);
+                                    foreach ($students as $person) {
+                                        ?>
+                                        <tr>
+                                            <td><?php echo $person[0]; ?></td>
+                                            <td><?php echo $person[1]; ?></td>
+                                            <td><?php echo $person[2]; ?></td>
+                                            <td>
+                                                <input type="checkbox" name="present" style="width: 20px; height: 20px; text-align: center" />
+                                            </td>
+                                            <td>
+                                                <input type="checkbox" name="absence" style="width: 20px; height: 20px; text-align: center" />
+                                            </td>
+                                            <td>
+                                                <textarea></textarea>
+                                            </td>
+
+                                        </tr>    
+                                        <?php
+                                    }
+                                    ?>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Cédula</th>
+                                        <th>Teléfono</th>
+                                        <th>Presente</th>
+                                        <th>Ausente</th>
+                                        <th>Justificación</th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
                     </div>
                 </div>
+
             </div><!-- /.col -->
 
         </div><!-- /.row -->
@@ -114,10 +116,7 @@ include_once './reusable/Footer.php';
 
 <!-- page script -->
 <script type="text/javascript">
-    $(function () {
-        $("#studentsList").dataTable();
-    });
-
+ 
     (function ($) {
         $.get = function (key) {
             key = key.replace(/[\[]/, '\\[');
@@ -133,7 +132,6 @@ include_once './reusable/Footer.php';
             }
         }
     })(jQuery);
-
     var action = $.get("action");
     var msg = $.get("msg");
     if (action === "1") {
@@ -143,6 +141,50 @@ include_once './reusable/Footer.php';
     if (action === "0") {
         msg = msg.replace(/_/g, " ");
         alertify.error(msg);
+    }
+
+    var data = [];
+    function createInfo() {
+        var isCorrect = true;
+        var infoPerson;
+
+        $('#tbody tr').each(function (index, element) {
+            var name = $(element).find("td").eq(0).html();
+            var present = $(element).find("td").eq(3).find("input");
+            var absence = $(element).find("td").eq(4).find("input");
+            var justification = $(element).find("td").eq(5).find("textarea").val();
+
+            if ((present.is(':checked') && absence.is(':checked')) || (!present.is(':checked') && !absence.is(':checked'))) {
+                isCorrect = false;
+                alertify.error("Seleccione si el estudiante " + name + " esta ausente o presente");
+            } else {
+                infoPerson = new Object();
+                infoPerson.name = name;
+
+                if (present.is(':checked')) {
+                    infoPerson.present = 1;
+                    infoPerson.absence = 0;
+                }
+
+                if (absence.is(':checked')) {
+                    infoPerson.present = 0;
+                    infoPerson.absence = 1;
+                }
+
+                infoPerson.justification = justification;
+                data.push(infoPerson);
+            }
+        });
+        return isCorrect;
+    }
+
+    function genarateAbsence() {
+        if (createInfo()) {
+            open("../reporter/Attendance.php?id=" + <?php echo $_SESSION['id']; ?> + "&idCourse=" + <?php echo $courseID; ?> + "&idGroup=" + <?php echo $groupID; ?> + "&data=" + JSON.stringify(data));
+            data = [];
+        } else {
+            data = [];
+        }
     }
 </script>
 

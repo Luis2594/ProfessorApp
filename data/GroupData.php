@@ -32,5 +32,19 @@ class GroupData extends Connector {
             $this->Log(__METHOD__, $query);
         }
     }
+    
+    public function getNumberGroup($id) {
+        $query = "call getNumberGroup('" . $id . "');";
+        try {
+            $value = $this->exeQuery($query);
+            if ((mysqli_num_rows($value) > 0)) {
+                return mysqli_fetch_array($value)[0];
+            } else {
+                return 0;
+            }
+        } catch (Exception $ex) {
+//            ErrorHandler::Log(__METHOD__, $query, $_SESSION["id"]);
+        }
+    }
 
 }

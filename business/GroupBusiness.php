@@ -38,4 +38,8 @@ class GroupBusiness {
         return $this->groupData->getGroupByPerson($id);
     }
     
+    public function getNumberGroup($id) {
+        return $this->groupData->getNumberGroup($id);
+    }
+    
 }
