@@ -17,9 +17,18 @@ class Connector {
     public function Connector() {
         $this->server = 'localhost';
         $this->user = 'root';
+
+//        LOCAL
         $this->password = '1234';
-//        $this->password = 'cindea2017@';
         $this->db = 'institution';
+
+//        DEVELOP
+//        $this->password = 'cindea2017@';
+//         $this->db = 'test_institution';
+      
+//        PRODUCTION
+//        $this->password = 'cindea2017@';
+//         $this->db = 'institution';
     }
 
     /**
@@ -97,7 +106,7 @@ class Connector {
     function clean($string) {
         return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
     }
-    
+
     /**
      * Version 2.0 (13/02/2018)
      * @param type $method
@@ -105,23 +114,23 @@ class Connector {
      * @param type $userId
      */
     function Log($method, $data) {
-        
+
         //start connection to logDB
         $this->conn = mysqli_connect($this->server, $this->user, $this->password, 'logDB'); //default port 3306  
 
         date_default_timezone_set('America/Costa_Rica'); //set time zone
-        
+
         $guid = GUID();
-        
+
         $query = "call systemLog('" . $method . "','" . $this->clean($data) . "','" .
-                 $guid . "','" . Constants::APP_PROFESSOR . "')";
-        
+                $guid . "','" . Constants::APP_PROFESSOR . "')";
+
         mysqli_query($this->conn, ($query));
-        
+
         mysqli_close($this->conn);
 
         //debug_to_console($query);
-        
+
         header("location: ../../view/reusable/Error.php?md5=" . $guid);
     }
 
