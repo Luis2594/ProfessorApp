@@ -19,425 +19,661 @@ include_once './reusable/Header.php';
         <div class="box-body no-padding">
             <div class="table-responsive">
                 <table class="table table-condensed">
-                <tr>
-                    <th style="width: 120px">Hora / Día</th>
-                    <th>Lunes</th>
-                    <th>Martes</th>
-                    <th>Miercoles</th>
-                    <th>Jueves</th>
-                    <th>Viernes</th>
-                </tr>
+                    <tr>
+                        <th style="width: 120px">Hora / Día</th>
+                        <th>Lunes</th>
+                        <th>Martes</th>
+                        <th>Miercoles</th>
+                        <th>Jueves</th>
+                        <th>Viernes</th>
+                    </tr>
+                    <!--MORNING-->
+                    <!--HOUR 7:00AM - 7:40AM-->
+                    <tr>
+                        <td>7:00am-7:40am</td>
+                        <!--MONDAY-->
+                        <td>
+                            <span id="s-1-1"></span>
+                        </td>
+                        <!--TUESDAY-->
+                        <td>
+                            <span id="s-1-2" ></span>
+                        </td>
+                        <!--WEDNESDAY-->
+                        <td>
+                            <span id="s-1-3" ></span>
+                        </td>
+                        <!--THURSDAY-->
+                        <td>
+                            <span id="s-1-4" ></span>
+                        </td>
+                        <!--FRIDAY-->
+                        <td>
+                            <span id="s-1-5" ></span>
+                        </td>
+                    </tr>
+                    <!--HOUR 7:40AM - 8:20AM-->
+                    <tr>
+                        <td>7:40am-8:20am</td>
+                        <!--MONDAY-->
+                        <td>
+                            <span id="s-2-1" ></span>
+                        </td>
+                        <!--TUESDAY-->
+                        <td>
+                            <span id="s-2-2" ></span>
+                        </td>
+                        <!--WEDNESDAY-->
+                        <td>
+                            <span id="s-2-3" ></span>
+                        </td>
+                        <!--THURSDAY-->
+                        <td>
+                            <span id="s-2-4" ></span>
+                        </td>
+                        <!--FRIDAY-->
+                        <td>
+                            <span id="s-2-5" ></span>
+                        </td>
+                    </tr>
+                    <!--HOUR 8:20AM - 9:00AM-->
+                    <tr>
+                        <td>8:20am-9:00am</td>
+                        <!--MONDAY-->
+                        <td>
+                            <span id="s-3-1" ></span>
+                        </td>
+                        <!--TUESDAY-->
+                        <td>
+                            <span id="s-3-2" ></span>
+                        </td>
+                        <!--WEDNESDAY-->
+                        <td>
+                            <span id="s-3-3" ></span>
+                        </td>
+                        <!--THURSDAY-->
+                        <td>
+                            <span id="s-3-4" ></span>
+                        </td>
+                        <!--FRIDAY-->
+                        <td>
+                            <span id="s-3-5" ></span>
+                        </td>
+                    </tr>
+                    <!--BREAK-->
+                    <tr>
+                        <td bgcolor="gray" >RECREO</td>
+                        <!--MONDAY-->
+                        <td bgcolor="gray" >RECREO</td>
+                        <!--TUESDAY-->
+                        <td bgcolor="gray" >RECREO</td>
+                        <!--WEDNESDAY-->
+                        <td bgcolor="gray" >RECREO</td>
+                        <!--THURSDAY-->
+                        <td bgcolor="gray" >RECREO</td>
+                        <!--FRIDAY-->
+                        <td bgcolor="gray" >RECREO</td>
+                    </tr>
+                    <!--HOUR 9:10AM - 9:50AM-->
+                    <tr>
+                        <td>9:10am-9:50am</td>
+                        <!--MONDAY-->
+                        <td>
+                            <span id="s-4-1" ></span>
+                        </td>
+                        <!--TUESDAY-->
+                        <td>
+                            <span id="s-4-2" ></span>
+                        </td>
+                        <!--WEDNESDAY-->
+                        <td>
+                            <span id="s-4-3" ></span>
+                        </td>
+                        <!--THURSDAY-->
+                        <td>
+                            <span id="s-4-4" ></span>
+                        </td>
+                        <!--FRIDAY-->
+                        <td>
+                            <span id="s-4-5" ></span>
+                        </td>
+                    </tr>
+                    <!--HOUR 9:50AM - 10:30AM-->
+                    <tr>
+                        <td>9:50am-10:30am</td>
+                        <!--MONDAY-->
+                        <td>
+                            <span id="s-5-1" ></span>
+                        </td>
+                        <!--TUESDAY-->
+                        <td>
+                            <span id="s-5-2" ></span>
+                        </td>
+                        <!--WEDNESDAY-->
+                        <td>
+                            <span id="s-5-3" ></span>
+                        </td>
+                        <!--THURSDAY-->
+                        <td>
+                            <span id="s-5-4" ></span>
+                        </td>
+                        <!--FRIDAY-->
+                        <td>
+                            <span id="s-5-5" ></span>
+                        </td>
+                    </tr>
+                    <!--BREAK-->
+                    <tr>
+                        <td bgcolor="gray" >RECREO</td>
+                        <!--MONDAY-->
+                        <td bgcolor="gray" >RECREO</td>
+                        <!--TUESDAY-->
+                        <td bgcolor="gray" >RECREO</td>
+                        <!--WEDNESDAY-->
+                        <td bgcolor="gray" >RECREO</td>
+                        <!--THURSDAY-->
+                        <td bgcolor="gray" >RECREO</td>
+                        <!--FRIDAY-->
+                        <td bgcolor="gray" >RECREO</td>
+                    </tr>
+                    <!--HOUR 10:40AM - 11:20AM-->
+                    <tr>
+                        <td>10:40am-11:20am</td>
+                        <!--MONDAY-->
+                        <td>
+                            <span id="s-6-1" ></span>
+                        </td>
+                        <!--TUESDAY-->
+                        <td>
+                            <span id="s-6-2" ></span>
+                        </td>
+                        <!--WEDNESDAY-->
+                        <td>
+                            <span id="s-6-3" ></span>
+                        </td>
+                        <!--THURSDAY-->
+                        <td>
+                            <span id="s-6-4" ></span>
+                        </td>
+                        <!--FRIDAY-->
+                        <td>
+                            <span id="s-6-5" ></span>
+                        </td>
+                    </tr>
+                    <!--HOUR 11:20AM - 12:00MM-->
+                    <tr>
+                        <td>11:20am-12:00mm</td>
+                        <!--MONDAY-->
+                        <td>
+                            <span id="s-7-1" ></span>
+                        </td>
+                        <!--TUESDAY-->
+                        <td>
+                            <span id="s-7-2" ></span>
+                        </td>
+                        <!--WEDNESDAY-->
+                        <td>
+                            <span id="s-7-3" ></span>
+                        </td>
+                        <!--THURSDAY-->
+                        <td>
+                            <span id="s-7-4" ></span>
+                        </td>
+                        <!--FRIDAY-->
+                        <td>
+                            <span id="s-7-5" ></span>
+                        </td>
+                    </tr>
+                    <!--HOUR 12:00MM - 12:40MM-->
+                    <tr>
+                        <td>12:00am-12:40mm</td>
+                        <!--MONDAY-->
+                        <td>
+                            <span id="s-8-1" ></span>
+                        </td>
+                        <!--TUESDAY-->
+                        <td>
+                            <span id="s-8-2" ></span>
+                        </td>
+                        <!--WEDNESDAY-->
+                        <td>
+                            <span id="s-8-3" ></span>
+                        </td>
+                        <!--THURSDAY-->
+                        <td>
+                            <span id="s-8-4" ></span>
+                        </td>
+                        <!--FRIDAY-->
+                        <td>
+                            <span id="s-8-5" ></span>
+                        </td>
+                    </tr>
+                    <!--BREAK-->
+                    <tr>
+                        <td bgcolor="gray" >ALMUERZO</td>
+                        <!--MONDAY-->
+                        <td bgcolor="gray" >ALMUERZO</td>
+                        <!--TUESDAY-->
+                        <td bgcolor="gray" >ALMUERZO</td>
+                        <!--WEDNESDAY-->
+                        <td bgcolor="gray" >ALMUERZO</td>
+                        <!--THURSDAY-->
+                        <td bgcolor="gray" >ALMUERZO</td>
+                        <!--FRIDAY-->
+                        <td bgcolor="gray" >ALMUERZO</td>
+                    </tr>
 
-                <!--MORNING-->
-                <!--HOUR 7:00AM - 7:40AM-->
-                <tr>
-                    <td>7:00am-7:40am</td>
-                    <!--MONDAY-->
-                    <td>
-                        <span id="1-1"></span>
-                    </td>
-                    <!--TUESDAY-->
-                    <td>
-                        <span id="1-2"></span>
-                    </td>
-                    <!--WEDNESDAY-->
-                    <td>
-                        <span id="1-3"></span>
-                    </td>
-                    <!--THURSDAY-->
-                    <td>
-                        <span id="1-4"></span>
-                    </td>
-                    <!--FRIDAY-->
-                    <td>
-                        <span id="1-5"></span>
-                    </td>
-                </tr>
-                <!--HOUR 7:40AM - 8:20AM-->
-                <tr>
-                    <td>7:40am-8:20am</td>
-                    <!--MONDAY-->
-                    <td>
-                        <span id="2-1"></span>
-                    </td>
-                    <!--TUESDAY-->
-                    <td>
-                        <span id="2-2"></span>
-                    </td>
-                    <!--WEDNESDAY-->
-                    <td>
-                        <span id="2-3"></span>
-                    </td>
-                    <!--THURSDAY-->
-                    <td>
-                        <span id="2-4"></span>
-                    </td>
-                    <!--FRIDAY-->
-                    <td>
-                        <span id="2-5"></span>
-                    </td>
-                </tr>
-                <!--HOUR 8:20AM - 9:00AM-->
-                <tr>
-                    <td>8:20am-9:00am</td>
-                    <!--MONDAY-->
-                    <td>
-                        <span id="3-1"></span>
-                    </td>
-                    <!--TUESDAY-->
-                    <td>
-                        <span id="3-2"></span>
-                    </td>
-                    <!--WEDNESDAY-->
-                    <td>
-                        <span id="3-3"></span>
-                    </td>
-                    <!--THURSDAY-->
-                    <td>
-                        <span id="3-4"></span>
-                    </td>
-                    <!--FRIDAY-->
-                    <td>
-                        <span id="3-5"></span>
-                    </td>
-                </tr>
-                <!--BREAK-->
-                <tr>
-                    <td bgcolor="gray" >RECREO</td>
-                    <!--MONDAY-->
-                    <td bgcolor="gray" >RECREO</td>
-                    <!--TUESDAY-->
-                    <td bgcolor="gray" >RECREO</td>
-                    <!--WEDNESDAY-->
-                    <td bgcolor="gray" >RECREO</td>
-                    <!--THURSDAY-->
-                    <td bgcolor="gray" >RECREO</td>
-                    <!--FRIDAY-->
-                    <td bgcolor="gray" >RECREO</td>
-                </tr>
-                <!--HOUR 9:15AM - 9:55AM-->
-                <tr>
-                    <td>9:15am-9:55am</td>
-                    <!--MONDAY-->
-                    <td>
-                        <span id="4-1"></span>
-                    </td>
-                    <!--TUESDAY-->
-                    <td>
-                        <span id="4-2"></span>
-                    </td>
-                    <!--WEDNESDAY-->
-                    <td>
-                        <span id="4-3"></span>
-                    </td>
-                    <!--THURSDAY-->
-                    <td>
-                        <span id="4-4"></span>
-                    </td>
-                    <!--FRIDAY-->
-                    <td>
-                        <span id="4-5"></span>
-                    </td>
-                </tr>
-                <!--HOUR 9:55AM - 10:35AM-->
-                <tr>
-                    <td>9:55am-10:35am</td>
-                    <!--MONDAY-->
-                    <td>
-                        <span id="5-1"></span>
-                    </td>
-                    <!--TUESDAY-->
-                    <td>
-                        <span id="5-2"></span>
-                    </td>
-                    <!--WEDNESDAY-->
-                    <td>
-                        <span id="5-3"></span>
-                    </td>
-                    <!--THURSDAY-->
-                    <td>
-                        <span id="5-4"></span>
-                    </td>
-                    <!--FRIDAY-->
-                    <td>
-                        <span id="5-5"></span>
-                    </td>
-                </tr>
-                <!--BREAK-->
-                <tr>
-                    <td bgcolor="gray" >RECREO</td>
-                    <!--MONDAY-->
-                    <td bgcolor="gray" >RECREO</td>
-                    <!--TUESDAY-->
-                    <td bgcolor="gray" >RECREO</td>
-                    <!--WEDNESDAY-->
-                    <td bgcolor="gray" >RECREO</td>
-                    <!--THURSDAY-->
-                    <td bgcolor="gray" >RECREO</td>
-                    <!--FRIDAY-->
-                    <td bgcolor="gray" >RECREO</td>
-                </tr>
-                <!--HOUR 10:45AM - 11:25AM-->
-                <tr>
-                    <td>10:45am-11:25am</td>
-                    <!--MONDAY-->
-                    <td>
-                        <span id="6-1"></span>
-                    </td>
-                    <!--TUESDAY-->
-                    <td>
-                        <span id="6-2"></span>
-                    </td>
-                    <!--WEDNESDAY-->
-                    <td>
-                        <span id="6-3"></span>
-                    </td>
-                    <!--THURSDAY-->
-                    <td>
-                        <span id="6-4"></span>
-                    </td>
-                    <!--FRIDAY-->
-                    <td>
-                        <span id="6-5"></span>
-                    </td>
-                </tr>
-                <!--HOUR 11:25AM - 12:05MM-->
-                <tr>
-                    <td>11:25am-12:05mm</td>
-                    <!--MONDAY-->
-                    <td>
-                        <span id="7-1"></span>
-                    </td>
-                    <!--TUESDAY-->
-                    <td>
-                        <span id="7-2"></span>
-                    </td>
-                    <!--WEDNESDAY-->
-                    <td>
-                        <span id="7-3"></span>
-                    </td>
-                    <!--THURSDAY-->
-                    <td>
-                        <span id="7-4"></span>
-                    </td>
-                    <!--FRIDAY-->
-                    <td>
-                        <span id="7-5"></span>
-                    </td>
-                </tr>
-                <!--BREAK-->
-                <tr>
-                    <td bgcolor="gray" >ALMUERZO</td>
-                    <!--MONDAY-->
-                    <td bgcolor="gray" >ALMUERZO</td>
-                    <!--TUESDAY-->
-                    <td bgcolor="gray" >ALMUERZO</td>
-                    <!--WEDNESDAY-->
-                    <td bgcolor="gray" >ALMUERZO</td>
-                    <!--THURSDAY-->
-                    <td bgcolor="gray" >ALMUERZO</td>
-                    <!--FRIDAY-->
-                    <td bgcolor="gray" >ALMUERZO</td>
-                </tr>
-
-                <!--AFTERNOON-->
-                <!--HOUR 12:30:00MM - 1:10PM-->
-                <tr>
-                    <td>12:30mm-1:10pm</td>
-                    <!--MONDAY-->
-                    <td>
-                        <span id="8-1"></span>
-                    </td>
-                    <!--TUESDAY-->
-                    <td>
-                        <span id="8-2"></span>
-                    </td>
-                    <!--WEDNESDAY-->
-                    <td>
-                        <span id="8-3"></span>
-                    </td>
-                    <!--THURSDAY-->
-                    <td>
-                        <span id="8-4"></span>
-                    </td>
-                    <!--FRIDAY-->
-                    <td>
-                        <span id="8-5"></span>
-                    </td>
-                </tr>
-                <!--HOUR 1:10PM - 1:50PM-->
-                <tr>
-                    <td>1:10pm-1:50pm</td>
-                    <!--MONDAY-->
-                    <td>
-                        <span id="9-1"></span>
-                    </td>
-                    <!--TUESDAY-->
-                    <td>
-                        <span id="9-2"></span>
-                    </td>
-                    <!--WEDNESDAY-->
-                    <td>
-                        <span id="9-3"></span>
-                    </td>
-                    <!--THURSDAY-->
-                    <td>
-                        <span id="9-4"></span>
-                    </td>
-                    <!--FRIDAY-->
-                    <td>
-                        <span id="9-5"></span>
-                    </td>
-                </tr>
-                <!--HOUR 1:50PM - 2:30PM-->
-                <tr>
-                    <td>1:50pm-2:30pm</td>
-                    <!--MONDAY-->
-                    <td>
-                        <span id="10-1"></span>
-                    </td>
-                    <!--TUESDAY-->
-                    <td>
-                        <span id="10-2"></span>
-                    </td>
-                    <!--WEDNESDAY-->
-                    <td>
-                        <span id="10-3"></span>
-                    </td>
-                    <!--THURSDAY-->
-                    <td>
-                        <span id="10-4"></span>
-                    </td>
-                    <!--FRIDAY-->
-                    <td>
-                        <span id="10-5"></span>
-                    </td>
-                </tr>
-                <!--BREAK-->
-                <tr>
-                    <td bgcolor="gray" >RECREO</td>
-                    <!--MONDAY-->
-                    <td bgcolor="gray" >RECREO</td>
-                    <!--TUESDAY-->
-                    <td bgcolor="gray" >RECREO</td>
-                    <!--WEDNESDAY-->
-                    <td bgcolor="gray" >RECREO</td>
-                    <!--THURSDAY-->
-                    <td bgcolor="gray" >RECREO</td>
-                    <!--FRIDAY-->
-                    <td bgcolor="gray" >RECREO</td>
-                </tr>
-                <!--HOUR 2:45PM - 3:25PM-->
-                <tr>
-                    <td>2:45pm-3:25pm</td>
-                    <!--MONDAY-->
-                    <td>
-                        <span id="11-1"></span>
-                    </td>
-                    <!--TUESDAY-->
-                    <td>
-                        <span id="11-2"></span>
-                    </td>
-                    <!--WEDNESDAY-->
-                    <td>
-                        <span id="11-3"></span>
-                    </td>
-                    <!--THURSDAY-->
-                    <td>
-                        <span id="11-4"></span>
-                    </td>
-                    <!--FRIDAY-->
-                    <td>
-                        <span id="11-5"></span>
-                    </td>
-                </tr>
-                <!--HOUR 3:25PM - 4:05PM-->
-                <tr>
-                    <td>3:25pm-4:05pm</td>
-                    <!--MONDAY-->
-                    <td>
-                        <span id="12-1"></span>
-                    </td>
-                    <!--TUESDAY-->
-                    <td>
-                        <span id="12-2"></span>
-                    </td>
-                    <!--WEDNESDAY-->
-                    <td>
-                        <span id="12-3"></span>
-                    </td>
-                    <!--THURSDAY-->
-                    <td>
-                        <span id="12-4"></span>
-                    </td>
-                    <!--FRIDAY-->
-                    <td>
-                        <span id="12-5"></span>
-                    </td>
-                </tr>
-                <!--BREAK-->
-                <tr>
-                    <td bgcolor="gray" >RECREO</td>
-                    <!--MONDAY-->
-                    <td bgcolor="gray" >RECREO</td>
-                    <!--TUESDAY-->
-                    <td bgcolor="gray" >RECREO</td>
-                    <!--WEDNESDAY-->
-                    <td bgcolor="gray" >RECREO</td>
-                    <!--THURSDAY-->
-                    <td bgcolor="gray" >RECREO</td>
-                    <!--FRIDAY-->
-                    <td bgcolor="gray" >RECREO</td>
-                </tr>
-                <!--HOUR 4:10PM - 4:50PM-->
-                <tr>
-                    <td>4:15pm-4:55pm</td>
-                    <!--MONDAY-->
-                    <td>
-                        <span id="13-1"></span>
-                    </td>
-                    <!--TUESDAY-->
-                    <td>
-                        <span id="13-2"></span>
-                    </td>
-                    <!--WEDNESDAY-->
-                    <td>
-                        <span id="13-3"></span>
-                    </td>
-                    <!--THURSDAY-->
-                    <td>
-                        <span id="13-4"></span>
-                    </td>
-                    <!--FRIDAY-->
-                    <td>
-                        <span id="13-5"></span>
-                    </td>
-                </tr>
-                <!--HOUR 4:50PM - 5:30PM-->
-                <tr>
-                    <td>4:55pm-5:35pm</td>
-                    <!--MONDAY-->
-                    <td>
-                        <span id="14-1"></span>
-                    </td>
-                    <!--TUESDAY-->
-                    <td>
-                        <span id="14-2"></span>
-                    </td>
-                    <!--WEDNESDAY-->
-                    <td>
-                        <span id="14-3"></span>
-                    </td>
-                    <!--THURSDAY-->
-                    <td>
-                        <span id="14-4"></span>
-                    </td>
-                    <!--FRIDAY-->
-                    <td>
-                        <span id="14-5"></span>
-                    </td>
-                </tr>
-            </table>
+                    <!--AFTERNOON-->
+                    <!--HOUR 12:20:00MM - 1:00PM-->
+                    <tr>
+                        <td>12:20mm-1:00pm</td>
+                        <!--MONDAY-->
+                        <td>
+                            <span id="s-9-1" ></span>
+                        </td>
+                        <!--TUESDAY-->
+                        <td>
+                            <span id="s-9-2" ></span>
+                        </td>
+                        <!--WEDNESDAY-->
+                        <td>
+                            <span id="s-9-3" ></span>
+                        </td>
+                        <!--THURSDAY-->
+                        <td>
+                            <span id="s-9-4" ></span>
+                        </td>
+                        <!--FRIDAY-->
+                        <td>
+                            <span id="s-9-5" ></span>
+                        </td>
+                    </tr>
+                    <!--HOUR 1:00PM - 1:40PM-->
+                    <tr>
+                        <td>1:00pm-1:40pm</td>
+                        <!--MONDAY-->
+                        <td>
+                            <span id="s-10-1" ></span>
+                        </td>
+                        <!--TUESDAY-->
+                        <td>
+                            <span id="s-10-2" ></span>
+                        </td>
+                        <!--WEDNESDAY-->
+                        <td>
+                            <span id="s-10-3" ></span>
+                        </td>
+                        <!--THURSDAY-->
+                        <td>
+                            <span id="s-10-4" ></span>
+                        </td>
+                        <!--FRIDAY-->
+                        <td>
+                            <span id="s-10-5" ></span>
+                        </td>
+                    </tr>
+                    <!--HOUR 1:40PM - 2:20PM-->
+                    <tr>
+                        <td>1:40pm-2:20pm</td>
+                        <!--MONDAY-->
+                        <td>
+                            <span id="s-11-1" ></span>
+                        </td>
+                        <!--TUESDAY-->
+                        <td>
+                            <span id="s-11-2" ></span>
+                        </td>
+                        <!--WEDNESDAY-->
+                        <td>
+                            <span id="s-11-3" ></span>
+                        </td>
+                        <!--THURSDAY-->
+                        <td>
+                            <span id="s-11-4" ></span>
+                        </td>
+                        <!--FRIDAY-->
+                        <td>
+                            <span id="s-11-5" ></span>
+                        </td>
+                    </tr>
+                    <!--BREAK-->
+                    <tr>
+                        <td bgcolor="gray" >RECREO</td>
+                        <!--MONDAY-->
+                        <td bgcolor="gray" >RECREO</td>
+                        <!--TUESDAY-->
+                        <td bgcolor="gray" >RECREO</td>
+                        <!--WEDNESDAY-->
+                        <td bgcolor="gray" >RECREO</td>
+                        <!--THURSDAY-->
+                        <td bgcolor="gray" >RECREO</td>
+                        <!--FRIDAY-->
+                        <td bgcolor="gray" >RECREO</td>
+                    </tr>
+                    <!--HOUR 2:30PM - 3:10PM-->
+                    <tr>
+                        <td>2:30pm-3:10pm</td>
+                        <!--MONDAY-->
+                        <td>
+                            <span id="s-12-1" ></span>
+                        </td>
+                        <!--TUESDAY-->
+                        <td>
+                            <span id="s-12-2" ></span>
+                        </td>
+                        <!--WEDNESDAY-->
+                        <td>
+                            <span id="s-12-3" ></span>
+                        </td>
+                        <!--THURSDAY-->
+                        <td>
+                            <span id="s-12-4" ></span>
+                        </td>
+                        <!--FRIDAY-->
+                        <td>
+                            <span id="s-12-5" ></span>
+                        </td>
+                    </tr>
+                    <!--HOUR 3:10PM - 3:50PM-->
+                    <tr>
+                        <td>3:10pm-3:50pm</td>
+                        <!--MONDAY-->
+                        <td>
+                            <span id="s-13-1" ></span>
+                        </td>
+                        <!--TUESDAY-->
+                        <td>
+                            <span id="s-13-2" ></span>
+                        </td>
+                        <!--WEDNESDAY-->
+                        <td>
+                            <span id="s-13-3" ></span>
+                        </td>
+                        <!--THURSDAY-->
+                        <td>
+                            <span id="s-13-4" ></span>
+                        </td>
+                        <!--FRIDAY-->
+                        <td>
+                            <span id="s-13-5" ></span>
+                        </td>
+                    </tr>
+                    <!--BREAK-->
+                    <tr>
+                        <td bgcolor="gray" >RECREO</td>
+                        <!--MONDAY-->
+                        <td bgcolor="gray" >RECREO</td>
+                        <!--TUESDAY-->
+                        <td bgcolor="gray" >RECREO</td>
+                        <!--WEDNESDAY-->
+                        <td bgcolor="gray" >RECREO</td>
+                        <!--THURSDAY-->
+                        <td bgcolor="gray" >RECREO</td>
+                        <!--FRIDAY-->
+                        <td bgcolor="gray" >RECREO</td>
+                    </tr>
+                    <!--HOUR 4:00PM - 4:40PM-->
+                    <tr>
+                        <td>4:00pm-4:40pm</td>
+                        <!--MONDAY-->
+                        <td>
+                            <span id="s-14-1" ></span>
+                        </td>
+                        <!--TUESDAY-->
+                        <td>
+                            <span id="s-14-2" ></span>
+                        </td>
+                        <!--WEDNESDAY-->
+                        <td>
+                            <span id="s-14-3" ></span>
+                        </td>
+                        <!--THURSDAY-->
+                        <td>
+                            <span id="s-14-4" ></span>
+                        </td>
+                        <!--FRIDAY-->
+                        <td>
+                            <span id="s-14-5" ></span>
+                        </td>
+                    </tr>
+                    <!--HOUR 4:40PM - 5:20PM-->
+                    <tr>
+                        <td>4:40pm-5:20pm</td>
+                        <!--MONDAY-->
+                        <td>
+                            <span id="s-15-1" ></span>
+                        </td>
+                        <!--TUESDAY-->
+                        <td>
+                            <span id="s-15-2" ></span>
+                        </td>
+                        <!--WEDNESDAY-->
+                        <td>
+                            <span id="s-15-3" ></span>
+                        </td>
+                        <!--THURSDAY-->
+                        <td>
+                            <span id="s-15-4" ></span>
+                        </td>
+                        <!--FRIDAY-->
+                        <td>
+                            <span id="s-15-5" ></span>
+                        </td>
+                    </tr>
+                    
+                    <!--BREAK-->
+                    <tr>
+                        <td bgcolor="gray" >NOCHE</td>
+                        <!--MONDAY-->
+                        <td bgcolor="gray" >NOCHE</td>
+                        <!--TUESDAY-->
+                        <td bgcolor="gray" >NOCHE</td>
+                        <!--WEDNESDAY-->
+                        <td bgcolor="gray" >NOCHE</td>
+                        <!--THURSDAY-->
+                        <td bgcolor="gray" >NOCHE</td>
+                        <!--FRIDAY-->
+                        <td bgcolor="gray" >NOCHE</td>
+                    </tr>
+                    
+                    <!--NIGHT-->
+                    <!--HOUR 5:30PM - 6:05PM-->
+                    <tr>
+                        <td>5:30PM-6:05pm</td>
+                        <!--MONDAY-->
+                        <td>
+                            <span id="s-16-1" ></span>
+                        </td>
+                        <!--TUESDAY-->
+                        <td>
+                            <span id="s-16-2" ></span>
+                        </td>
+                        <!--WEDNESDAY-->
+                        <td>
+                            <span id="s-16-3" ></span>
+                        </td>
+                        <!--THURSDAY-->
+                        <td>
+                            <span id="s-16-4" ></span>
+                        </td>
+                        <!--FRIDAY-->
+                        <td>
+                            <span id="s-16-5" ></span>
+                        </td>
+                    </tr>
+                    <!--HOUR 6:05PM - 6:40PM-->
+                    <tr>
+                        <td>6:05pm-6:40pm</td>
+                        <!--MONDAY-->
+                        <td>
+                            <span id="s-17-1" ></span>
+                        </td>
+                        <!--TUESDAY-->
+                        <td>
+                            <span id="s-17-2" ></span>
+                        </td>
+                        <!--WEDNESDAY-->
+                        <td>
+                            <span id="s-17-3" ></span>
+                        </td>
+                        <!--THURSDAY-->
+                        <td>
+                            <span id="s-17-4" ></span>
+                        </td>
+                        <!--FRIDAY-->
+                        <td>
+                            <span id="s-17-5" ></span>
+                        </td>
+                    </tr>
+                    <!--HOUR 6:40PM - 7:15PM-->
+                    <tr>
+                        <td>6:40pm-7:15pm</td>
+                        <!--MONDAY-->
+                        <td>
+                            <span id="s-18-1" ></span>
+                        </td>
+                        <!--TUESDAY-->
+                        <td>
+                            <span id="s-18-2" ></span>
+                        </td>
+                        <!--WEDNESDAY-->
+                        <td>
+                            <span id="s-18-3" ></span>
+                        </td>
+                        <!--THURSDAY-->
+                        <td>
+                            <span id="s-18-4" ></span>
+                        </td>
+                        <!--FRIDAY-->
+                        <td>
+                            <span id="s-18-5" ></span>
+                        </td>
+                    </tr>
+                    <!--BREAK-->
+                    <tr>
+                        <td bgcolor="gray" >RECREO</td>
+                        <!--MONDAY-->
+                        <td bgcolor="gray" >RECREO</td>
+                        <!--TUESDAY-->
+                        <td bgcolor="gray" >RECREO</td>
+                        <!--WEDNESDAY-->
+                        <td bgcolor="gray" >RECREO</td>
+                        <!--THURSDAY-->
+                        <td bgcolor="gray" >RECREO</td>
+                        <!--FRIDAY-->
+                        <td bgcolor="gray" >RECREO</td>
+                    </tr>
+                    <!--HOUR 7:25PM - 8:00PM-->
+                    <tr>
+                        <td>7:25pm-8:00pm</td>
+                        <!--MONDAY-->
+                        <td>
+                            <span id="s-19-1" ></span>
+                        </td>
+                        <!--TUESDAY-->
+                        <td>
+                            <span id="s-19-2" ></span>
+                        </td>
+                        <!--WEDNESDAY-->
+                        <td>
+                            <span id="s-19-3" ></span>
+                        </td>
+                        <!--THURSDAY-->
+                        <td>
+                            <span id="s-19-4" ></span>
+                        </td>
+                        <!--FRIDAY-->
+                        <td>
+                            <span id="s-19-5" ></span>
+                        </td>
+                    </tr>
+                    <!--HOUR 8:00PM - 8:35PM-->
+                    <tr>
+                        <td>8:00pm-8:35pm</td>
+                        <!--MONDAY-->
+                        <td>
+                            <span id="s-20-1" ></span>
+                        </td>
+                        <!--TUESDAY-->
+                        <td>
+                            <span id="s-20-2" ></span>
+                        </td>
+                        <!--WEDNESDAY-->
+                        <td>
+                            <span id="s-20-3" ></span>
+                        <!--THURSDAY-->
+                        <td>
+                            <span id="s-20-4" ></span>
+                        </td>
+                        <!--FRIDAY-->
+                        <td>
+                            <span id="s-20-5" ></span>
+                        </td>
+                    </tr>
+                    <!--BREAK-->
+                    <tr>
+                        <td bgcolor="gray" >RECREO</td>
+                        <!--MONDAY-->
+                        <td bgcolor="gray" >RECREO</td>
+                        <!--TUESDAY-->
+                        <td bgcolor="gray" >RECREO</td>
+                        <!--WEDNESDAY-->
+                        <td bgcolor="gray" >RECREO</td>
+                        <!--THURSDAY-->
+                        <td bgcolor="gray" >RECREO</td>
+                        <!--FRIDAY-->
+                        <td bgcolor="gray" >RECREO</td>
+                    </tr>
+                    <!--HOUR 8:40PM - 9:15PM-->
+                    <tr>
+                        <td>8:40pm-9:15pm</td>
+                        <!--MONDAY-->
+                        <td>
+                            <span id="s-21-1" ></span>
+                        </td>
+                        <!--TUESDAY-->
+                        <td>
+                            <span id="s-21-2" ></span>
+                        </td>
+                        <!--WEDNESDAY-->
+                        <td>
+                            <span id="s-21-3" ></span>
+                        </td>
+                        <!--THURSDAY-->
+                        <td>
+                            <span id="s-21-4" ></span>
+                        </td>
+                        <!--FRIDAY-->
+                        <td>
+                            <span id="s-21-5" ></span>
+                        </td>
+                    </tr>
+                    <!--HOUR 9:15PM - 9:50PM-->
+                    <tr>
+                        <td>9:15pm-9:50pm</td>
+                        <!--MONDAY-->
+                        <td>
+                            <span id="s-22-1" ></span>
+                        </td>
+                        <!--TUESDAY-->
+                        <td>
+                            <span id="s-22-2" ></span>
+                        </td>
+                        <!--WEDNESDAY-->
+                        <td>
+                            <span id="s-22-3" ></span>
+                        </td>
+                        <!--THURSDAY-->
+                        <td>
+                            <span id="s-22-4" ></span>
+                        </td>
+                        <!--FRIDAY-->
+                        <td>
+                            <span id="s-22-5" ></span>
+                        </td>
+                    </tr>
+                    
+                </table>
             </div>
         </div><!-- /.box-body -->
         <br>
@@ -466,7 +702,7 @@ include_once './reusable/Footer.php';
                 var bool = false;
                 $.each(schedules, function (i, item) {
                     bool = true;
-                    $("#" + item.groupschedulehour + "-" + item.groupscheduleday).html(item.coursecode);
+                    $("#s-" + item.groupschedulehour + "-" + item.groupscheduleday).html(item.coursecode);
                 });
 
                 if (!bool) {
@@ -481,12 +717,12 @@ include_once './reusable/Footer.php';
     }
 
     function clearSpan() {
-        for (var i = 1; i < 15; i++) {
-            $("#" + i + "-1").html("");
-            $("#" + i + "-2").html("");
-            $("#" + i + "-3").html("");
-            $("#" + i + "-4").html("");
-            $("#" + i + "-5").html("");
+        for (var i = 1; i < 23; i++) {
+            $("#s-" + i + "-1").html("");
+            $("#s-" + i + "-2").html("");
+            $("#s-" + i + "-3").html("");
+            $("#s-" + i + "-4").html("");
+            $("#s-" + i + "-5").html("");
         }
     }
 
