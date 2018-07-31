@@ -141,7 +141,7 @@ include './reusable/Header.php';
                                             <div class="form-group">
                                                 <div class="input-group">
                                                     <div class="input-group-addon">
-                                                        <i class="fa fa-phone"></i>
+                                                        <a href="./UpdatePhones.php"><i class="fa fa-phone"></i></a>
                                                     </div>
                                                     <input id="phone" name="phone" style="width: 100%" type="text" class="form-control" placeholder="Télefono" required="" value="<?php echo $phone->getPhonePhone() ?>" readonly />
                                                 </div>

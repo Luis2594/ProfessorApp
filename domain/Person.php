@@ -29,6 +29,7 @@ class Person {
         $this->personNacionality = $personNacionality;
         $this->personimage = $personimage;
     }
+
     public function getPersonId() {
         return $this->personId;
     }

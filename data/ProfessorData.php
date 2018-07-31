@@ -17,6 +17,11 @@ class ProfessorData extends Connector {
         }
     }
 
+    /**
+     * Updates a professor record with a new person
+     * @param type $professor
+     * @return type
+     */
     public function update($professor) {
         $query = "call updateProfessor(" . $professor->getProfessorId() . ","
                 . "" . $professor->getProfessorPerson() . ")";
@@ -27,6 +32,11 @@ class ProfessorData extends Connector {
         }
     }
 
+    /**
+     * Deletes a professor record
+     * @param type $id
+     * @return boolean
+     */
     public function delete($id) {
         $query = 'call delete("' . $id . '");';
         try {
