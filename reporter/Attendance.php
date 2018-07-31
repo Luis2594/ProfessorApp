@@ -11,7 +11,7 @@ class PDF extends FPDF {
     // Cabecera de p�gina
     function Header() {
         // Logo
-        $this->Image('../resource/images/header.png', 7, 5, 200);
+        $this->Image('../resource/images/header.png', 30, 1, 150);
         // Salto de l�nea
         $this->Ln(20);
     }
@@ -48,7 +48,7 @@ class PDF extends FPDF {
         $this->SetFont('');
 
         foreach ($data as $value) {
-            $this->Cell($w[0], 8, utf8_decode($value->name), 'LR', 0, 'C', FALSE);
+            $this->Cell($w[0], 8, utf8_decode($value->name), 'LR', 0, 'L', FALSE); 
             $this->SetFont('ZapfDingbats', '', 10);
 
             if ($value->present == 1) {
@@ -98,7 +98,7 @@ $professor = $personBusiness->getPersonId($id);
 $course = $courseBusiness->getCourseId($idCourse);
 $courseName;
 foreach ($course as $value) {
-    $courseName = $value->getCourseName();
+    $courseName = $value->getCourseCode()." - ".$value->getCourseName();
 }
 
 $group = $groupBusiness->getNumberGroup($idGroup);
@@ -109,19 +109,19 @@ foreach ($professor as $profe) {
     $pdf->AddPage();
     $pdf->SetFont('Arial', 'B', 12);
 
-    $pdf->Cell(0, 0, utf8_decode("INFORME DE ASISTENCIA"), 0, 0, 'C', false);
+    $pdf->Cell(0, 15, utf8_decode("INFORME DE ASISTENCIA"), 0, 0, 'C', false);
 
     $name = $profe->getPersonFirstName() . " " . $profe->getPersonFirstlastname() . " " . $profe->getPersonSecondlastname();
 
     $pdf->Ln(5);
     $pdf->SetFont('Arial', 'B', 11);
-    $pdf->Cell(0, 5, utf8_decode("Fecha: " . date("d") . "-" . date("m") . "-" . date("Y")), 0, 0, 'C');
+    $pdf->Cell(0, 5, utf8_decode("Fecha: " . date("d") . "-" . date("m") . "-" . date("Y")), 0, 0, 'R');
+    $pdf->Ln();
+    $pdf->Cell(0, 5, utf8_decode("Profesor(a): " . $name), 0, 0);
+
+
     $pdf->Ln();
     $pdf->SetFont('Arial', '', 11);
-    $pdf->Cell(0, 5, utf8_decode("Profesor: " . $name), 0, 0);
-
-
-    $pdf->Ln();
     $pdf->Cell(0, 5, utf8_decode("Módulo: " . $courseName), 0, 0);
     $pdf->Ln();
     $pdf->Cell(0, 5, utf8_decode("Grupo: ".$group), 0, 0);
