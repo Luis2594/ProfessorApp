@@ -7,6 +7,8 @@ $professor = (int) $_GET['professor'];
 $year = (int) $_GET['year'];
 $period = (int) $_GET['period'];
 $group = (int) $_GET['group'];
+$courseName =  $_GET['courseName'];;
+
 ?>
 
 <!-- Content Header (Page header) -->
@@ -25,7 +27,7 @@ $group = (int) $_GET['group'];
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
-                    <h3 class="box-title"><b>Notificaciones</b></h3>
+                    <h3 class="box-title"><b>Notificaciones:</b> <?php echo $courseName; ?></h3>
                     <a type="button" class="btn btn-primary pull-right" href="CreateNotification.php?course=<?php echo $course; ?>&professor=<?php echo $professor; ?>&year=<?php echo $year; ?>&period=<?php echo $period; ?>&group=<?php echo $group; ?>">Enviar Notificación</a>
                 </div><!-- /.box-header -->
                 <div class="box-body">

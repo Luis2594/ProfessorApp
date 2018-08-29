@@ -43,6 +43,7 @@ $group = (int) $_GET['group'];
                                 if (sizeof($courses) > 0) {
                                     foreach ($courses as $course) {
                                         echo 'Módulo: <b>'. $course->getCourseName()  .'</b>';
+                                        break;
                                     }
                                 }
                                 ?>

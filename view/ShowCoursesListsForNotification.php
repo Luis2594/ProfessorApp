@@ -131,6 +131,7 @@ include_once './reusable/Footer.php';
                                 'professor=' + id + '&' +
                                 'year=' + item.professorcourseyear + '&' +
                                 'period=' + item.periodid + '&' +
+                                'courseName=' + item.coursename + '&' +
                                 'group=' + item.groupid +
                                 '">Notificaciones</a></td>';
                         htmlToInsert += "</tr>";
