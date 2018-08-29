@@ -22,6 +22,8 @@ if ($institution == NULL) {
             echo $institution->getInstitutionName();
             ?>
             | Iniciar sesión</title>
+            <link rel="icon" type="image/png" href="./../resource/images/favicon-32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="./../resource/images/favicon-16x16.png" sizes="16x16" />
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
         <!-- Bootstrap 3.3.2 -->
         <link href="./../resource/css/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
