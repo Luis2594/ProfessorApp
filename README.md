@@ -1,1 +1,1 @@
-# TeacherCindea
+# Professor App
