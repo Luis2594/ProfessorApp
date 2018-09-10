@@ -27,6 +27,26 @@ class FiltersData extends Connector {
     }
 
     /**
+     * Capture array of years related to enrollment
+     * @return array years
+     */
+    public function getCoursesYears() {
+        $query = 'call getCoursesYears();';
+        try {
+            $rows = $this->exeQuery($query);
+            $array = [];
+            if (mysqli_num_rows($rows) > 0) {
+                while ($row = mysqli_fetch_array($rows)) {
+                    array_push($array, $row['year']);
+                }
+            }
+            return $array;
+        } catch (Exception $ex) {
+            $this->Log(__METHOD__, $query);
+        }
+    }
+
+    /**
      * Current period id
      * @return type integer
      */

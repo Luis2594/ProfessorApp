@@ -18,6 +18,14 @@ class FiltersBusiness {
     public function getCoursesYearsByProfessor($id) {
         return $this->filtersData->getCoursesYearsByProfessor($id);
     }
+
+    /**
+     * Capture array of years
+     * @return array years
+     */
+    public function getCoursesYears() {
+        return $this->filtersData->getCoursesYears();
+    }
     
     /**
      * 

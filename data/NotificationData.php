@@ -57,7 +57,11 @@ class NotificationData extends Connector {
                 include_once '../business/CourseBusiness.php';
                 $courseBusiness = new CourseBusiness();
                 while ($row = mysqli_fetch_array($allNotifications)) {
-                    $currentNotification = new Notification($row['notificationid'], $row['notificationtext'], $courseBusiness->getCourseId($row['notificationcourse'])[0]->getCourseName(), $row['notificationgroup'], $row['notificationprofessor'], $row['notificationyear'], $row['notificationperiod'], $row['notificationdate'], $row['notificationread']);
+                    $currentNotification = 
+                    new Notification($row['notificationid'], $row['notificationtext'], 
+                    $courseBusiness->getCourseId($row['notificationcourse'])[0]->getCourseName(), 
+                    $row['notificationgroup'], $row['notificationprofessor'], $row['notificationyear'], 
+                    $row['notificationperiod'], $row['notificationdate'], $row['notificationread']);
                     array_push($array, $currentNotification);
                 }
             }
@@ -75,7 +79,10 @@ class NotificationData extends Connector {
             $array = [];
             if (mysqli_num_rows($allNotifications) > 0) {
                 while ($row = mysqli_fetch_array($allNotifications)) {
-                    $currentNotification = new Notification($row['notificationid'], $row['notificationtext'], "-", "-", $row['notificationprofessor'], $row['notificationyear'], $row['notificationperiod'], $row['notificationdate'], $row['notificationread']);
+                    $currentNotification = 
+                    new Notification($row['notificationid'], $row['notificationtext'], "-", "-", 
+                    $row['notificationprofessor'], $row['notificationyear'], $row['notificationperiod'], 
+                    $row['notificationdate'], $row['notificationread']);
                     array_push($array, $currentNotification);
                 }
             }
@@ -109,7 +116,10 @@ class NotificationData extends Connector {
             $array = [];
             if (mysqli_num_rows($allNotifications) > 0) {
                 while ($row = mysqli_fetch_array($allNotifications)) {
-                    $currentNotification = new Notification($row['notificationid'], $row['notificationtext'], $row['notificationcourse'], $row['notificationgroup'], $row['notificationprofessor'], $row['notificationyear'], $row['notificationperiod'], $row['notificationdate'], $row['notificationread']);
+                    $currentNotification = 
+                    new Notification($row['notificationid'], $row['notificationtext'], $row['notificationcourse'], 
+                    $row['notificationgroup'], $row['notificationprofessor'], $row['notificationyear'], 
+                    $row['notificationperiod'], $row['notificationdate'], $row['notificationread']);
                     array_push($array, $currentNotification);
                 }
             }
