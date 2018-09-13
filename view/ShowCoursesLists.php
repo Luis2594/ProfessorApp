@@ -47,7 +47,7 @@ if (isset($id) && is_int($id)) {
                         <div class="pull-right col-md-6 text-right right">
 
                             <div class="col-md-4">
-                                <select class="btn btn-primary" style="width: 100%" id="filterPeriod">
+                                <select class="btn btn-info btn-sm" style="width: 100%" id="filterPeriod">
                                     <option value="0">Periodo</option>
                                     <option value="1">I</option>
                                     <option value="2">II</option>
@@ -56,7 +56,7 @@ if (isset($id) && is_int($id)) {
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <select class="btn btn-primary" style="width: 100%" id="filterYear">
+                                <select class="btn btn-info btn-sm" style="width: 100%" id="filterYear">
                                     <option value="0">Año</option>
                                     <?php
                                     include_once '../business/FiltersBusiness.php';
@@ -72,7 +72,7 @@ if (isset($id) && is_int($id)) {
                                 </select>
                             </div>
                             <div class="col-md-4">
-                                <button onclick="getCoursesByFilters();" class="btn btn-primary" style="width: 100%" id="search">Filtrar</button>
+                                <button onclick="getCoursesByFiltersRequest();" class="btn btn-primary btn-sm" style="width: 100%" id="search">Filtrar</button>
                             </div>
                         </div>
                     </div>
@@ -130,7 +130,28 @@ include_once './reusable/Footer.php';
             }
         };
     })(jQuery);
+
     var id = <?php echo $_SESSION['id']; ?>;
+    var a = -1;
+    var b = -1;
+
+    $(document).ready(function () {
+        try{
+            a = $.get("a");
+            b = $.get("b");
+        }catch(e){
+            a = -1;
+            b = -1;
+        }
+        
+        if (a && b && a != -1 && b != -1){
+            $('#filterYear').val(a);
+            $('#filterPeriod').val(b);
+            getCoursesByFilters();
+        }else{
+            coursesToProfessor();
+        }
+    });
 
     function coursesToProfessor() {
         $.ajax({
@@ -175,12 +196,20 @@ include_once './reusable/Footer.php';
         });
     }
 
-    function getCoursesByFilters() {
+    function getCoursesByFiltersRequest(){
         if ($("#filterYear").val() != 0 && $("#filterPeriod").val() != 0) {
+            window.location.href = "ShowCoursesLists.php?a="+$("#filterYear").val() +"&b="+$("#filterPeriod").val()+"&id="+id;
+        } else {
+            alertify.error("Seleccione los filtros...");
+        }
+    }
+
+    function getCoursesByFilters() {
+        if (a && b && a != -1 && b != -1){
             $.ajax({
                 type: 'POST',
                 url: "../business/GetCoursesProfessorByFilters.php",
-                data: {"id": id, "period": $("#filterPeriod").val(), "year": $("#filterYear").val()},
+                data: {"id": id, "period":b, "year": a},
                 success: function (data)
                 {
                     var courses = JSON.parse(data);
@@ -221,8 +250,4 @@ include_once './reusable/Footer.php';
             alertify.error("Seleccione los filtros...");
         }
     }
-
-    $(document).ready(function () {
-        coursesToProfessor();
-    });
 </script>
