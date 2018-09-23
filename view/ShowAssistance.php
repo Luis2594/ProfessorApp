@@ -123,11 +123,13 @@ include_once './reusable/Footer.php';
                                         '">Estudiantes</a></td>';
                                 break;
                             case "update":
-                                htmlToInsert += '<td><a href="#?' +
+                                htmlToInsert += '<td><a href="UpdateAttendance.php?' +
                                         'course=' + item.courseid + '&' +
                                         'professor=' + id + '&' +
+                                        'year=' + item.professorcourseyear + '&' +
+                                        'period=' + item.periodid + '&' +
                                         'group=' + item.groupid +
-                                        '">Estudiantes</a></td>';
+                                        '">Asistencias</a></td>';
                                 break;
                             case "info":
                                 htmlToInsert += '<td><a href="#?' +

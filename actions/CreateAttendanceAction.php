@@ -9,7 +9,7 @@ if (isset($data)) {
     $array = json_decode($data);
 
     foreach ($array as $obj) {
-        $attendance = new Attendance($obj->id, $obj->professor, $obj->course, $obj->group, $obj->isPresent, $obj->justification);
+        $attendance = new Attendance($obj->id, $obj->professor, $obj->course, $obj->group, $obj->period, $obj->isPresent, $obj->justification);
         $business->insert($attendance);
     }
     echo true;

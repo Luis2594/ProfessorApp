@@ -6,20 +6,22 @@ class Attendance{
     private $codStudent;
     private $codProfessor;
     private $codCourse;
-    private $codeGroup;
+    private $codGroup;
+    private $codPeriod;
     private $attenDate;
     private $isPresent;
     private $justification;
     
-    function Attendance($codStudent, $codProfessor, $codCourse, $codeGroup, $isPresent, $justification) {
+    function Attendance($codStudent, $codProfessor, $codCourse, $codGroup, $codPeriod, $isPresent, $justification) {
         $this->codStudent = $codStudent;
         $this->codProfessor = $codProfessor;
         $this->codCourse = $codCourse;
-        $this->codeGroup = $codeGroup;
+        $this->codGroup = $codGroup;
+        $this->codPeriod = $codPeriod;
         $this->isPresent = $isPresent;
         $this->justification = $justification;
     }
-    
+
     function getId() {
         return $this->id;
     }
@@ -36,8 +38,12 @@ class Attendance{
         return $this->codCourse;
     }
 
-    function getCodeGroup() {
-        return $this->codeGroup;
+    function getCodGroup() {
+        return $this->codGroup;
+    }
+
+    function getCodPeriod() {
+        return $this->codPeriod;
     }
 
     function getAttenDate() {
@@ -68,8 +74,12 @@ class Attendance{
         $this->codCourse = $codCourse;
     }
 
-    function setCodeGroup($codeGroup) {
-        $this->codeGroup = $codeGroup;
+    function setCodGroup($codGroup) {
+        $this->codGroup = $codGroup;
+    }
+
+    function setCodPeriod($codPeriod) {
+        $this->codPeriod = $codPeriod;
     }
 
     function setAttenDate($attenDate) {
@@ -82,7 +92,7 @@ class Attendance{
 
     function setJustification($justification) {
         $this->justification = $justification;
-    }
+    }    
 }
 
 
