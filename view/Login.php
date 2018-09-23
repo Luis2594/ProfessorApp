@@ -55,11 +55,11 @@ if ($institution == NULL) {
                 <p class="login-box-msg">Iniciar Sesión</p>
                 <form id="formLogin" name="formLogin" role="form" action="../actions/LoginAction.php" method="post" >
                     <div class="form-group has-feedback">
-                        <input id="user" name="user" type="text" class="form-control" placeholder="Usuario" required="true"/>
+                        <input id="user" name="user" type="text" class="form-control" placeholder="Usuario"  value="304240781" required="true"/>
                         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                     </div>
                     <div class="form-group has-feedback">
-                        <input id="pass" name="pass" type="password" class="form-control" placeholder="Contraseña" required="true"/>
+                        <input id="pass" name="pass" type="password" class="form-control" placeholder="Contraseña" value="AGQU781" required="true"/>
                         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                     </div>
                     <div class="row" >

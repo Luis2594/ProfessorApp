@@ -1,83 +1,75 @@
 <?php
 include_once './reusable/Session.php';
 include_once './reusable/Header.php';
-$id = (int) $_GET['id'];
 ?>
 
 <!-- Content Header (Page header) -->
 <section class="content-header" style="text-align: left">
     <ol class="breadcrumb">
         <li><a href="Home.php"><i class="fa fa-arrow-circle-right"></i> Inicio</a></li>
-        <li><a href="#"><i class="fa fa-arrow-circle-right"></i> Módulos</a></li>
-        <li><a href="ShowAssistance.php"><i class="fa fa-arrow-circle-right"></i> Ver Asistencia</a></li>
+        <li><a href="#"><i class="fa fa-arrow-circle-right"></i>Asistencia</a></li>
     </ol>
 </section>
 <br>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
 
-<?php
-if (isset($id) && is_int($id)) {
-    ?>
-    <!-- Main content -->
-    <section class="content">
-        <div class="row">
+        <!--SHOW MODULES TO PROFESSOR-->
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <?php
+                    include_once '../business/ProfessorBusiness.php';
 
-            <!--SHOW MODULES TO PROFESSOR-->
-            <div class="col-xs-12">
-                <div class="box">
-                    <div class="box-header">
-                        <?php
-                        include_once '../business/ProfessorBusiness.php';
+                    $professorBusiness = new ProfessorBusiness();
 
-                        $professorBusiness = new ProfessorBusiness();
-
-                        $professors = $professorBusiness->getProfessor($_SESSION['id']);
-                        foreach ($professors as $professor) {
-                            ?>
-                            <h3 class="box-title">Asistencia módulos asignados a: 
-                                <b>
-                                    <?php
-                                    echo $professor->getPersonFirstName()
-                                    . " " . $professor->getPersonFirstlastname()
-                                    . " " . $professor->getPersonSecondlastname();
-                                    ?> 
-                                </b>
-                            </h3>
-                        <?php } ?>
-                    </div>
-                    <div class="box-body">
-                        <table id="example2" class="table table-bordered table-striped" style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th>Código</th>
-                                    <th>Nombre</th>
-                                    <th>Grupo</th>
-                                    <th>Periodo</th>
-                                    <th>Año</th>
-                                    <th>Asistencia</th>
-                                </tr>
-                            </thead>
-                            <tbody id="tbody">
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>Código</th>
-                                    <th>Nombre</th>
-                                    <th>Grupo</th>
-                                    <th>Periodo</th>
-                                    <th>Año</th>
-                                    <th>Asistencia</th>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </div>
+                    $professors = $professorBusiness->getProfessor($_SESSION['id']);
+                    foreach ($professors as $professor) {
+                        ?>
+                        <h3 class="box-title">Asistencia módulos asignados a: 
+                            <b>
+                                <?php
+                                echo $professor->getPersonFirstName()
+                                . " " . $professor->getPersonFirstlastname()
+                                . " " . $professor->getPersonSecondlastname();
+                                ?> 
+                            </b>
+                        </h3>
+                    <?php } ?>
                 </div>
-            </div><!-- /.col -->
+                <div class="box-body">
+                    <table id="example2" class="table table-bordered table-striped" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Nombre</th>
+                                <th>Grupo</th>
+                                <th>Periodo</th>
+                                <th>Año</th>
+                                <th>Asistencia</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody">
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>Código</th>
+                                <th>Nombre</th>
+                                <th>Grupo</th>
+                                <th>Periodo</th>
+                                <th>Año</th>
+                                <th>Asistencia</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div><!-- /.col -->
 
-        </div><!-- /.row -->
-    </section><!-- /.content -->
-
-    <?php
-}
+    </div><!-- /.row -->
+</section><!-- /.content -->
+<?php
 include_once './reusable/Footer.php';
 ?>
 
@@ -100,6 +92,7 @@ include_once './reusable/Footer.php';
     })(jQuery);
 
     var id = <?php echo $_SESSION['id']; ?>;
+    var action = $.get("action");
 
     function coursesToProfessor() {
         $.ajax({
@@ -119,13 +112,31 @@ include_once './reusable/Footer.php';
                         htmlToInsert += "<td>" + item.groupnumber + "</td>";
                         htmlToInsert += "<td>" + item.period + "</td>";
                         htmlToInsert += "<td>" + item.professorcourseyear + "</td>";
-                        htmlToInsert += '<td><a href="ShowStudentsByCourseAssistance.php?' +
-                                'course=' + item.courseid + '&' +
-                                'professor=' + id + '&' +
-                                'year=' + item.professorcourseyear + '&' +
-                                'period=' + item.periodid + '&' +
-                                'group=' + item.groupid +
-                                '">Estudiantes</a></td>';
+                        switch (action) {
+                            case "create":
+                                htmlToInsert += '<td><a href="ShowStudentsByCourseAssistance.php?' +
+                                        'course=' + item.courseid + '&' +
+                                        'professor=' + id + '&' +
+                                        'year=' + item.professorcourseyear + '&' +
+                                        'period=' + item.periodid + '&' +
+                                        'group=' + item.groupid +
+                                        '">Estudiantes</a></td>';
+                                break;
+                            case "update":
+                                htmlToInsert += '<td><a href="#?' +
+                                        'course=' + item.courseid + '&' +
+                                        'professor=' + id + '&' +
+                                        'group=' + item.groupid +
+                                        '">Estudiantes</a></td>';
+                                break;
+                            case "info":
+                                htmlToInsert += '<td><a href="#?' +
+                                        'course=' + item.courseid + '&' +
+                                        'professor=' + id + '&' +
+                                        'group=' + item.groupid +
+                                        '">Estudiantes</a></td>';
+                                break;
+                        }
                         htmlToInsert += "</tr>";
                     });
 

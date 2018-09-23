@@ -21,7 +21,11 @@ $group = (int) $_GET['group'];
 <br>
 
 <?php
-if (isset($course) && is_int($course) && isset($professor) && is_int($professor) && isset($year) && is_int($year) && isset($year) && is_int($year) && isset($group) && is_int($group)) {
+if (isset($course) && is_int($course) &&
+        isset($professor) && is_int($professor) &&
+        isset($year) && is_int($year) &&
+        isset($period) && is_int($period) &&
+        isset($group) && is_int($group)) {
     ?>
     <!-- Main content -->
     <section class="content">
@@ -47,8 +51,13 @@ if (isset($course) && is_int($course) && isset($professor) && is_int($professor)
                                 </b>
 
                             </h3>
-                            <a type="button" class="btn btn-primary pull-right" id="btnInforme" onclick="genarateAbsence();">Generar Informe de Asistencia</a>
-                            <!-- <a type="button" class="btn btn-primary pull-right" id="btnInforme" onclick="saveAssistance();" style="margin-right:5px;">Guardar</a> -->
+                            <a type="button" class="btn btn-primary pull-right" id="btnInforme" onclick="genarateAbsence();">Crear Asistencia</a>
+                            <br>
+                            <br>
+                            <h3 class="box-title">
+                                <b id="txtDate"/>
+                            </h3>
+
                             <?php
                             break;
                         }
@@ -73,7 +82,10 @@ if (isset($course) && is_int($course) && isset($professor) && is_int($professor)
                                     foreach ($students as $person) {
                                         ?>
                                         <tr>
-                                            <td><?php echo $person[0]; ?></td>
+                                            <td>
+                                                <input type="hidden" name="idPerson" id="idPerson" value="<?php echo $person[3] ?>"/>
+                                                <label><?php echo $person[0]; ?></label>
+                                            </td>
                                             <td><?php echo $person[1]; ?></td>
                                             <td><?php echo $person[2]; ?></td>
                                             <td>
@@ -118,10 +130,9 @@ include_once './reusable/Footer.php';
 
 <!-- page script -->
 <script type="text/javascript">
-/*     $(document).ready(function () {
-        $("#studentsList").dataTable();
-    }); */
 
+    var d = new Date();
+    $('#txtDate').html("Fecha: " + d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear());
     (function ($) {
         $.get = function (key) {
             key = key.replace(/[\[]/, '\\[');
@@ -152,36 +163,38 @@ include_once './reusable/Footer.php';
     function createInfo() {
         var isCorrect = true;
         var infoPerson;
-
         $('#tbody tr').each(function (index, element) {
-            var name = $(element).find("td").eq(0).html();
+            var id = $(element).find("td").eq(0).find("input").val();
+            var name = $(element).find("td").eq(0).find("label").html();
             var present = $(element).find("td").eq(3).find("input");
             var absence = $(element).find("td").eq(4).find("input");
             var justification = $(element).find("td").eq(5).find("textarea").val();
-
-            if ((present.is(':checked') && absence.is(':checked')) || (!present.is(':checked') && !absence.is(':checked'))) {
+            if ((present.is(':checked') && absence.is(':checked')) ||
+                    (!present.is(':checked') &&
+                            !absence.is(':checked'))) {
                 isCorrect = false;
-                if (name === "No se encuentran registros"){
+                if (name === "No se encuentran registros") {
                     alertify.error(name);
-                }else{
+                } else {
                     alertify.error("Seleccione si el estudiante " + name + " esta ausente o presente");
                 }
-                
+
             } else {
                 infoPerson = new Object();
+                infoPerson.id = id;
                 infoPerson.name = name;
-
                 if (present.is(':checked')) {
-                    infoPerson.present = 1;
-                    infoPerson.absence = 0;
+                    infoPerson.isPresent = 1;
                 }
 
                 if (absence.is(':checked')) {
-                    infoPerson.present = 0;
-                    infoPerson.absence = 1;
+                    infoPerson.isPresent = 0;
                 }
 
                 infoPerson.justification = justification;
+                infoPerson.professor = <?php echo $_SESSION['id']; ?>;
+                infoPerson.course = <?php echo $course; ?>;
+                infoPerson.group = <?php echo $group; ?>;
                 data.push(infoPerson);
             }
         });
@@ -190,11 +203,37 @@ include_once './reusable/Footer.php';
 
     function genarateAbsence() {
         if (createInfo()) {
-            open("../reporter/Attendance.php?id=" + <?php echo $_SESSION['id']; ?> + "&idCourse=" + <?php echo $courseID; ?> + "&idGroup=" + <?php echo $groupID; ?> + "&data=" + JSON.stringify(data));
+            $.ajax({
+                type: 'POST',
+                url: "../actions/CreateAttendanceAction.php",
+                data: {"data": JSON.stringify(data)},
+                success: function (response)
+                {
+                    if (response == true) {
+                        clearTable();
+                        alertify.success("Asistencia guardada correctamente.");
+                    } else {
+                        alertify.error("Error al guradar asistencia...");
+                    }
+
+                },
+                error: function ()
+                {
+                    alertify.error("Error ...");
+                }
+            });
             data = [];
         } else {
             data = [];
         }
+    }
+    
+    function clearTable() {
+        $('#tbody tr').each(function (index, element) {
+            $(element).find("td").eq(3).find("input").prop("checked", "");
+            $(element).find("td").eq(4).find("input").prop("checked", "");
+            $(element).find("td").eq(5).find("textarea").val("");
+        });
     }
 </script>
 
