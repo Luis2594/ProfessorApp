@@ -22,4 +22,8 @@ class AttendanceBusiness {
         return $this->data->getAttenadanceByDate($professor, $course, $group, $period, $date);
     }
 
+    public function getAttenadanceByMonth($month, $period, $year, $course, $group) {
+        return $this->data->getAttenadanceByMonth($month, $period, $year, $course, $group);
+    }
+
 }

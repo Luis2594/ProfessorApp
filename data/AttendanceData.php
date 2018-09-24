@@ -16,7 +16,7 @@ class AttendanceData extends Connector {
                 . $attendance->getJustification() . "')";
         return $this->exeQuery($query);
     }
-    
+
     public function update($id, $isPresent, $justification) {
         $query = "call updateAttendance("
                 . $id . ","
@@ -24,7 +24,6 @@ class AttendanceData extends Connector {
                 . $justification . "')";
         return $this->exeQuery($query);
     }
-
 
     public function getAttenadanceByDate($professor, $course, $group, $period, $date) {
         $query = "call getAttendanceByDate("
@@ -44,6 +43,30 @@ class AttendanceData extends Connector {
                         "phoneNumber" => $row['phoneNumber'],
                         "isPresent" => $row['isPresent'],
                         "justification" => $row['justification']);
+                }
+            }
+            return $array;
+        } catch (Exception $ex) {
+            $this->Log(__METHOD__, $query);
+        }
+    }
+
+    public function getAttenadanceByMonth($month, $period, $year, $course, $group) {
+        $query = "call getAttendanceByMonth("
+                . $month . ","
+                . $period . ","
+                . $year . ","
+                . $course . ","
+                . $group . ")";
+        try {
+            $attendances = $this->exeQuery($query);
+            $array = [];
+            if (mysqli_num_rows($attendances) > 0) {
+                while ($row = mysqli_fetch_array($attendances)) {
+                    $array[] = array("codStudent" => $row['codStudent'],
+                        "fullName" => $row['fullName'],
+                        "isPresent" => $row['isPresent'],
+                        "dateAttendance" => $row['dateAttendance']);
                 }
             }
             return $array;

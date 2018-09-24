@@ -132,7 +132,7 @@ include_once './reusable/Footer.php';
                                         '">Asistencias</a></td>';
                                 break;
                             case "info":
-                                htmlToInsert += '<td><a href="#?' +
+                                htmlToInsert += '<td><a href="CreateInfoAttendance.php?' +
                                         'course=' + item.courseid + '&' +
                                         'professor=' + id + '&' +
                                         'group=' + item.groupid +
