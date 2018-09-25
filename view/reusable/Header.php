@@ -199,7 +199,7 @@ include_once '../resource/Constants.php';
                             </ul>
                         </li>
 
-                        <!--NOTIFY-->
+                        <!--NOTIFICATION-->
                         <li class="treeview">
                             <a>
                                 <i class="fa"></i> <span>Notificaciones</span> <i class="fa fa-angle-left pull-right"></i>
@@ -209,6 +209,16 @@ include_once '../resource/Constants.php';
                                 <li><a href="./ShowIncomingNotifications.php"><i class="fa"></i>Ver Notificaciones Recibidas</a></li>
                             </ul>
                         </li>
+
+                        <!-- CIRCULAR -->
+                        <li class="treeview">
+                                <a>
+                                    <i class="fa"></i> <span>Circulares</span> <i class="fa fa-angle-left pull-right"></i>
+                                </a>
+                                <ul class="treeview-menu">
+                                    <li><a href="./CircularShow.php"><i class="fa"></i> Ver Circulares</a></li>
+                                </ul>
+                            </li>
 
                         <!--COURSES-->
                         <li class="treeview">
