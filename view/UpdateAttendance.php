@@ -54,10 +54,15 @@ if (isset($course) && is_int($course) &&
                             break;
                         }
                         ?>
-                        <a type="button" class="btn btn-primary pull-right" id="btnInforme" onclick="genarateAbsence();">Crear Asistencia</a>
+                        <a type="button" class="btn btn-primary pull-right" id="btnInforme" onclick="updateAttendance();">Actualizar Asistencia</a>
                         <br>
                         <br>
-                        <h3 class="box-title"><b id="txtDate"/></h3>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Fecha de asistencia</label>
+                                <input id="date" type="date" onchange="handler(event);" class="form-control">
+                            </div>
+                        </div>
                     </div>
                     <div class="table-responsive">
                         <div class="box-body">
@@ -72,34 +77,7 @@ if (isset($course) && is_int($course) &&
                                         <th>Justificación</th>
                                     </tr>
                                 </thead>
-                                <tbody id="tbody">
-                                    <?php
-                                    $students = $business->getStudentsListByCourseAndProfessor($course, $professor, $period, $year, $group);
-                                    foreach ($students as $person) {
-                                        ?>
-                                        <tr>
-                                            <td>
-                                                <label><?php echo $person[0]; ?></label>
-                                                <input type="hidden" name="id" id="id" value="<?php echo $person[3] ?>"/>
-
-                                            </td>
-                                            <td><?php echo $person[1]; ?></td>
-                                            <td><?php echo $person[2]; ?></td>
-                                            <td>
-                                                <input type="checkbox" name="present" style="width: 20px; height: 20px; text-align: center" />
-                                            </td>
-                                            <td>
-                                                <input type="checkbox" name="absence" style="width: 20px; height: 20px; text-align: center" />
-                                            </td>
-                                            <td>
-                                                <textarea></textarea>
-                                            </td>
-
-                                        </tr>    
-                                        <?php
-                                    }
-                                    ?>
-                                </tbody>
+                                <tbody id="tbody"/>
                                 <tfoot>
                                     <tr>
                                         <th>Nombre</th>
@@ -127,9 +105,6 @@ include_once './reusable/Footer.php';
 
 <!-- page script -->
 <script type="text/javascript">
-
-    var d = new Date();
-    $('#txtDate').html("Fecha: " + d.getDate() + "/" + (d.getMonth() + 1) + "/" + d.getFullYear());
     (function ($) {
         $.get = function (key) {
             key = key.replace(/[\[]/, '\\[');
@@ -156,10 +131,56 @@ include_once './reusable/Footer.php';
         alertify.error(msg);
     }
 
+    function handler(e) {
+        loadAttendance();
+    }
+
+    function loadAttendance() {
+        $.ajax({
+            type: 'POST',
+            url: "../business/GetAttendanceByDate.php",
+            data: {"professor": <?php echo $_SESSION['id']; ?>,
+                "course": <?php echo $course; ?>,
+                "group": <?php echo $group; ?>,
+                "period": <?php echo $period; ?>,
+                "date": $('#date').val()},
+            success: function (response)
+            {
+                var attendance = JSON.parse(response);
+                var htmlCourse = '';
+
+                $.each(attendance, function (i, item) {
+                    htmlCourse += "<tr>";
+                    htmlCourse += "<td><label>" + item.fullName + "</label>";
+                    htmlCourse += "<input type='hidden' name='id' id='id' value='" + item.id + "'/></td>";
+                    htmlCourse += "<td>" + item.persondni + "</td>";
+                    htmlCourse += "<td>" + item.phoneNumber + "</td>";
+
+                    if (item.isPresent == 1) {
+                        htmlCourse += "<td><input checked type='checkbox' name='present' style='width: 20px; height: 20px; text-align: center' /></td>";
+                        htmlCourse += "<td><input type='checkbox' name='absence' style='width: 20px; height: 20px; text-align: center' /></td>";
+                    } else {
+                        htmlCourse += "<td><input type='checkbox' name='present' style='width: 20px; height: 20px; text-align: center' /></td>";
+                        htmlCourse += "<td><input checked type='checkbox' name='absence' style='width: 20px; height: 20px; text-align: center' /></td>";
+                    }
+
+                    htmlCourse += "<td> <textarea>" + item.justification + "</textarea></td>";
+                    htmlCourse += "</tr>";
+                });
+                $("#tbody").html(htmlCourse);
+            },
+            error: function ()
+            {
+                alertify.error("Error ...");
+            }
+        }
+        );
+    }
+
     var data = [];
     function createInfo() {
         var isCorrect = true;
-        var infoPerson;
+        var infoAttendance;
         $('#tbody tr').each(function (index, element) {
             var id = $(element).find("td").eq(0).find("input").val();
             var name = $(element).find("td").eq(0).find("label").html();
@@ -177,43 +198,39 @@ include_once './reusable/Footer.php';
                 }
 
             } else {
-                infoPerson = new Object();
-                infoPerson.id = id;
-                infoPerson.name = name;
+                infoAttendance = new Object();
+                infoAttendance.id = id;
                 if (present.is(':checked')) {
-                    infoPerson.isPresent = 1;
+                    infoAttendance.isPresent = 1;
                 }
 
                 if (absence.is(':checked')) {
-                    infoPerson.isPresent = 0;
+                    infoAttendance.isPresent = 0;
                 }
 
-                infoPerson.justification = justification;
-                infoPerson.professor = <?php echo $_SESSION['id']; ?>;
-                infoPerson.course = <?php echo $course; ?>;
-                infoPerson.group = <?php echo $group; ?>;
-                infoPerson.period = <?php echo $period; ?>;
-                data.push(infoPerson);
+                infoAttendance.justification = justification;
+                data.push(infoAttendance);
             }
         });
         return isCorrect;
     }
 
-    function genarateAbsence() {
+    function updateAttendance() {
         if (createInfo()) {
             $.ajax({
                 type: 'POST',
-                url: "../actions/CreateAttendanceAction.php",
+                url: "../actions/UpdateAttendanceAction.php",
                 data: {"data": JSON.stringify(data)},
                 success: function (response)
                 {
                     if (response == true) {
-                        clearTable();
-                        alertify.success("Asistencia guardada correctamente.");
+                        $("#tbody").html("");
+                        data = [];
+                        loadAttendance();
+                        alertify.success("Asistencia actualizada correctamente.");
                     } else {
-                        alertify.error("Error al guradar asistencia...");
+                        alertify.error("No hay ninguna asistencia para actualizar");
                     }
-
                 },
                 error: function ()
                 {

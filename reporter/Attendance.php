@@ -1,6 +1,7 @@
 <?php
 
 require('../resource/fpdf/fpdf.php');
+require_once '../business/AttendanceBusiness.php';
 require_once '../business/PersonBusiness.php';
 require_once '../business/CourseBusiness.php';
 require_once '../business/GroupBusiness.php';
@@ -27,7 +28,39 @@ class PDF extends FPDF {
     }
 
     function students($data) {
-        $header = array(utf8_decode('Nombre'), utf8_decode('Presente'), utf8_decode('Ausente'), utf8_decode('Justificación'));
+        $header = array(utf8_decode('Nombre'),
+            utf8_decode('01'),
+            utf8_decode('02'),
+            utf8_decode('03'),
+            utf8_decode('04'),
+            utf8_decode('05'),
+            utf8_decode('06'),
+            utf8_decode('07'),
+            utf8_decode('08'),
+            utf8_decode('09'),
+            utf8_decode('10'),
+            utf8_decode('11'),
+            utf8_decode('12'),
+            utf8_decode('13'),
+            utf8_decode('14'),
+            utf8_decode('15'),
+            utf8_decode('16'),
+            utf8_decode('17'),
+            utf8_decode('18'),
+            utf8_decode('19'),
+            utf8_decode('20'),
+            utf8_decode('21'),
+            utf8_decode('22'),
+            utf8_decode('23'),
+            utf8_decode('24'),
+            utf8_decode('25'),
+            utf8_decode('26'),
+            utf8_decode('27'),
+            utf8_decode('28'),
+            utf8_decode('29'),
+            utf8_decode('30'),
+            utf8_decode('31'));
+
         // Colores, ancho de línea y fuente en negrita
         $this->SetFillColor(196, 198, 198);
         $this->SetTextColor(0);
@@ -35,7 +68,38 @@ class PDF extends FPDF {
         $this->SetFont('', '');
 
         // Cabecera
-        $w = array(90, 20, 20, 60);
+        $w = array(40,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5,
+            5);
         for ($i = 0; $i < count($header); $i++) {
             $this->Cell($w[$i], 4, $header[$i], 1, 0, 'C', true);
         }
@@ -48,31 +112,46 @@ class PDF extends FPDF {
         $this->SetFont('');
 
         foreach ($data as $value) {
-            $this->Cell($w[0], 8, utf8_decode($value->name), 'LR', 0, 'L', FALSE); 
-            $this->SetFont('ZapfDingbats', '', 10);
+            $this->SetFont('Arial', '', 6);
 
-            if ($value->present == 1) {
-                $this->Cell($w[1], 8, "4", 'LR', 0, 'C', FALSE);
-            } else {
-                $this->Cell($w[1], 8, "", 'LR', 0, 'C', FALSE);
+            $this->Cell($w[0], 8, utf8_decode($value->getFullName()), 'LR', 0, 'L', FALSE);
+
+            $this->SetFont('ZapfDingbats', '', 8);
+
+            for ($index = 1; $index < 32; $index++) {
+                $isPresent = 0;
+                foreach ($value->getAttendance() as $attendance) {
+                    if ((int) $attendance['dateAttendance'] == $index) {
+                        if ($attendance['isPresent'] == 1) {
+                            $isPresent = 1;
+                        } else {
+                            $isPresent = 0;
+                        }
+                        break;
+                    } else {
+                        $isPresent = -1;
+                    }
+                }
+
+                switch ($isPresent) {
+                    case -1:
+                        $this->Cell($w[$index], 8, "", 'LR', 0, 'C', FALSE);
+                        break;
+                    case 0:
+                        $this->Cell($w[$index], 8, "7", 'LR', 0, 'C', FALSE);
+                        break;
+                    case 1:
+                        $this->Cell($w[$index], 8, "4", 'LR', 0, 'C', FALSE);
+                        break;
+                }
             }
-
-            if ($value->absence == 1) {
-                $this->Cell($w[2], 8, "4", 'LR', 0, 'C', FALSE);
-            } else {
-                $this->Cell($w[2], 8, "", 'LR', 0, 'C', FALSE);
-            }
-
-            $this->SetFont('Arial', '', 10);
-            $this->Cell($w[3], 8, utf8_decode($value->justification), 'LR', 0, 'C', FALSE);
 
             $this->Ln();
 
             //Estas lineas es para que dibuje la linea divisora inferior
-            $this->Cell($w[0], 0, "", 1, 0, 'L', TRUE);
-            $this->Cell($w[1], 0, "", 1, 0, 'L', TRUE);
-            $this->Cell($w[2], 0, "", 1, 0, 'L', TRUE);
-            $this->Cell($w[3], 0, "", 1, 0, 'L', TRUE);
+            for ($index = 0; $index < 32; $index++) {
+                $this->Cell($w[$index], 0, "", 1, 0, 'L', TRUE);
+            }
 
             $this->Ln();
         }
@@ -80,16 +159,87 @@ class PDF extends FPDF {
         $this->Cell(array_sum($w), 0, '', 'T');
     }
 
+    function getMonth($param) {
+    $month = "";
+    switch ($param) {
+        case 1:
+            $month = "Enero";
+            break;
+        case 2:
+            $month = "Febrero";
+            break;
+        case 3:
+            $month = "Marzo";
+            break;
+        case 4:
+            $month = "Abril";
+            break;
+        case 5:
+            $month = "Mayo";
+            break;
+        case 6:
+            $month = "Junio";
+            break;
+        case 7:
+            $month = "Julio";
+            break;
+        case 8:
+            $month = "Agosto";
+            break;
+        case 9:
+            $month = "Septiembre";
+            break;
+        case 10:
+            $month = "Octubre";
+            break;
+        case 1:
+            $month = "Noviembre";
+            break;
+        case 12:
+            $month = "Diciembre";
+            break;
+    }
+
+    return $month;
+}
+}
+
+class AttendanceInfo {
+
+    private $fullName;
+    private $attendance;
+
+    function AttendanceInfo($fullName, $attendance) {
+        $this->fullName = $fullName;
+        $this->attendance = $attendance;
+    }
+
+    function getFullName() {
+        return $this->fullName;
+    }
+
+    function getAttendance() {
+        return $this->attendance;
+    }
+
+    function setFullName($fullName) {
+        $this->fullName = $fullName;
+    }
+
+    function setAttendance($attendance) {
+        $this->attendance = $attendance;
+    }
+
 }
 
 $id = $_GET["id"];
-$idCourse = $_GET["idCourse"];
-$idGroup = $_GET["idGroup"];
+$month = $_GET["month"];
+$period = $_GET["period"];
+$year = $_GET["year"];
+$idCourse = $_GET["course"];
+$idGroup = $_GET["group"];
 
-$data = $_GET["data"];
-
-$data = json_decode($data);
-
+$attendanceBusiness = new AttendanceBusiness();
 $personBusiness = new PersonBusiness();
 $courseBusiness = new CourseBusiness();
 $groupBusiness = new GroupBusiness();
@@ -98,10 +248,33 @@ $professor = $personBusiness->getPersonId($id);
 $course = $courseBusiness->getCourseId($idCourse);
 $courseName;
 foreach ($course as $value) {
-    $courseName = $value->getCourseCode()." - ".$value->getCourseName();
+    $courseName = $value->getCourseCode() . " - " . $value->getCourseName();
 }
 
 $group = $groupBusiness->getNumberGroup($idGroup);
+
+$data = $attendanceBusiness->getAttenadanceByMonth($month, $period, $year, $idCourse, $idGroup);
+
+$idsStudents = [];
+foreach ($data as $value) {
+    $idsStudents[] = $value['codStudent'];
+}
+
+$idsStudents = array_unique($idsStudents);
+
+$arrangeData = [];
+foreach ($idsStudents as $value) {
+    $attendance = [];
+    foreach ($data as $valueData) {
+        if ($value == $valueData['codStudent']) {
+            $fullName = $valueData['fullName'];
+            $attendance[] = array("isPresent" => $valueData['isPresent'],
+                "dateAttendance" => $valueData['dateAttendance']);
+        }
+    }
+    $attendanceInfo = new AttendanceInfo($fullName, $attendance);
+    array_push($arrangeData, $attendanceInfo);
+}
 
 foreach ($professor as $profe) {
     $pdf = new PDF();
@@ -115,7 +288,7 @@ foreach ($professor as $profe) {
 
     $pdf->Ln(5);
     $pdf->SetFont('Arial', 'B', 11);
-    $pdf->Cell(0, 5, utf8_decode("Fecha: " . date("d") . "-" . date("m") . "-" . date("Y")), 0, 0, 'R');
+    $pdf->Cell(0, 5, utf8_decode("Mes: " . $pdf->getMonth(date("m"))), 0, 0, 'R');
     $pdf->Ln();
     $pdf->Cell(0, 5, utf8_decode("Profesor(a): " . $name), 0, 0);
 
@@ -124,7 +297,7 @@ foreach ($professor as $profe) {
     $pdf->SetFont('Arial', '', 11);
     $pdf->Cell(0, 5, utf8_decode("Módulo: " . $courseName), 0, 0);
     $pdf->Ln();
-    $pdf->Cell(0, 5, utf8_decode("Grupo: ".$group), 0, 0);
+    $pdf->Cell(0, 5, utf8_decode("Grupo: " . $group), 0, 0);
     $pdf->Ln();
     $pdf->Ln();
     $pdf->SetFont('Arial', 'B', 10);
@@ -137,7 +310,7 @@ foreach ($professor as $profe) {
 //
     $pdf->Ln();
 //
-    $pdf->students($data);
+    $pdf->students($arrangeData);
 
     $pdf->Ln();
 //

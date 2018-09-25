@@ -228,7 +228,19 @@ include_once '../resource/Constants.php';
                             <ul class="treeview-menu">
                                 <li><a href="./ShowCoursesProfessor.php"><i class="fa"></i>Ver Módulos</a></li>
                                 <li><a href="./ShowCoursesLists.php"><i class="fa"></i>Ver Estudiantes</a></li>
-                                <li><a href="./ShowAssistance.php"><i class="fa"></i>Ver Asistencia</a></li>
+                            </ul>
+                        </li>
+
+
+                         <!--ATTENDANCE-->
+                         <li class="treeview">
+                            <a>
+                                <i class="fa"></i> <span>Asistencia</span> <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="./ShowAssistance.php?action=create"><i class="fa"></i>Crear Asistencia</a></li>
+                                <li><a href="./ShowAssistance.php?action=update"><i class="fa"></i>Actualizar Asistencia</a></li>
+                                <li><a href="./ShowAssistance.php?action=info"><i class="fa"></i>Generar informe de Asistencia</a></li>
                             </ul>
                         </li>
 
