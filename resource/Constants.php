@@ -9,4 +9,5 @@ class Constants {
     
     const APP_PROFESSOR = "Professor";
     const APP_ADMIN = "Admin";
+    const APP_STUDENT = "Student";
 }
