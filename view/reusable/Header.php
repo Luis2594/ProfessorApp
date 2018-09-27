@@ -1,6 +1,8 @@
 <?php
 include_once './reusable/Session.php';
 include_once '../resource/Constants.php';
+error_reporting(1);
+ini_set('display_errors', 1);
 ?>
 <html>
     <head>
