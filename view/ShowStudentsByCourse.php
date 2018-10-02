@@ -40,7 +40,7 @@ if (isset($course) && is_int($course) && isset($professor) && is_int($professor)
                         foreach ($courses as $item) {
                             ?>
                             <h3 class="box-title">
-                                <b>
+                                <b> 
                                     <?php
                                     echo $item->getCourseName();
                                     ?>
@@ -49,6 +49,8 @@ if (isset($course) && is_int($course) && isset($professor) && is_int($professor)
                             </h3>
                             <a type="button" class="btn btn-primary pull-right" title="Exportar como archivo de excel."
                             href="../actions/ExportStudentsListByCourseAndProfessorAction.php?course=<?php echo $course; ?>&period=<?php echo $period; ?>&year=<?php echo $year; ?>&group=<?php echo $group; ?>&professor=<?php echo $_SESSION['id']; ?>">Exportar</a>
+                            <a type="button" class="btn btn-primary pull-right" title="Archivos para los estudiantes del grupo." style="margin-left:5px;margin-right:5px;"
+                            href="FileShowByCourseAndProfessor.php?course=<?php echo $course; ?>&period=<?php echo $period; ?>&year=<?php echo $year; ?>&group=<?php echo $group; ?>&professor=<?php echo $_SESSION['id']; ?>">Archivos</a>
                             <?php
                             break;
                         }

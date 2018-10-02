@@ -53,7 +53,7 @@ class CurriculumData extends Connector {
     }
 
     public function delete($id) {
-        $query = 'call deteleCurriculum("' . $id . '");';
+        $query = 'call deleteCurriculum("' . $id . '");';
         try {
             if ($this->exeQuery($query)) {
                 return TRUE;

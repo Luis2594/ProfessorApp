@@ -18,12 +18,12 @@ class NotificationBusiness {
         return $this->notificationData->updateNotification($notification);
     }
 
-    public function deteleNotification($id) {
-        return $this->notificationData->deteleNotification($id);
+    public function deleteNotification($id) {
+        return $this->notificationData->deleteNotification($id);
     }
 
-    public function deteleIncomingNotification($id) {
-        return $this->notificationData->deteleIncomingNotification($id);
+    public function deleteIncomingNotification($id) {
+        return $this->notificationData->deleteIncomingNotification($id);
     }
 
     public function getAllNotificationByStudent($id) {

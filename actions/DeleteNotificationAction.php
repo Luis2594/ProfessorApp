@@ -11,7 +11,7 @@ $group = $_GET['group'];
 
 if(isset($id)){
     $business = new NotificationBusiness();
-    if($business->deteleNotification($id) == 1){
+    if($business->deleteNotification($id) == 1){
         header("location: ../view/ShowNotifications.php?course=".$course."&professor=". $professor."&year=". $year."&period=". $period."&group=". $group."&action=1&msg=Registro_eliminado_correctamente");
     }else{
         header("location: ../view/ShowNotifications.php?course=".$course."&professor=". $professor."&year=". $year."&period=". $period."&group=". $group."&action=0&msg=Error_al_eliminar_registro");

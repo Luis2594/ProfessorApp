@@ -29,8 +29,8 @@ class NotificationData extends Connector {
         }
     }
 
-    public function deteleNotification($id) {
-        $query = 'call deteleNotification(' . $id . ');';
+    public function deleteNotification($id) {
+        $query = 'call deleteNotification(' . $id . ');';
         try {
             return $this->exeQuery($query);
         } catch (Exception $ex) {
@@ -38,8 +38,8 @@ class NotificationData extends Connector {
         }
     }
 
-    public function deteleIncomingNotification($id) {
-        $query = 'call deteleIncomingNotification(' . $id . ');';
+    public function deleteIncomingNotification($id) {
+        $query = 'call deleteIncomingNotification(' . $id . ');';
         try {
             return $this->exeQuery($query);
         } catch (Exception $ex) {
