@@ -74,7 +74,7 @@ if ($institution == NULL) {
                                 </label>
                             </div>
                         </div><!-- /.col -->
-                    </div>
+                    </div>  
                 </form>
 
             </div><!-- /.login-box-body -->

@@ -28,7 +28,7 @@ class PDF extends FPDF {
     }
 
     function students($data) {
-        $header = array(utf8_decode('Nombre'),
+        $header = array(utf8_decode('Nombre de estudiante'),
             utf8_decode('01'),
             utf8_decode('02'),
             utf8_decode('03'),
@@ -160,48 +160,49 @@ class PDF extends FPDF {
     }
 
     function getMonth($param) {
-    $month = "";
-    switch ($param) {
-        case 1:
-            $month = "Enero";
-            break;
-        case 2:
-            $month = "Febrero";
-            break;
-        case 3:
-            $month = "Marzo";
-            break;
-        case 4:
-            $month = "Abril";
-            break;
-        case 5:
-            $month = "Mayo";
-            break;
-        case 6:
-            $month = "Junio";
-            break;
-        case 7:
-            $month = "Julio";
-            break;
-        case 8:
-            $month = "Agosto";
-            break;
-        case 9:
-            $month = "Septiembre";
-            break;
-        case 10:
-            $month = "Octubre";
-            break;
-        case 1:
-            $month = "Noviembre";
-            break;
-        case 12:
-            $month = "Diciembre";
-            break;
+        $month = "";
+        switch ($param) {
+            case 1:
+                $month = "Enero";
+                break;
+            case 2:
+                $month = "Febrero";
+                break;
+            case 3:
+                $month = "Marzo";
+                break;
+            case 4:
+                $month = "Abril";
+                break;
+            case 5:
+                $month = "Mayo";
+                break;
+            case 6:
+                $month = "Junio";
+                break;
+            case 7:
+                $month = "Julio";
+                break;
+            case 8:
+                $month = "Agosto";
+                break;
+            case 9:
+                $month = "Septiembre";
+                break;
+            case 10:
+                $month = "Octubre";
+                break;
+            case 1:
+                $month = "Noviembre";
+                break;
+            case 12:
+                $month = "Diciembre";
+                break;
+        }
+
+        return $month;
     }
 
-    return $month;
-}
 }
 
 class AttendanceInfo {
@@ -290,8 +291,8 @@ foreach ($professor as $profe) {
     $pdf->SetFont('Arial', 'B', 11);
     $pdf->Cell(0, 5, utf8_decode("Mes: " . $pdf->getMonth(date("m"))), 0, 0, 'R');
     $pdf->Ln();
+    $pdf->Ln();
     $pdf->Cell(0, 5, utf8_decode("Profesor(a): " . $name), 0, 0);
-
 
     $pdf->Ln();
     $pdf->SetFont('Arial', '', 11);
@@ -299,10 +300,6 @@ foreach ($professor as $profe) {
     $pdf->Ln();
     $pdf->Cell(0, 5, utf8_decode("Grupo: " . $group), 0, 0);
     $pdf->Ln();
-    $pdf->Ln();
-    $pdf->SetFont('Arial', 'B', 10);
-    $pdf->Cell(0, 0, utf8_decode("ESTUDIANTES"), 0, 0, 'C', false);
-    $pdf->Ln(5);
 
 
 //MODULES
