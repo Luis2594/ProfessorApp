@@ -15,7 +15,7 @@ $group = (int) $_GET['group'];
         <li><a href="Home.php"><i class="fa fa-arrow-circle-right"></i> Inicio</a></li>
         <li><a href="#"><i class="fa fa-arrow-circle-right"></i> Módulos</a></li>
         <li><a href="ShowCoursesLists.php"><i class="fa fa-arrow-circle-right"></i> Ver Estudiantes</a></li>
-        <li><a href="#"><i class="fa fa-arrow-circle-right"></i> Estudiantes</a></li>
+        <li><a href="#"><i class="fa fa-arrow-circle-right"></i> Calificaciones</a></li>
     </ol>
 </section>
 <br>
@@ -45,14 +45,10 @@ if (isset($course) && is_int($course) && isset($professor) && is_int($professor)
                                     echo $item->getCourseName();
                                     ?>
                                 </b>
-
                             </h3>
-                            <a type="button" class="btn btn-primary pull-right" title="Exportar como archivo de excel."
-                            href="../actions/ExportStudentsListByCourseAndProfessorAction.php?course=<?php echo $course; ?>&period=<?php echo $period; ?>&year=<?php echo $year; ?>&group=<?php echo $group; ?>&professor=<?php echo $_SESSION['id']; ?>">Exportar</a>
-                            <a type="button" class="btn btn-primary pull-right" title="Archivos para los estudiantes del grupo." style="margin-left:5px;margin-right:5px;"
-                            href="FileShowByCourseAndProfessor.php?course=<?php echo $course; ?>&period=<?php echo $period; ?>&year=<?php echo $year; ?>&group=<?php echo $group; ?>&professor=<?php echo $_SESSION['id']; ?>">Archivos</a>
-                            <a type="button" class="btn btn-primary pull-right" title="Exportar como archivo de excel."
-                            href="ShowStudentsGradesByCourse.php?course=<?php echo $course; ?>&period=<?php echo $period; ?>&year=<?php echo $year; ?>&group=<?php echo $group; ?>&professor=<?php echo $_SESSION['id']; ?>">Calificaciones</a>
+                            <a type="button" class="btn btn-primary btn-sm pull-right" title="Guardar los cambios y exportar."
+                            href="../actions/ExportStudentsGradesByCourseAndProfessorAction.php?course=<?php echo $course; ?>&period=<?php echo $period; ?>&year=<?php echo $year; ?>&group=<?php echo $group; ?>&professor=<?php echo $_SESSION['id']; ?>">Exportar</a>
+                            <a type="button" class="btn btn-success btn-sm pull-right" title="Guardar los cambios." style="margin-left:5px;margin-right:5px;" href="javascript:fnGuardarCambios()">Guardar</a>
                             <?php
                             break;
                         }
@@ -63,20 +59,36 @@ if (isset($course) && is_int($course) && isset($professor) && is_int($professor)
                             <table id="studentsList" class="table table-bordered table-striped" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th>Nombre</th>
-                                        <th>Cédula</th>
-                                        <th>Teléfono</th>
+                                        <th style="width: 600px;">Nombre</th>
+                                        <th style="width: 60px;">Nivel</th>
+                                        <th style="width: 250px;">Cotidiano 30%</th>
+                                        <th style="width: 250;">Tareas 10%</th>
+                                        <th style="width: 250px;">Pruebas 30%</th>
+                                        <th style="width: 250px;">Proyecto 20%</th>
+                                        <th style="width: 250px;">Asistencia 10%</th>
+                                        <th style="width: 250px;">Convocatoria I</th>
+                                        <th style="width: 250px;">Convocatoria II</th>
+                                        <th style="width: 250px;">Promoción</th>
+                                        <th style="width: 60px;">Nota</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tbody">
                                     <?php
-                                    $students = $business->getStudentsListByCourseAndProfessor($course, $professor, $period, $year, $group);
-                                    foreach ($students as $person) {
+                                    $rows = $business->getStudentsGradesByCourseAndProfessor($course, $professor, $period, $year, $group);
+                                    foreach ($rows as $row) {
                                         ?>
                                         <tr>
-                                            <td><?php echo $person[0]; ?></td>
-                                            <td><?php echo $person[1]; ?></td>
-                                            <td><?php echo $person[2]; ?></td>
+                                            <td style="width: 600px;"><?php echo $row[0]; ?></td>
+                                            <td><?php echo $row[1]; ?></td>
+                                            <td style="width: 250px;"><input id="classWork<?php echo $row[11]; ?>" name="classWork<?php echo $row[11]; ?>" type="number" value="<?php echo $row[2]; ?>"/></td>
+                                            <td style="width: 250px;"><input id="homeWork<?php echo $row[11]; ?>" name="homeWork<?php echo $row[11]; ?>" type="number" value="<?php echo $row[3]; ?>"/></td>
+                                            <td style="width: 250px;"><input id="test<?php echo $row[11]; ?>" name="test<?php echo $row[11]; ?>" type="number" value="<?php echo $row[4]; ?>"/></td>
+                                            <td style="width: 250px;"><input id="projects<?php echo $row[11]; ?>" name="projects<?php echo $row[11]; ?>" type="number" value="<?php echo $row[5]; ?>"/></td>
+                                            <td style="width: 250px;"><input id="atendance<?php echo $row[11]; ?>" name="atendance<?php echo $row[11]; ?>" type="number" value="<?php echo $row[6]; ?>"/></td>
+                                            <td style="width: 250px;"><input id="recovery1_<?php echo $row[11]; ?>" name="recovery1_<?php echo $row[11]; ?>" type="number" value="<?php echo $row[7]; ?>"/></td>
+                                            <td style="width: 250px;"><input id="recovery2_<?php echo $row[11]; ?>" name="recovery2_<?php echo $row[11]; ?>" type="number" value="<?php echo $row[8]; ?>"/></td>
+                                            <td style="width: 250px;"><input id="promotion<?php echo $row[11]; ?>" name="promotion<?php echo $row[11]; ?>" type="number" value="<?php echo $row[9]; ?>"/></td>
+                                            <td><input id="finalgrade<?php echo $row[11]; ?>" name="finalgrade<?php echo $row[11]; ?>" type="number" value="<?php echo $row[10]; ?>" readonly/></td>
                                         </tr>    
                                         <?php
                                     }
@@ -84,9 +96,17 @@ if (isset($course) && is_int($course) && isset($professor) && is_int($professor)
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>Nombre</th>
-                                        <th>Cédula</th>
-                                        <th>Teléfono</th>
+                                        <th style="width: 600px;">Nombre</th>
+                                        <th style="width: 60px;">Nivel</th>
+                                        <th style="width: 250px;">Cotidiano 30%</th>
+                                        <th style="width: 250;">Tareas 10%</th>
+                                        <th style="width: 250px;">Pruebas 30%</th>
+                                        <th style="width: 250px;">Proyecto 20%</th>
+                                        <th style="width: 250px;">Asistencia 10%</th>
+                                        <th style="width: 250px;">Convocatoria I</th>
+                                        <th style="width: 250px;">Convocatoria II</th>
+                                        <th style="width: 250px;">Promoción</th>
+                                        <th style="width: 60px;">Nota</th>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -125,6 +145,7 @@ include_once './reusable/Footer.php';
             }
         }
     })(jQuery);
+
     var action = $.get("action");
     var msg = $.get("msg");
     if (action === "1") {
@@ -136,11 +157,7 @@ include_once './reusable/Footer.php';
         alertify.error(msg);
     }
 
-    var data = [];
-    function createInfo() {
-        var isCorrect = true;
-        var infoPerson;
-
+    function fnGuardarCambios() {
         $('#tbody tr').each(function (index, element) {
             var name = $(element).find("td").eq(0).html();
             var present = $(element).find("td").eq(3).find("input");
@@ -173,16 +190,7 @@ include_once './reusable/Footer.php';
                 data.push(infoPerson);
             }
         });
-        return isCorrect;
     }
 
-    function genarateAbsence() {
-        if (createInfo()) {
-            open("../reporter/Attendance.php?id=" + <?php echo $_SESSION['id']; ?> + "&idCourse=" + <?php echo $courseID; ?> + "&idGroup=" + <?php echo $groupID; ?> + "&data=" + JSON.stringify(data));
-            data = [];
-        } else {
-            data = [];
-        }
-    }
 </script>
 

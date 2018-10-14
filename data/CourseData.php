@@ -309,13 +309,16 @@ class CourseData extends Connector {
         }
     }
 
+    /**
+     * Capture students list by course and professor.
+     * Used in view to show students related to a professor and course.
+     */
     public function getStudentsListByCourseAndProfessor($course, $professor, $period, $year, $group) {
         $query = "call getStudentsListByCourseAndProfessor(" . $course . ", " . $professor . ", " . $year . ", " . $period . ", " . $group . ")";
         try {
             $data = $this->exeQuery($query);
             $array = [];
             if (mysqli_num_rows($data) > 0) {
-                include_once '../domain/Student.php';
                 while ($row = mysqli_fetch_array($data)) {
                     $current = array($row['fullName'], $row['persondni'], $row['phoneNumber'], $row['personid']);
                     array_push($array, $current);
@@ -327,6 +330,29 @@ class CourseData extends Connector {
         }
     }
 
+    /**
+     * Capture the grades related to each student in a given course
+     */
+    public function getStudentsGradesByCourseAndProfessor($course, $professor, $period, $year, $group) {
+        $query = "call getStudentsGradesByCourseAndProfessor(" . $course . ", " . $professor . ", " . $year . ", " . $period . ", " . $group . ")";
+        try {
+            $data = $this->exeQuery($query);
+            $array = [];
+            if (mysqli_num_rows($data) > 0) {
+                while ($row = mysqli_fetch_array($data)) {
+                    array_push($array, array($row['fullName'], $row['level'], $row['classwork'] , $row['homework'] , $row['test']
+                    , $row['project'] , $row['atendance'] , $row['recovery1'] , $row['recovery2'] , $row['finalgrade'], $row['gradesID']));
+                }
+            }
+            return $array;
+        } catch (Exception $ex) {
+            $this->Log(__METHOD__, $query);
+        }
+    }
+
+    /**
+     * Export EXCEL File of students enrolled in a given course
+     */
     public function exportStudentsListByCourseAndProfessor($course, $professor, $period, $year, $group) {
         $query = "call getStudentsListByCourseAndProfessor(" . $course . ", " . $professor . ", " . $year . ", " . $period . ", " . $group . ")";
         try {
@@ -336,9 +362,43 @@ class CourseData extends Connector {
             //add excel headers
             array_push($array, array("Nombre", "Cédula", "Teléfono"));
             if (mysqli_num_rows($data) > 0) {
-                include_once '../domain/Student.php';
                 while ($row = mysqli_fetch_array($data)) {
                     array_push($array, array($row['fullName'], $row['persondni'], $row['phoneNumber']));
+                }
+            }
+            //include required tools
+            include_once '../tools/ExportData.php';
+            include_once '../tools/GUID.php';
+            //new instances of data management lib
+            $excel = new ExportDataExcel('browser'); //browser-file-string
+            $excel->filename = GUID() . ".xlsx"; //configure name
+            //creation of the file!
+            $excel->initialize();
+            foreach ($array as $row) {
+                $excel->addRow($row);
+            }
+            $excel->finalize(); //be happy!!
+        } catch (Exception $ex) {
+            $this->Log(__METHOD__, $query); //, 0);//$_SESSION["id"]);
+        }
+    }
+
+    /**
+     * Generate EXECL file with the grades for a given goup of students enrollend in a course
+     */
+    public function exportStudentsGradesByCourseAndProfessor($course, $professor, $period, $year, $group) {
+        $query = "call getStudentsGradesByCourseAndProfessor(" . $course . ", " . $professor . ", " . $year . ", " . $period . ", " . $group . ")";
+        try {
+            //capture data by running the query
+            $data = $this->exeQuery($query);
+            $array = []; //exported data will be saved in here
+            //add excel headers
+            array_push($array, array("Nombre", "Nivel", "Cotidiano 30%" , "Tareas 10%" , "Pruebas 30%" , 
+            "Proyecto 20%" , "Asistencia 10%" , "Convocatoria I" , "Convocatoria II" , "Promoción" , "Nota"));
+            if (mysqli_num_rows($data) > 0) {
+                while ($row = mysqli_fetch_array($data)) {
+                    array_push($array, array($row['fullName'], $row['level'], $row['classwork'] , $row['homework'] , $row['test'],
+                    $row['project'] , $row['atendance'] , $row['recovery1'] , $row['recovery2'] , $row['finalgrade']));
                 }
             }
             //include required tools

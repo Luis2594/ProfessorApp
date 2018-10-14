@@ -86,6 +86,7 @@ if (isset($id) && is_int($id)) {
                                     <th>Periodo</th>
                                     <th>Año</th>
                                     <th>Estudiantes</th>
+                                    <th>Calificaciones</th>
                                 </tr>
                             </thead>
                             <tbody id="tbody">
@@ -99,6 +100,7 @@ if (isset($id) && is_int($id)) {
                                     <th>Periodo</th>
                                     <th>Año</th>
                                     <th>Estudiantes</th>
+                                    <th>Calificaciones</th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -171,13 +173,20 @@ include_once './reusable/Footer.php';
                         htmlToInsert += "<td>" + item.groupnumber + "</td>";
                         htmlToInsert += "<td>" + item.period + "</td>";
                         htmlToInsert += "<td>" + item.professorcourseyear + "</td>";
-                        htmlToInsert += '<td><a href="ShowStudentsByCourse.php?' +
-                                'course=' + item.courseid + '&' +
-                                'professor=' + id + '&' +
-                                'year=' + item.professorcourseyear + '&' +
-                                'period=' + item.periodid + '&' +
-                                'group=' + item.groupid +
-                                '">Estudiantes</a></td>';
+                        htmlToInsert += '<td><a class="btn btn-sm btn-info" href="ShowStudentsByCourse.php?' +
+                                    'course=' + item.courseid + '&' +
+                                    'professor=' + id + '&' +
+                                    'year=' + item.professorcourseyear + '&' +
+                                    'period=' + item.periodid + '&' +
+                                    'group=' + item.groupid +
+                                    '">Estudiantes</a></td>';
+                        htmlToInsert += '<td><a class="btn btn-sm btn-primary" href="ShowStudentsGradesByCourse.php?' +
+                                    'course=' + item.courseid + '&' +
+                                    'professor=' + id + '&' +
+                                    'year=' + item.professorcourseyear + '&' +
+                                    'period=' + item.periodid + '&' +
+                                    'group=' + item.groupid +
+                                    '">Calificaciones</a></td>';
                         htmlToInsert += "</tr>";
                     });
 
@@ -223,13 +232,20 @@ include_once './reusable/Footer.php';
                             htmlToInsert += "<td>" + item.groupnumber + "</td>";
                             htmlToInsert += "<td>" + item.period + "</td>";
                             htmlToInsert += "<td>" + item.professorcourseyear + "</td>";
-                            htmlToInsert += '<td><a href="ShowStudentsByCourse.php?' +
+                            htmlToInsert += '<td><a class="btn btn-sm btn-info" href="ShowStudentsByCourse.php?' +
                                     'course=' + item.courseid + '&' +
                                     'professor=' + id + '&' +
                                     'year=' + item.professorcourseyear + '&' +
                                     'period=' + item.periodid + '&' +
                                     'group=' + item.groupid +
                                     '">Estudiantes</a></td>';
+                            htmlToInsert += '<td><a class="btn btn-sm btn-primary" href="ShowStudentsGradesByCourse.php?' +
+                                    'course=' + item.courseid + '&' +
+                                    'professor=' + id + '&' +
+                                    'year=' + item.professorcourseyear + '&' +
+                                    'period=' + item.periodid + '&' +
+                                    'group=' + item.groupid +
+                                    '">Calificaciones</a></td>';
                             htmlToInsert += "</tr>";
                         });
 

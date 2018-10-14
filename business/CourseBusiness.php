@@ -70,11 +70,35 @@ class CourseBusiness {
         return $this->courseData->getCoursesByProfessor($id);
     }
     
+    /**
+     * Capture students list by course and professor.
+     * Used within the view of students by course and professor.
+     */
     public function getStudentsListByCourseAndProfessor($course, $professor, $period, $year, $group){
         return $this->courseData->getStudentsListByCourseAndProfessor($course, $professor, $period, $year, $group);
-    }    
+    }   
     
+    /**
+     * Capture students grades by course and professor.
+     * Used within the view of grades.
+     */
+    public function getStudentsGradesByCourseAndProfessor($course, $professor, $period, $year, $group){
+        return $this->courseData->getStudentsGradesByCourseAndProfessor($course, $professor, $period, $year, $group);
+    } 
+    
+    /**
+     * Export students list.
+     * Used within the action to export list.
+     */
     public function exportStudentsListByCourseAndProfessor($course, $professor, $period, $year, $group){
         return $this->courseData->exportStudentsListByCourseAndProfessor($course, $professor, $period, $year, $group);
+    }
+
+    /**
+     * Export students list.
+     * Used within the action to export grades.
+     */
+    public function exportStudentsGradesByCourseAndProfessor($course, $professor, $period, $year, $group){
+        return $this->courseData->exportStudentsGradesByCourseAndProfessor($course, $professor, $period, $year, $group);
     }
 }
