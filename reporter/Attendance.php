@@ -163,40 +163,40 @@ class PDF extends FPDF {
         $month = "";
         switch ($param) {
             case 1:
-                $month = "Enero";
+                $month = "ENERO";
                 break;
             case 2:
-                $month = "Febrero";
+                $month = "FEBRERO";
                 break;
             case 3:
-                $month = "Marzo";
+                $month = "MARZO";
                 break;
             case 4:
-                $month = "Abril";
+                $month = "ABRIL";
                 break;
             case 5:
-                $month = "Mayo";
+                $month = "MAYO";
                 break;
             case 6:
-                $month = "Junio";
+                $month = "JUNIO";
                 break;
             case 7:
-                $month = "Julio";
+                $month = "JULIO";
                 break;
             case 8:
-                $month = "Agosto";
+                $month = "AGOSTO";
                 break;
             case 9:
-                $month = "Septiembre";
+                $month = "SEPTIEMBRE";
                 break;
             case 10:
-                $month = "Octubre";
+                $month = "OCTUBRE";
                 break;
             case 1:
-                $month = "Noviembre";
+                $month = "NOVIEMBRE";
                 break;
             case 12:
-                $month = "Diciembre";
+                $month = "DICIEMBRE";
                 break;
         }
 
