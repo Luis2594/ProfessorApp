@@ -10,4 +10,8 @@ class Constants {
     const APP_PROFESSOR = "Professor";
     const APP_ADMIN = "Admin";
     const APP_STUDENT = "Student";
+
+    const ENROLLMENT_STATUS_FAILED = 0;
+    const ENROLLMENT_STATUS_APPROVED = 1;
+    const ENROLLMENT_STATUS_ENROLLED = 2;
 }

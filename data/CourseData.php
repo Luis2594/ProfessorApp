@@ -3,16 +3,18 @@
 require_once '../data/Connector.php';
 include_once '../domain/Course.php';
 
-class CourseData extends Connector {
+class CourseData extends Connector
+{
 
-    public function insert($course) {
+    public function insert($course)
+    {
         $query = "call insertCourse('" . $course->getCourseCode() . "',"
-                . "'" . $course->getCourseName() . "',"
-                . "" . $course->getCourseCredits() . ","
-                . "" . $course->getCourseLesson() . ","
-                . "'" . $course->getCoursePdf() . "',"
-                . "'" . $course->getCourseSpeciality() . "',"
-                . "" . $course->getCourseType() . ")";
+        . "'" . $course->getCourseName() . "',"
+        . "" . $course->getCourseCredits() . ","
+        . "" . $course->getCourseLesson() . ","
+        . "'" . $course->getCoursePdf() . "',"
+        . "'" . $course->getCourseSpeciality() . "',"
+        . "" . $course->getCourseType() . ")";
         try {
             $result = $this->exeQuery($query);
             $array = mysqli_fetch_array($result);
@@ -23,7 +25,8 @@ class CourseData extends Connector {
         }
     }
 
-    public function insertPeriod($course, $period) {
+    public function insertPeriod($course, $period)
+    {
         $query = "call insertCoursePeriod(" . $course . "," . $period . ")";
         try {
             return $this->exeQuery($query);
@@ -32,15 +35,16 @@ class CourseData extends Connector {
         }
     }
 
-    public function update($course) {
+    public function update($course)
+    {
         $query = "call updateCourse('" . $course->getCourseId() . "',"
-                . "'" . $course->getCourseCode() . "',"
-                . "'" . $course->getCourseName() . "',"
-                . "'" . $course->getCourseCredits() . "',"
-                . "'" . $course->getCourseLesson() . "',"
-                . "'" . $course->getCoursePdf() . "',"
-                . "'" . $course->getCourseSpeciality() . "',"
-                . "'" . $course->getCourseType() . "')";
+        . "'" . $course->getCourseCode() . "',"
+        . "'" . $course->getCourseName() . "',"
+        . "'" . $course->getCourseCredits() . "',"
+        . "'" . $course->getCourseLesson() . "',"
+        . "'" . $course->getCoursePdf() . "',"
+        . "'" . $course->getCourseSpeciality() . "',"
+        . "'" . $course->getCourseType() . "')";
         try {
             return $this->exeQuery($query);
         } catch (Exception $ex) {
@@ -48,20 +52,22 @@ class CourseData extends Connector {
         }
     }
 
-    public function delete($id) {
+    public function delete($id)
+    {
         $query = 'call deleteCourse("' . $id . '");';
         try {
             if ($this->exeQuery($query)) {
-                return TRUE;
+                return true;
             } else {
-                return FALSE;
+                return false;
             }
         } catch (Exception $ex) {
             $this->Log(__METHOD__, $query);
         }
     }
 
-    public function getAll() {
+    public function getAll()
+    {
         $query = "call getAllCourse()";
         try {
             $allCourses = $this->exeQuery($query);
@@ -69,7 +75,7 @@ class CourseData extends Connector {
             if (mysqli_num_rows($allCourses) > 0) {
                 while ($row = mysqli_fetch_array($allCourses)) {
                     $currentCourse = new Course(
-                            $row['courseid'], $row['coursecode'], $row['coursename'], $row['coursecredits'], $row['courselesson'], $row['coursepdf'], $row['coursespeciality'], $row['coursetype']);
+                        $row['courseid'], $row['coursecode'], $row['coursename'], $row['coursecredits'], $row['courselesson'], $row['coursepdf'], $row['coursespeciality'], $row['coursetype']);
 
                     $currentCourse->setSpecialityname($row['specialityname']);
                     array_push($array, $currentCourse);
@@ -81,7 +87,8 @@ class CourseData extends Connector {
         }
     }
 
-    public function getAllJson() {
+    public function getAllJson()
+    {
         $query = "call getAllCourse()";
         try {
             $allCourses = $this->exeQuery($query);
@@ -105,7 +112,8 @@ class CourseData extends Connector {
         }
     }
 
-    public function getAllParsed() {
+    public function getAllParsed()
+    {
         $query = "call getAllCourse()";
         try {
             $allCourses = $this->exeQuery($query);
@@ -113,7 +121,7 @@ class CourseData extends Connector {
             if (mysqli_num_rows($allCourses) > 0) {
                 while ($row = mysqli_fetch_array($allCourses)) {
                     $currentCourse = new Course(
-                            $row['courseid'], $row['coursecode'], $row['coursename'], $row['coursecredits'], $row['courselesson'], $row['coursepdf'], $row['specialityname'], $row['coursetype']);
+                        $row['courseid'], $row['coursecode'], $row['coursename'], $row['coursecredits'], $row['courselesson'], $row['coursepdf'], $row['specialityname'], $row['coursetype']);
 
                     array_push($array, $currentCourse);
                 }
@@ -124,7 +132,8 @@ class CourseData extends Connector {
         }
     }
 
-    public function getCourseId($id) {
+    public function getCourseId($id)
+    {
         $query = 'call getCourseById("' . $id . '");';
         try {
             $allCourses = $this->exeQuery($query);
@@ -132,7 +141,7 @@ class CourseData extends Connector {
             if (mysqli_num_rows($allCourses) > 0) {
                 while ($row = mysqli_fetch_array($allCourses)) {
                     $currentCourse = new Course(
-                            $row['courseid'], $row['coursecode'], $row['coursename'], $row['coursecredits'], $row['courselesson'], $row['coursepdf'], $row['coursespeciality'], $row['coursetype']);
+                        $row['courseid'], $row['coursecode'], $row['coursename'], $row['coursecredits'], $row['courselesson'], $row['coursepdf'], $row['coursespeciality'], $row['coursetype']);
                     $currentCourse->setSpecialityname($row['specialityname']);
                     array_push($array, $currentCourse);
                 }
@@ -143,7 +152,8 @@ class CourseData extends Connector {
         }
     }
 
-    public function getCourseToAssignProfessor($id) {
+    public function getCourseToAssignProfessor($id)
+    {
         $query = 'call getProfessorCourseByPersonId("' . $id . '");';
         try {
             $allCourses = $this->exeQuery($query);
@@ -180,7 +190,8 @@ class CourseData extends Connector {
         }
     }
 
-    public function getCourseToAssignProfessorByFilters($id, $period, $year) {
+    public function getCourseToAssignProfessorByFilters($id, $period, $year)
+    {
         $query = 'call getProfessorCourseByFilters(' . $id . ',' . $period . ',' . $year . ');';
         try {
             $allCourses = $this->exeQuery($query);
@@ -216,7 +227,8 @@ class CourseData extends Connector {
         }
     }
 
-    public function getCourseToAssignCurriculum($id) {
+    public function getCourseToAssignCurriculum($id)
+    {
         $query = 'call getCurriculumCourseByCurriculum(' . $id . ');';
         try {
             $allCourses = $this->exeQuery($query);
@@ -243,7 +255,8 @@ class CourseData extends Connector {
         }
     }
 
-    public function getCourseIdUpdate($id) {
+    public function getCourseIdUpdate($id)
+    {
         $query = 'call getCourseByIdUpdate("' . $id . '");';
         try {
             $allCourses = $this->exeQuery($query);
@@ -251,7 +264,7 @@ class CourseData extends Connector {
             if (mysqli_num_rows($allCourses) > 0) {
                 while ($row = mysqli_fetch_array($allCourses)) {
                     $currentCourse = new Course(
-                            $row['courseid'], $row['coursecode'], $row['coursename'], $row['coursecredits'], $row['courselesson'], $row['coursepdf'], $row['coursespeciality'], $row['coursetype']);
+                        $row['courseid'], $row['coursecode'], $row['coursename'], $row['coursecredits'], $row['courselesson'], $row['coursepdf'], $row['coursespeciality'], $row['coursetype']);
                     array_push($array, $currentCourse);
                 }
             }
@@ -261,7 +274,8 @@ class CourseData extends Connector {
         }
     }
 
-    public function getType() {
+    public function getType()
+    {
         $query = "SELECT * FROM coursetype";
         try {
             $type = $this->exeQuery($query);
@@ -276,7 +290,8 @@ class CourseData extends Connector {
         }
     }
 
-    public function confirmCode($code) {
+    public function confirmCode($code)
+    {
         $query = "call confirmCode('" . $code . "')";
         try {
             $result = $this->exeQuery($query);
@@ -289,7 +304,8 @@ class CourseData extends Connector {
     }
 
     //professor app
-    public function getCoursesByProfessor($id) {
+    public function getCoursesByProfessor($id)
+    {
         $query = "call getCoursesByProfessor(" . $id . ")";
         try {
             $allCourses = $this->exeQuery($query);
@@ -297,7 +313,7 @@ class CourseData extends Connector {
             if (mysqli_num_rows($allCourses) > 0) {
                 while ($row = mysqli_fetch_array($allCourses)) {
                     $currentCourse = new Course(
-                            $row['courseid'], $row['coursecode'], $row['groupnumber'] . " - " . $row['coursename'], $row['coursecredits'], $row['courselesson'], $row['coursepdf'], $row['coursespeciality'], $row['coursetype']);
+                        $row['courseid'], $row['coursecode'], $row['groupnumber'] . " - " . $row['coursename'], $row['coursecredits'], $row['courselesson'], $row['coursepdf'], $row['coursespeciality'], $row['coursetype']);
 
                     $currentCourse->setSpecialityname($row['specialityname']);
                     array_push($array, $currentCourse);
@@ -313,7 +329,8 @@ class CourseData extends Connector {
      * Capture students list by course and professor.
      * Used in view to show students related to a professor and course.
      */
-    public function getStudentsListByCourseAndProfessor($course, $professor, $period, $year, $group) {
+    public function getStudentsListByCourseAndProfessor($course, $professor, $period, $year, $group)
+    {
         $query = "call getStudentsListByCourseAndProfessor(" . $course . ", " . $professor . ", " . $year . ", " . $period . ", " . $group . ")";
         try {
             $data = $this->exeQuery($query);
@@ -333,15 +350,19 @@ class CourseData extends Connector {
     /**
      * Capture the grades related to each student in a given course
      */
-    public function getStudentsGradesByCourseAndProfessor($course, $professor, $period, $year, $group) {
+    public function getStudentsGradesByCourseAndProfessor($course, $professor, $period, $year, $group)
+    {
         $query = "call getStudentsGradesByCourseAndProfessor(" . $course . ", " . $professor . ", " . $year . ", " . $period . ", " . $group . ")";
         try {
             $data = $this->exeQuery($query);
             $array = [];
             if (mysqli_num_rows($data) > 0) {
                 while ($row = mysqli_fetch_array($data)) {
-                    array_push($array, array($row['fullName'], $row['level'], $row['classwork'] , $row['homework'] , $row['test']
-                    , $row['project'] , $row['atendance'] , $row['recovery1'] , $row['recovery2'] , $row['finalgrade'], $row['gradesID']));
+                    array_push($array,
+                        array($row['fullName'], $row['level'], $row['classwork'],
+                            $row['homework'], $row['test'], $row['projects'],
+                            $row['atendance'], $row['recovery1'], $row['recovery2'],
+                            $row['promotion'], $row['finalgrade'], $row['gradesID']));
                 }
             }
             return $array;
@@ -353,7 +374,8 @@ class CourseData extends Connector {
     /**
      * Export EXCEL File of students enrolled in a given course
      */
-    public function exportStudentsListByCourseAndProfessor($course, $professor, $period, $year, $group) {
+    public function exportStudentsListByCourseAndProfessor($course, $professor, $period, $year, $group)
+    {
         $query = "call getStudentsListByCourseAndProfessor(" . $course . ", " . $professor . ", " . $year . ", " . $period . ", " . $group . ")";
         try {
             //capture data by running the query
@@ -386,19 +408,20 @@ class CourseData extends Connector {
     /**
      * Generate EXECL file with the grades for a given goup of students enrollend in a course
      */
-    public function exportStudentsGradesByCourseAndProfessor($course, $professor, $period, $year, $group) {
+    public function exportStudentsGradesByCourseAndProfessor($course, $professor, $period, $year, $group)
+    {
         $query = "call getStudentsGradesByCourseAndProfessor(" . $course . ", " . $professor . ", " . $year . ", " . $period . ", " . $group . ")";
         try {
             //capture data by running the query
             $data = $this->exeQuery($query);
             $array = []; //exported data will be saved in here
             //add excel headers
-            array_push($array, array("Nombre", "Nivel", "Cotidiano 30%" , "Tareas 10%" , "Pruebas 30%" , 
-            "Proyecto 20%" , "Asistencia 10%" , "Convocatoria I" , "Convocatoria II" , "Promoción" , "Nota"));
+            array_push($array, array("Nombre", "Nivel", "Cotidiano 30%", "Tareas 10%", "Pruebas 30%",
+                "Proyecto 20%", "Asistencia 10%", "Convocatoria I", "Convocatoria II", "Promoción", "Nota"));
             if (mysqli_num_rows($data) > 0) {
                 while ($row = mysqli_fetch_array($data)) {
-                    array_push($array, array($row['fullName'], $row['level'], $row['classwork'] , $row['homework'] , $row['test'],
-                    $row['project'] , $row['atendance'] , $row['recovery1'] , $row['recovery2'] , $row['finalgrade']));
+                    array_push($array, array($row['fullName'], $row['level'], $row['classwork'], $row['homework'], $row['test'],
+                        $row['project'], $row['atendance'], $row['recovery1'], $row['recovery2'], $row['promotion'], $row['finalgrade']));
                 }
             }
             //include required tools
