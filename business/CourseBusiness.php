@@ -86,6 +86,15 @@ class CourseBusiness {
         return $this->courseData->getStudentsGradesByCourseAndProfessor($course, $professor, $period, $year, $group);
     } 
     
+
+     /**
+     * Capture students reprobated by course and professor.
+     * Used within the view of grades.
+     */
+    public function getStudentsReprobatedByCourseAndProfessor($course, $professor, $period, $year, $group){
+        return $this->courseData->getStudentsReprobatedByCourseAndProfessor($course, $professor, $period, $year, $group);
+    } 
+    
     /**
      * Export students list.
      * Used within the action to export list.

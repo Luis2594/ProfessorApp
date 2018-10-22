@@ -362,7 +362,42 @@ class CourseData extends Connector
                         array($row['fullName'], $row['level'], $row['classwork'],
                             $row['homework'], $row['test'], $row['projects'],
                             $row['atendance'], $row['recovery1'], $row['recovery2'],
-                            $row['promotion'], $row['finalgrade'], $row['gradesID']));
+                            $row['promotion'], $row['finalgrade'], $row['gradesID'], 
+                            $row['status']));
+                }
+            }
+            return $array;
+        } catch (Exception $ex) {
+            $this->Log(__METHOD__, $query);
+        }
+    }
+
+    /**
+     * Capture the reprobated to each student in a given course
+     */
+    public function getStudentsReprobatedByCourseAndProfessor($course, $professor, $period, $year, $group)
+    {
+        $query = "call getStudentsReprobatedByCourseAndProfessor(" . $course . ", " . $professor . ", " . $year . ", " . $period . ", " . $group . ")";
+        try {
+            $data = $this->exeQuery($query);
+            $array = [];
+            if (mysqli_num_rows($data) > 0) {
+                while ($row = mysqli_fetch_array($data)) {
+                    array_push($array,
+                        array(
+                            $row['fullName'], 
+                            $row['level'], 
+                            $row['classwork'],
+                            $row['homework'], 
+                            $row['test'], 
+                            $row['projects'],
+                            $row['atendance'], 
+                            $row['recovery1'], 
+                            $row['recovery2'],
+                            $row['promotion'], 
+                            $row['finalgrade'], 
+                            $row['gradesID'], 
+                            $row['status']));
                 }
             }
             return $array;
@@ -420,8 +455,18 @@ class CourseData extends Connector
                 "Proyecto 20%", "Asistencia 10%", "Convocatoria I", "Convocatoria II", "Promoción", "Nota"));
             if (mysqli_num_rows($data) > 0) {
                 while ($row = mysqli_fetch_array($data)) {
-                    array_push($array, array($row['fullName'], $row['level'], $row['classwork'], $row['homework'], $row['test'],
-                        $row['project'], $row['atendance'], $row['recovery1'], $row['recovery2'], $row['promotion'], $row['finalgrade']));
+                    array_push($array, array(
+                    $row['fullName'], 
+                    $row['level'], 
+                    $row['classwork'], 
+                    $row['homework'], 
+                    $row['test'],
+                    $row['project'], 
+                    $row['atendance'], 
+                    $row['recovery1'], 
+                    $row['recovery2'], 
+                    $row['promotion'], 
+                    $row['finalgrade']));
                 }
             }
             //include required tools

@@ -9,10 +9,10 @@ $period = (int) $_GET['period'];
 $group = (int) $_GET['group'];
 
 $params = "course=" . $course .
-            "&professor=" . $professor .
-            "&year=" . $year .
-            "&period=" . $period .
-            "&group=" . $group;
+    "&professor=" . $professor .
+    "&year=" . $year .
+    "&period=" . $period .
+    "&group=" . $group;
 ?>
 
 <!-- Content Header (Page header) -->
@@ -38,29 +38,30 @@ if (isset($course) && is_int($course) && isset($professor) && is_int($professor)
                 <div class="box">
                     <div class="box-header">
                         <?php
-                        include_once '../business/CourseBusiness.php';
+include_once '../business/CourseBusiness.php';
 
-                        $business = new CourseBusiness();
+    $business = new CourseBusiness();
 
-                        $courses = $business->getCourseId($course);
-                        foreach ($courses as $item) {
-                            ?>
+    $courses = $business->getCourseId($course);
+    foreach ($courses as $item) {
+        ?>
                             <h3 class="box-title">
-                                <b> 
+                                <b>
                                     Calificaciones:
                                 </b>
                                 <?php
-                                    echo $item->getCourseName();
-                                ?>
+echo $item->getCourseName();
+        ?>
                             </h3>
                             <a type="button" class="btn btn-info btn-sm pull-right" title="Exportar datos a archivo EXCEL."
                             href="../actions/ExportStudentsGradesByCourseAndProfessorAction.php?<?php echo $params; ?>">Exportar</a>
-                            <a type="button" class="btn btn-info btn-sm pull-right" title="Generar reporte." style="margin-left:5px;margin-right:5px;" 
+
+                            <a type="button" onclick="generateInfo();" class="btn btn-info btn-sm pull-right" title="Generar reporte." style="margin-left:5px;margin-right:5px;"
                             href="#">Reporte</a>
                             <?php
-                            break;
-                        }
-                        ?>
+break;
+    }
+    ?>
                     </div>
                     <div class="table-responsive">
                         <div class="box-body">
@@ -82,9 +83,9 @@ if (isset($course) && is_int($course) && isset($professor) && is_int($professor)
                                 </thead>
                                 <tbody id="tbody" style="font-size: 12px;">
                                     <?php
-                                    $rows = $business->getStudentsGradesByCourseAndProfessor($course, $professor, $period, $year, $group);
-                                    foreach ($rows as $row) {
-                                        ?>
+$rows = $business->getStudentsGradesByCourseAndProfessor($course, $professor, $period, $year, $group);
+    foreach ($rows as $row) {
+        ?>
                                         <tr>
                                             <td ><label><?php echo $row[0]; ?></label><input hidden value="<?php echo $row[1]; ?>" id="level_<?php echo $row[11]; ?>"/></td>
                                             <td><input min="0" max="30" style="width:80px;text-align: right;" step="0.01" id="classWork_<?php echo $row[11]; ?>" name="classWork_<?php echo $row[11]; ?>" type="number" value="<?php echo $row[2]; ?>"/></td>
@@ -96,10 +97,10 @@ if (isset($course) && is_int($course) && isset($professor) && is_int($professor)
                                             <td><input min="0" max="100" style="width:80px;text-align: right;" step="0.01" id="recovery2_<?php echo $row[11]; ?>" name="recovery2_<?php echo $row[11]; ?>" type="number" value="<?php echo $row[8]; ?>"/></td>
                                             <td><input min="0" max="100" style="width:80px;text-align: right;" step="0.01" id="promotion_<?php echo $row[11]; ?>" name="promotion_<?php echo $row[11]; ?>" type="number" value="<?php echo $row[9]; ?>"/></td>
                                             <td><input min="0" max="100" style="width:80px;text-align: right;" id="finalgrade_<?php echo $row[11]; ?>" name="finalgrade_<?php echo $row[11]; ?>" type="number" value="<?php echo $row[10]; ?>" readonly/></td>
-                                        </tr>    
+                                        </tr>
                                         <?php
-                                    }
-                                    ?>
+}
+    ?>
                                 </tbody>
                                 <tfoot style="font-size: 11px;">
                                     <tr>
@@ -169,7 +170,7 @@ include_once './reusable/Footer.php';
         var id = this.id.split("_")[1];
         var updateType = this.id.split("_")[0];
         var urlString = "../actions/GradesUpdateAction.php?action="+updateType+"&<?php echo $params; ?>";
-        
+
         //min validation
         if ($( this ).val() < 0){
             $( this ).val(0)
@@ -191,27 +192,27 @@ include_once './reusable/Footer.php';
                 if ($( this ).val() > 30) {
                     $( this ).val(30);
                 }
-                break;            
+                break;
             case "projects":
                 if ($( this ).val() > 20) {
                     $( this ).val(20);
                 }
-                break;            
+                break;
             case "atendance":
                 if ($( this ).val() > 10) {
                     $( this ).val(10);
                 }
-                break;            
+                break;
             case "recovery1":
                 if ($( this ).val() > 100) {
                     $( this ).val(100);
                 }
-                break;            
+                break;
             case "recovery2":
                 if ($( this ).val() > 100) {
                     $( this ).val(100);
                 }
-                break;            
+                break;
             case "promotion":
                 if ($( this ).val() > 100) {
                     $( this ).val(100);
@@ -298,5 +299,25 @@ include_once './reusable/Footer.php';
             }
         }
     });
+
+    function generateInfo() {
+
+        var period = <?php echo $period; ?>;
+        var year = <?php echo $year; ?>;
+        var course = <?php echo $course; ?>;
+        var group =  <?php echo $group; ?>;
+        var id = <?php echo $_SESSION['id']; ?>;
+
+        if (period == 0 || year == 0){
+            alertify.error("Seleccione los filtros...");
+        }else{
+            open("../reporter/Grades.php?period=" + period +
+                "&year=" + year +
+                "&id=" + id +
+                "&course=" + course +
+                "&group=" + group );
+        }
+
+}
 </script>
 
