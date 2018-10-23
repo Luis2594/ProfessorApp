@@ -71,9 +71,9 @@ if (isset($course) && is_int($course) && isset($professor) && is_int($professor)
                                         <!-- <th >Nivel</th> -->
                                         <th >Cotidiano</th>
                                         <th >Tareas</th>
-                                        <th >Pruebas%</th>
-                                        <th >Proyecto%</th>
-                                        <th >Asistencia%</th>
+                                        <th >Pruebas</th>
+                                        <th >Proyecto</th>
+                                        <th >Asistencia</th>
                                         <th >Convocatoria I</th>
                                         <th style="font-size: 11px;" >Convocatoria II</th>
                                         <th >Promoción</th>
