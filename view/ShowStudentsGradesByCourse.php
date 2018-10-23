@@ -176,6 +176,11 @@ include_once './reusable/Footer.php';
         }
 
         // //max validation
+        if ($(this).val() > 100) {
+            $(this).val(100);
+        }
+
+        // //max validation
         // switch(updateType){
         //     case "classWork":
         //         if ($(this).val() > 30) {
