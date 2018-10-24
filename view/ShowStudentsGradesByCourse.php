@@ -70,11 +70,11 @@ break;
                                     <tr>
                                         <th >Nombre</th>
                                         <!-- <th >Nivel</th> -->
-                                        <th >Cotidiano 30%</th>
-                                        <th >Tareas 10%</th>
-                                        <th >Pruebas 30%</th>
-                                        <th >Proyecto 20%</th>
-                                        <th >Asistencia 10%</th>
+                                        <th >Cotidiano</th>
+                                        <th >Tareas</th>
+                                        <th >Pruebas</th>
+                                        <th >Proyecto</th>
+                                        <th >Asistencia</th>
                                         <th >Convocatoria I</th>
                                         <th style="font-size: 11px;" >Convocatoria II</th>
                                         <th >Promoción</th>
@@ -88,11 +88,11 @@ $rows = $business->getStudentsGradesByCourseAndProfessor($course, $professor, $p
         ?>
                                         <tr>
                                             <td ><label><?php echo $row[0]; ?></label><input hidden value="<?php echo $row[1]; ?>" id="level_<?php echo $row[11]; ?>"/></td>
-                                            <td><input min="0" max="30" style="width:80px;text-align: right;" step="0.01" id="classWork_<?php echo $row[11]; ?>" name="classWork_<?php echo $row[11]; ?>" type="number" value="<?php echo $row[2]; ?>"/></td>
-                                            <td><input min="0" max="10" style="width:80px;text-align: right;" step="0.01" id="homeWork_<?php echo $row[11]; ?>" name="homeWork_<?php echo $row[11]; ?>" type="number" value="<?php echo $row[3]; ?>"/></td>
-                                            <td><input min="0" max="30" style="width:80px;text-align: right;" step="0.01" id="test_<?php echo $row[11]; ?>" name="test_<?php echo $row[11]; ?>" type="number" value="<?php echo $row[4]; ?>"/></td>
-                                            <td><input min="0" max="20" style="width:80px;text-align: right;" step="0.01" id="projects_<?php echo $row[11]; ?>" name="projects_<?php echo $row[11]; ?>" type="number" value="<?php echo $row[5]; ?>"/></td>
-                                            <td><input min="0" max="10" style="width:80px;text-align: right;" step="0.01" id="atendance_<?php echo $row[11]; ?>" name="atendance_<?php echo $row[11]; ?>" type="number" value="<?php echo $row[6]; ?>"/></td>
+                                            <td><input min="0" max="100" style="width:80px;text-align: right;" step="0.01" id="classWork_<?php echo $row[11]; ?>" name="classWork_<?php echo $row[11]; ?>" type="number" value="<?php echo $row[2]; ?>"/></td>
+                                            <td><input min="0" max="100" style="width:80px;text-align: right;" step="0.01" id="homeWork_<?php echo $row[11]; ?>" name="homeWork_<?php echo $row[11]; ?>" type="number" value="<?php echo $row[3]; ?>"/></td>
+                                            <td><input min="0" max="100" style="width:80px;text-align: right;" step="0.01" id="test_<?php echo $row[11]; ?>" name="test_<?php echo $row[11]; ?>" type="number" value="<?php echo $row[4]; ?>"/></td>
+                                            <td><input min="0" max="100" style="width:80px;text-align: right;" step="0.01" id="projects_<?php echo $row[11]; ?>" name="projects_<?php echo $row[11]; ?>" type="number" value="<?php echo $row[5]; ?>"/></td>
+                                            <td><input min="0" max="100" style="width:80px;text-align: right;" step="0.01" id="atendance_<?php echo $row[11]; ?>" name="atendance_<?php echo $row[11]; ?>" type="number" value="<?php echo $row[6]; ?>"/></td>
                                             <td><input min="0" max="100" style="width:80px;text-align: right;" step="0.01" id="recovery1_<?php echo $row[11]; ?>" name="recovery1_<?php echo $row[11]; ?>" type="number" value="<?php echo $row[7]; ?>"/></td>
                                             <td><input min="0" max="100" style="width:80px;text-align: right;" step="0.01" id="recovery2_<?php echo $row[11]; ?>" name="recovery2_<?php echo $row[11]; ?>" type="number" value="<?php echo $row[8]; ?>"/></td>
                                             <td><input min="0" max="100" style="width:80px;text-align: right;" step="0.01" id="promotion_<?php echo $row[11]; ?>" name="promotion_<?php echo $row[11]; ?>" type="number" value="<?php echo $row[9]; ?>"/></td>
@@ -106,11 +106,11 @@ $rows = $business->getStudentsGradesByCourseAndProfessor($course, $professor, $p
                                     <tr>
                                         <th >Nombre</th>
                                         <!-- <th >Nivel</th> -->
-                                        <th >Cotidiano 30%</th>
-                                        <th >Tareas 10%</th>
-                                        <th >Pruebas 30%</th>
-                                        <th >Proyecto 20%</th>
-                                        <th >Asistencia 10%</th>
+                                        <th >Cotidiano</th>
+                                        <th >Tareas</th>
+                                        <th >Pruebas</th>
+                                        <th >Proyecto</th>
+                                        <th >Asistencia</th>
                                         <th >Convocatoria I</th>
                                         <th style="font-size: 11px;">Convocatoria II</th>
                                         <th >Promoción</th>
@@ -175,55 +175,59 @@ include_once './reusable/Footer.php';
         if ($( this ).val() < 0){
             $( this ).val(0)
         }
-
-        //max validation
-        switch(updateType){
-            case "classWork":
-                if ($(this).val() > 30) {
-                    $(this).val(30);
-                }
-                break;
-            case "homeWork":
-                if ($( this ).val() > 10) {
-                    $( this ).val(10);
-                }
-                break;
-            case "test":
-                if ($( this ).val() > 30) {
-                    $( this ).val(30);
-                }
-                break;
-            case "projects":
-                if ($( this ).val() > 20) {
-                    $( this ).val(20);
-                }
-                break;
-            case "atendance":
-                if ($( this ).val() > 10) {
-                    $( this ).val(10);
-                }
-                break;
-            case "recovery1":
-                if ($( this ).val() > 100) {
-                    $( this ).val(100);
-                }
-                break;
-            case "recovery2":
-                if ($( this ).val() > 100) {
-                    $( this ).val(100);
-                }
-                break;
-            case "promotion":
-                if ($( this ).val() > 100) {
-                    $( this ).val(100);
-                }
-                break;
-            default://final grade
-                if ($( this ).val() > 100) {
-                    $( this ).val(100);
-                }
-                break;
+        // //max validation
+        if ($(this).val() > 100) {
+            $(this).val(100);
         }
+
+        // //max validation
+        // switch(updateType){
+        //     case "classWork":
+        //         if ($(this).val() > 30) {
+        //             $(this).val(30);
+        //         }
+        //         break;
+        //     case "homeWork":
+        //         if ($( this ).val() > 10) {
+        //             $( this ).val(10);
+        //         }
+        //         break;
+        //     case "test":
+        //         if ($( this ).val() > 30) {
+        //             $( this ).val(30);
+        //         }
+        //         break;            
+        //     case "projects":
+        //         if ($( this ).val() > 20) {
+        //             $( this ).val(20);
+        //         }
+        //         break;            
+        //     case "atendance":
+        //         if ($( this ).val() > 10) {
+        //             $( this ).val(10);
+        //         }
+        //         break;            
+        //     case "recovery1":
+        //         if ($( this ).val() > 100) {
+        //             $( this ).val(100);
+        //         }
+        //         break;            
+        //     case "recovery2":
+        //         if ($( this ).val() > 100) {
+        //             $( this ).val(100);
+        //         }
+        //         break;            
+        //     case "promotion":
+        //         if ($( this ).val() > 100) {
+        //             $( this ).val(100);
+        //         }
+        //         break;
+        //     default://final grade
+        //         if ($( this ).val() > 100) {
+        //             $( this ).val(100);
+        //         }
+        //         break;
+        // }
 
         //ajax save
         var request = $.ajax({
@@ -283,7 +287,6 @@ include_once './reusable/Footer.php';
             }
         }
 
-        debugger;
         //configure color
         if ($("#level_"+id).val().substring(0, 3) == "III"){
             if (parseInt($("#finalgrade_"+id).val()) >= 70){
