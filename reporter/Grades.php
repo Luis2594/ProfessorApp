@@ -221,17 +221,17 @@ foreach ($professor as $profe) {
 
     $pdf->grades($data);
 
-    $pdf->Ln(5);
+    $pdf->Ln(10);
 
     $pdf->SetFont('Arial', 'BU', 11);
     $name = $profe->getPersonFirstName() . " " . $profe->getPersonFirstlastname() . " " . $profe->getPersonSecondlastname();
     $pdf->Cell(0, 5, utf8_decode($name), 0, 0);
-    $pdf->Cell(0, 5, utf8_decode('MSc. Julio Contreras Monge'), 0, 0, 'R');
+    $pdf->Cell(-5, 5, utf8_decode('M.Sc. Julio Contreras Monge'), 0, 0, 'R');
     $pdf->SetFont('Arial', '', 11);
 
     $pdf->Ln();
     $pdf->Cell(0, 5, utf8_decode('Nombre completo del profesor'), 0, 0);
-    $pdf->Cell(0, 5, utf8_decode('Asistente de dirección'), 0, 0, 'R');
+    $pdf->Cell(-10, 5, utf8_decode('Asistente de dirección'), 0, 0, 'R');
 
     $pdf->Ln();
     $pdf->Ln();
@@ -241,45 +241,54 @@ foreach ($professor as $profe) {
     
     $pdf->Ln();
     $pdf->Cell(0, 5, utf8_decode('Firma del docente'), 0, 0);
-    $pdf->Cell(0, 5, utf8_decode('Firma'), 0, 0, 'R');
+    $pdf->Cell(-23, 5, utf8_decode('Firma'), 0, 0, 'R');
 
     $pdf->SetFont('Arial', '', 11);
     $pdf->Ln();
+    $pdf->Ln();
     $pdf->Cell(0, 5, utf8_decode('Fecha de entrega:_____________________'), 0, 0);
-    $pdf->Cell(0, 5, utf8_decode('SELLO'), 0, 0, 'R');
+    $pdf->Cell(-21, 5, utf8_decode('SELLO'), 0, 0, 'R');
 
     $pdf->addPage();
 
     $pdf->SetFont('Arial', 'B', 12);
     $pdf->Cell(0, 15, utf8_decode("ACTA DE APLAZADOS"), 0, 0, 'C', false);
-    $pdf->Ln();
-    $pdf->SetFont('Arial', '', 11);
-    $pdf->Cell(0, 5, utf8_decode("De acuerdo con las disposiciones vigentes en el Reglamento de Evaluación de los Aprendizajes, declaro que"), 0, 0);
-    $pdf->Ln();
-    $pdf->Cell(0, 5, utf8_decode("los   siguientes   alumnos  (as),   después  de  rendir  la  prueba  correspondiente,  obtuvieron  los  siguientes"), 0, 0);
-    $pdf->Ln();
-    $pdf->Cell(0, 5, utf8_decode("resultados: "), 0, 0);
-    $pdf->Ln();
-    $pdf->Ln();
-    $pdf->reprobated($reprobated);
+    $pdf->Ln(5);
+    $pdf->Cell(0, 15, utf8_decode("CURSO LECTIVO: " . $year . " - " . $pdf->getSemestre($period) . " SEMESTRE"), 0, 0, 'C', false);
 
+    $pdf->Ln(13);
+    $pdf->SetFont('Arial', '', 12);
+    $pdf->Cell(0, 5, utf8_decode("Nombre del módulo: " . $courseName), 0, 0);
+    $pdf->Ln();
+    $pdf->Cell(0, 5, utf8_decode("Número de módulo: " . $codeCourse), 0, 0, 'L', false);
+    $pdf->Cell(-200, 5, utf8_decode("Período: " . $pdf->getPeriod($period)), 0, 0, 'C', false);
+    $pdf->Cell(0, 5, utf8_decode("Grupo: " . $group), 0, 0, 'R', false);
+    $pdf->Ln();
+
+    $pdf->Ln();
+
+    $pdf->reprobated($reprobated);
+  
     $pdf->SetFont('Arial', '', 11);
     $pdf->Ln(5);
     $pdf->Cell(0, 5, utf8_decode('Fecha I Convocatoria:_____________________'), 0, 0);
     $pdf->Cell(0, 5, utf8_decode('Firma docente:_______________________'), 0, 0, 'R');
 
     $pdf->Ln();
+    $pdf->Ln();
     $pdf->Cell(0, 5, utf8_decode('Fecha II Convocatoria:_____________________'), 0, 0);
     $pdf->Cell(0, 5, utf8_decode('Firma docente:_______________________'), 0, 0, 'R');
 
+    $pdf->Ln();
     $pdf->Ln();
     $pdf->Cell(0, 5, utf8_decode('Fecha Estarteg. Prom.:_____________________'), 0, 0);
     $pdf->Cell(0, 5, utf8_decode('Firma docente:_______________________'), 0, 0, 'R');
 
     $pdf->Ln();
     $pdf->Ln();
+    $pdf->Ln();
     $pdf->SetFont('Arial', 'BU', 11);
-    $pdf->Cell(0, 5, utf8_decode('Lic. Julio Contreras Monge'), 0, 0, 'C');
+    $pdf->Cell(0, 5, utf8_decode('M.Sc. Julio Contreras Monge'), 0, 0, 'C');
     $pdf->Ln();
     $pdf->SetFont('Arial', '', 11);
     $pdf->Cell(0, 5, utf8_decode('Asistente de dirección'), 0, 0, 'C');
