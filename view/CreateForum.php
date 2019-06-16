@@ -112,6 +112,8 @@ include_once './reusable/Footer.php';
     }
 
     function addGroup(sel) {
-        document.getElementById("group").value = sel.options[sel.selectedIndex].text.substring(0, 3);
+        var temp = [];
+        temp = sel.options[sel.selectedIndex].text.split("-");
+        document.getElementById("group").value = temp[0] + "-" + temp[1].substring(0, 1);
     }
 </script>

@@ -3,9 +3,11 @@
 require_once '../data/Connector.php';
 include_once '../domain/Group.php';
 
-class GroupData extends Connector {
+class GroupData extends Connector
+{
 
-    public function getAll($id) {
+    public function getAll($id)
+    {
         $query = "call getAllGroupsByProfessor(" . $id . ");";
         try {
             $group = $this->exeQuery($query);
@@ -20,20 +22,22 @@ class GroupData extends Connector {
         }
     }
 
-    public function getGroupByNumber($number) {
+    public function getGroupByNumber($number)
+    {
         $query = "call getGroupByNumber('" . $number . "');";
         try {
             $group = $this->exeQuery($query);
             $array = [];
             while ($row = mysqli_fetch_array($group)) {
-                return (new Group($row['groupid'], $row['groupnumber'], 0));
+                return $row['groupid'];
             }
         } catch (Exception $ex) {
             $this->Log(__METHOD__, $query);
         }
     }
-    
-    public function getNumberGroup($id) {
+
+    public function getNumberGroup($id)
+    {
         $query = "call getNumberGroup('" . $id . "');";
         try {
             $value = $this->exeQuery($query);

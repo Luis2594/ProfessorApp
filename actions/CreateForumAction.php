@@ -8,13 +8,12 @@ $course = $_POST['course'];
 $group = $_POST['group'];
 
 if (isset($name) && $name != "" && isset($course) && isset($group)) {
-    if ((int)$course != -1) {
+    if ((int) $course != -1) {
         $forumBusiness = new ForumBusiness();
         $courseBusiness = new GroupBusiness();
-        $courseTmp = $courseBusiness->getGroupByNumber($group);
-        $groupID = $courseTmp->getGroupid();
-        
-        $forum = new Forum(NULL, $name , $course, $groupID, $_SESSION['id']);
+        $groupID = $courseBusiness->getGroupByNumber($group);
+
+        $forum = new Forum(null, $name, $course, $groupID, $_SESSION['id']);
         if ($forumBusiness->insert($forum) != 0) {
             header("location: ../view/ShowForums.php?action=1&msg=Registro_creado_correctamente");
         } else {

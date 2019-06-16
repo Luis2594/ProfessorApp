@@ -253,7 +253,7 @@ foreach ($professor as $profe) {
 
     $pdf->SetFont('Arial', 'B', 12);
     $pdf->Cell(0, 15, utf8_decode("ACTA DE APLAZADOS"), 0, 0, 'C', false);
-    $pdf->Ln(5);
+    $pdf->Ln(8);
     $pdf->Cell(0, 15, utf8_decode("CURSO LECTIVO: " . $year . " - " . $pdf->getSemestre($period) . " SEMESTRE"), 0, 0, 'C', false);
 
     $pdf->Ln(13);
