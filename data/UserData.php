@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(E_ERROR | E_PARSE);
 require_once '../data/Connector.php';
 require_once '../domain/User.php';
 require_once '../business/PersonBusiness.php';

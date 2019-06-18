@@ -52,15 +52,14 @@ class PDF extends FPDF
 
             $this->Cell($w[0], 8, utf8_decode($n), 'LR', 0, 'C', false);
             $this->Cell($w[1], 8, utf8_decode($value[0]), 'LR', 0, 'L', false);
-            $this->Cell($w[2], 8, utf8_decode($value[10]), 'LR', 0, 'C', false);
 
-            if($value[10] == '0'){
+            if ($value[10] == '0') {
+                $this->Cell($w[2], 8, utf8_decode("-"), 'LR', 0, 'C', false);
                 $this->Cell($w[3], 8, utf8_decode("Desertó"), 'LR', 0, 'C', false);
-            }else{
+            } else {
+                $this->Cell($w[2], 8, utf8_decode($value[10]), 'LR', 0, 'C', false);
                 $this->Cell($w[3], 8, utf8_decode($this->getStatus($value[12])), 'LR', 0, 'C', false);
             }
-
-            
 
             $this->Ln();
 
@@ -195,7 +194,40 @@ foreach ($course as $value) {
 $group = $groupBusiness->getNumberGroup($idGroup);
 
 $data = $courseBusiness->getStudentsGradesByCourseAndProfessor($idCourse, $id, $period, $year, $idGroup);
-$reprobated = $courseBusiness->getStudentsReprobatedByCourseAndProfessor($idCourse, $id, $period, $year, $idGroup);
+
+$students1 = [];
+$students2 = [];
+
+// $reprobated = $courseBusiness->getStudentsReprobatedByCourseAndProfessor($idCourse, $id, $period, $year, $idGroup);
+
+$reprobated = [];
+$cont = 0;
+foreach ($data as $student) {
+
+    //DIVIDIR LOS ESTUDIANTES POR 25
+    if ($cont < 25) {
+        array_push($students1, $student);
+    } else {
+        array_push($students2, $student);
+    }
+    $cont++;
+    //DIVIDIR LOS ESTUDIANTES POR 25
+
+    //SELECCIONAR LOS APLAZADOS Y LOS QUE HICIERON CONVOCATORIA O PROMOCION
+    if ($student[12] == '0') {
+        array_push($reprobated, $student);
+    } else {
+        if ($student[7] != "0" && $student[8] != "0" && $student[9] != "0") {
+            array_push($reprobated, $student);
+        }
+    }
+    //SELECCIONAR LOS APLAZADOS Y LOS QUE HICIERON CONVOCATORIA O PROMOCION
+}
+
+// echo "#1 " . count($students1);
+// echo "   #2 " . count($students2);
+
+// exit();
 
 // SE VA A DEJAR ASI POR AQUELLO DE QUE MARLEN QUIERA PRESENTAR EL NOMBRE DEL PROFESOR
 foreach ($professor as $profe) {
@@ -219,26 +251,32 @@ foreach ($professor as $profe) {
 
     $pdf->Ln();
 
-    $pdf->grades($data);
+    $pdf->grades($students1);
+
+    if (count($students2)) {
+        $pdf->addPage();
+        $pdf->Ln(10);
+        $pdf->grades($students2);
+    }
 
     $pdf->Ln(10);
 
     $pdf->SetFont('Arial', 'BU', 11);
     $name = $profe->getPersonFirstName() . " " . $profe->getPersonFirstlastname() . " " . $profe->getPersonSecondlastname();
     $pdf->Cell(0, 5, utf8_decode($name), 0, 0);
-    $pdf->Cell(-5, 5, utf8_decode('M.Sc. Julio Contreras Monge'), 0, 0, 'R');
+    $pdf->Cell(-5, 5, utf8_decode('M.Sc. Inés Madrigal Estrada'), 0, 0, 'R');
     $pdf->SetFont('Arial', '', 11);
 
     $pdf->Ln();
     $pdf->Cell(0, 5, utf8_decode('Nombre completo del profesor'), 0, 0);
-    $pdf->Cell(-10, 5, utf8_decode('Asistente de dirección'), 0, 0, 'R');
+    $pdf->Cell(-10, 5, utf8_decode('Directora Institucional'), 0, 0, 'R');
 
     $pdf->Ln();
     $pdf->Ln();
     $pdf->Cell(0, 5, utf8_decode("___________________________"), 0, 0);
     $pdf->Cell(0, 5, utf8_decode('___________________________'), 0, 0, 'R');
     $pdf->SetFont('Arial', 'B', 11);
-    
+
     $pdf->Ln();
     $pdf->Cell(0, 5, utf8_decode('Firma del docente'), 0, 0);
     $pdf->Cell(-23, 5, utf8_decode('Firma'), 0, 0, 'R');
@@ -268,7 +306,7 @@ foreach ($professor as $profe) {
     $pdf->Ln();
 
     $pdf->reprobated($reprobated);
-  
+
     $pdf->SetFont('Arial', '', 11);
     $pdf->Ln(5);
     $pdf->Cell(0, 5, utf8_decode('Fecha I Convocatoria:_____________________'), 0, 0);
@@ -300,7 +338,6 @@ foreach ($professor as $profe) {
     $pdf->Ln();
     $pdf->SetFont('Arial', '', 11);
     $pdf->Cell(0, 5, utf8_decode('Firma del asistente de dirección'), 0, 0, 'C');
-
 
     $pdf->Output();
 }
