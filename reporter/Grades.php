@@ -20,7 +20,7 @@ class PDF extends FPDF
     }
 
 // Cargar los datos
-    public function grades($data)
+    public function grades($data, $n)
     {
         $header = array(utf8_decode('N°'),
             utf8_decode('Nombre de estudiante'),
@@ -46,7 +46,7 @@ class PDF extends FPDF
         $this->SetTextColor(0);
         $this->SetFont('');
 
-        $n = 1;
+        // $n = 1;
         foreach ($data as $value) {
             $this->SetFont('Arial', '', 10);
 
@@ -136,7 +136,7 @@ class PDF extends FPDF
     {
         switch ($status) {
             case '0':
-                return 'Reprobado';
+                return 'Aplazado';
             case '1':
                 return 'Aprobado';
             case '2':
@@ -204,14 +204,14 @@ $reprobated = [];
 $cont = 0;
 foreach ($data as $student) {
 
-    //DIVIDIR LOS ESTUDIANTES POR 25
-    if ($cont < 25) {
+    //DIVIDIR LOS ESTUDIANTES POR 20
+    if ($cont < 20) {
         array_push($students1, $student);
     } else {
         array_push($students2, $student);
     }
     $cont++;
-    //DIVIDIR LOS ESTUDIANTES POR 25
+    //DIVIDIR LOS ESTUDIANTES POR 20
 
     //SELECCIONAR LOS APLAZADOS Y LOS QUE HICIERON CONVOCATORIA O PROMOCION
     if ($student[12] == '0') {
@@ -223,11 +223,6 @@ foreach ($data as $student) {
     }
     //SELECCIONAR LOS APLAZADOS Y LOS QUE HICIERON CONVOCATORIA O PROMOCION
 }
-
-// echo "#1 " . count($students1);
-// echo "   #2 " . count($students2);
-
-// exit();
 
 // SE VA A DEJAR ASI POR AQUELLO DE QUE MARLEN QUIERA PRESENTAR EL NOMBRE DEL PROFESOR
 foreach ($professor as $profe) {
@@ -251,12 +246,12 @@ foreach ($professor as $profe) {
 
     $pdf->Ln();
 
-    $pdf->grades($students1);
+    $pdf->grades($students1, 1);
 
     if (count($students2)) {
         $pdf->addPage();
         $pdf->Ln(10);
-        $pdf->grades($students2);
+        $pdf->grades($students2, 21);
     }
 
     $pdf->Ln(10);
@@ -326,10 +321,10 @@ foreach ($professor as $profe) {
     $pdf->Ln();
     $pdf->Ln();
     $pdf->SetFont('Arial', 'BU', 11);
-    $pdf->Cell(0, 5, utf8_decode('M.Sc. Julio Contreras Monge'), 0, 0, 'C');
+    $pdf->Cell(0, 5, utf8_decode('M.Sc. Inés Madrigal Estrada'), 0, 0, 'C');
     $pdf->Ln();
     $pdf->SetFont('Arial', '', 11);
-    $pdf->Cell(0, 5, utf8_decode('Asistente de dirección'), 0, 0, 'C');
+    $pdf->Cell(0, 5, utf8_decode('Directora Institucional'), 0, 0, 'C');
 
     $pdf->Ln();
     $pdf->Ln();
@@ -337,7 +332,7 @@ foreach ($professor as $profe) {
     $pdf->Cell(0, 5, utf8_decode('_____________________________'), 0, 0, 'C');
     $pdf->Ln();
     $pdf->SetFont('Arial', '', 11);
-    $pdf->Cell(0, 5, utf8_decode('Firma del asistente de dirección'), 0, 0, 'C');
+    $pdf->Cell(0, 5, utf8_decode('Firma de la irectora Institucional'), 0, 0, 'C');
 
     $pdf->Output();
 }

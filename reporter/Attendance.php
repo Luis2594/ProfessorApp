@@ -289,7 +289,7 @@ foreach ($professor as $profe) {
 
     $pdf->Ln(5);
     $pdf->SetFont('Arial', 'B', 11);
-    $pdf->Cell(0, 5, utf8_decode("Mes: " . $pdf->getMonth(date("m"))), 0, 0, 'R');
+    $pdf->Cell(0, 5, utf8_decode("Mes: " . $pdf->getMonth($month)), 0, 0, 'R');
     $pdf->Ln();
     $pdf->Ln();
     $pdf->Cell(0, 5, utf8_decode("Profesor(a): " . $name), 0, 0);
