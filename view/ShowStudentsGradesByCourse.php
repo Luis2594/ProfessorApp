@@ -252,13 +252,13 @@ include_once './reusable/Footer.php';
             if ($("#promotion_"+id).val() > 0){//in case of promotion
                 //configure color
                 if ($("#level_"+id).val().substring(0, 3) == "III"){
-                    if (parseInt($("#promotion_"+id).val()) >= 70){
+                    if (Math.round(parseFloat($("#promotion_"+id).val())) >= 70){
                         $("#promotion_"+id).css("background-color", "#00cc00");
                     }else{
                         $("#promotion_"+id).css("background-color", "#ff471a");
                     }
                 }else{
-                    if (parseInt($("#promotion_"+id).val()) >= 65){
+                    if (Math.round(parseFloat($("#promotion_"+id).val())) >= 65){
                         $("#promotion_"+id).css("background-color", "#00cc00");
                     }else{
                         $("#promotion_"+id).css("background-color", "#ff471a");
@@ -268,13 +268,13 @@ include_once './reusable/Footer.php';
                 if ($("#recovery2_"+id).val() > 0){//in case of recovery 2
                     //configure color
                     if ($("#level_"+id).val().substring(0, 3) == "III"){
-                        if (parseInt($("#recovery2_"+id).val()) >= 70){
+                        if (Math.round(parseFloat($("#recovery2_"+id).val())) >= 70){
                             $("#recovery2_"+id).css("background-color", "#00cc00");
                         }else{
                             $("#recovery2_"+id).css("background-color", "#ff471a");
                         }
                     }else{
-                        if (parseInt($("#recovery2_"+id).val()) >= 65){
+                        if (Math.round(parseFloat($("#recovery2_"+id).val())) >= 65){
                             $("#recovery2_"+id).css("background-color", "#00cc00");
                         }else{
                             $("#recovery2_"+id).css("background-color", "#ff471a");
@@ -284,13 +284,13 @@ include_once './reusable/Footer.php';
                     if ($("#recovery1_"+id).val() > 0){//in case of recovery 1
                         //configure color
                         if ($("#level_"+id).val().substring(0, 3) == "III"){
-                            if (parseInt($("#recovery1_"+id).val()) >= 70){
+                            if (parseFloat($("#recovery1_"+id).val()) >= 70){
                                 $("#recovery1_"+id).css("background-color", "#00cc00");
                             }else{
                                 $("#recovery1_"+id).css("background-color", "#ff471a");
                             }
                         }else{
-                            if (parseInt($("#recovery1_"+id).val()) >= 65){
+                            if (parseFloat($("#recovery1_"+id).val()) >= 65){
                                 $("#recovery1_"+id).css("background-color", "#00cc00");
                             }else{
                                 $("#recovery1_"+id).css("background-color", "#ff471a");
@@ -298,11 +298,12 @@ include_once './reusable/Footer.php';
                         }
                     }else{//if no recovery
                         //normal procedure to save final grade
-                        var resul = parseInt($("#classWork_"+id).val(), 10)+
-                        parseInt($("#homeWork_"+id).val(), 10)+
-                        parseInt($("#test_"+id).val(), 10)+
-                        parseInt($("#projects_"+id).val(), 10)+
-                        parseInt($("#atendance_"+id).val(), 10);
+                        var resul = parseFloat($("#classWork_"+id).val(), 10)+
+                        parseFloat($("#homeWork_"+id).val(), 10)+
+                        parseFloat($("#test_"+id).val(), 10)+
+                        parseFloat($("#projects_"+id).val(), 10)+
+                        parseFloat($("#atendance_"+id).val(), 10);
+                        debugger;
                         $("#finalgrade_"+id).val(Math.round(resul));
 
                         //fire change event to save the final grade
