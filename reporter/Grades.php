@@ -126,24 +126,25 @@ class PDF extends FPDF
             }
 
             //convo 2
-            if ($value[12] == 0 && $value[8] == 0) {
-                $this->Cell($w[2], 8, "NSP", 'LR', 0, 'C', false);
-            } else {
-                $this->Cell($w[4], 8, utf8_decode($value[8]), 'LR', 0, 'C', false);
-            }
+            $this->Cell($w[4], 8, utf8_decode($value[8]), 'LR', 0, 'C', false);
 
             //status convo 2
-            $this->Cell($w[5], 8, utf8_decode($this->getStatus($value[12], true)), 'LR', 0, 'C', false);
 
-            //promotion
-            if ($value[12] == 0 && $value[9] == 0) {
+            if ($value[12] == 0 && $value[7] == 0) {
                 $this->Cell($w[2], 8, "NSP", 'LR', 0, 'C', false);
             } else {
-                $this->Cell($w[6], 8, utf8_decode($value[9]), 'LR', 0, 'C', false);
+                $this->Cell($w[5], 8, utf8_decode($this->getStatus($value[12], true)), 'LR', 0, 'C', false);
             }
 
+            //promotion
+            $this->Cell($w[6], 8, utf8_decode($value[9]), 'LR', 0, 'C', false);
+
             //status promotion
-            $this->Cell($w[7], 8, utf8_decode($this->getStatus($value[12], true)), 'LR', 0, 'C', false);
+            if ($value[12] == 0 && $value[7] == 0) {
+                $this->Cell($w[2], 8, "NSP", 'LR', 0, 'C', false);
+            } else {
+                $this->Cell($w[7], 8, utf8_decode($this->getStatus($value[12], true)), 'LR', 0, 'C', false);
+            }
 
             $this->Ln();
 
