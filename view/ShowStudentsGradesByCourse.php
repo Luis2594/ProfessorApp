@@ -250,25 +250,52 @@ include_once './reusable/Footer.php';
         //final grade update
         if ("finalgrade" != updateType){
             if ($("#promotion_"+id).val() > 0){//in case of promotion
-                $("#finalgrade_"+id).val($("#promotion_"+id).val());
-                //fire change event to save the final grade
-                var element = document.getElementById("finalgrade_"+id);
-                var event = new Event('change');
-                element.dispatchEvent(event);
+                //configure color
+                if ($("#level_"+id).val().substring(0, 3) == "III"){
+                    if (parseInt($("#promotion_"+id).val()) >= 70){
+                        $("#promotion_"+id).css("background-color", "#00cc00");
+                    }else{
+                        $("#promotion_"+id).css("background-color", "#ff471a");
+                    }
+                }else{
+                    if (parseInt($("#promotion_"+id).val()) >= 65){
+                        $("#promotion_"+id).css("background-color", "#00cc00");
+                    }else{
+                        $("#promotion_"+id).css("background-color", "#ff471a");
+                    }
+                }
             }else{//if no promotion
                 if ($("#recovery2_"+id).val() > 0){//in case of recovery 2
-                    $("#finalgrade_"+id).val($("#recovery2_"+id).val());
-                    //fire change event to save the final grade
-                    var element = document.getElementById("finalgrade_"+id);
-                    var event = new Event('change');
-                    element.dispatchEvent(event);
-                }else{//if no recovery
+                    //configure color
+                    if ($("#level_"+id).val().substring(0, 3) == "III"){
+                        if (parseInt($("#recovery2_"+id).val()) >= 70){
+                            $("#recovery2_"+id).css("background-color", "#00cc00");
+                        }else{
+                            $("#recovery2_"+id).css("background-color", "#ff471a");
+                        }
+                    }else{
+                        if (parseInt($("#recovery2_"+id).val()) >= 65){
+                            $("#recovery2_"+id).css("background-color", "#00cc00");
+                        }else{
+                            $("#recovery2_"+id).css("background-color", "#ff471a");
+                        }
+                    }
+                }else{
                     if ($("#recovery1_"+id).val() > 0){//in case of recovery 1
-                        $("#finalgrade_"+id).val($("#recovery1_"+id).val());
-                        //fire change event to save the final grade
-                        var element = document.getElementById("finalgrade_"+id);
-                        var event = new Event('change');
-                        element.dispatchEvent(event);
+                        //configure color
+                        if ($("#level_"+id).val().substring(0, 3) == "III"){
+                            if (parseInt($("#recovery1_"+id).val()) >= 70){
+                                $("#recovery1_"+id).css("background-color", "#00cc00");
+                            }else{
+                                $("#recovery1_"+id).css("background-color", "#ff471a");
+                            }
+                        }else{
+                            if (parseInt($("#recovery1_"+id).val()) >= 65){
+                                $("#recovery1_"+id).css("background-color", "#00cc00");
+                            }else{
+                                $("#recovery1_"+id).css("background-color", "#ff471a");
+                            }
+                        }
                     }else{//if no recovery
                         //normal procedure to save final grade
                         var resul = parseInt($("#classWork_"+id).val(), 10)+
@@ -276,7 +303,7 @@ include_once './reusable/Footer.php';
                         parseInt($("#test_"+id).val(), 10)+
                         parseInt($("#projects_"+id).val(), 10)+
                         parseInt($("#atendance_"+id).val(), 10);
-                        $("#finalgrade_"+id).val(resul);
+                        $("#finalgrade_"+id).val(Math.round(resul));
 
                         //fire change event to save the final grade
                         var element = document.getElementById("finalgrade_"+id);
