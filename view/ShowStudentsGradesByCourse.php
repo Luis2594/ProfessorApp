@@ -303,7 +303,7 @@ include_once './reusable/Footer.php';
                         parseInt($("#test_"+id).val(), 10)+
                         parseInt($("#projects_"+id).val(), 10)+
                         parseInt($("#atendance_"+id).val(), 10);
-                        $("#finalgrade_"+id).val(resul);
+                        $("#finalgrade_"+id).val(Math.round(resul));
 
                         //fire change event to save the final grade
                         var element = document.getElementById("finalgrade_"+id);
